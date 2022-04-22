@@ -39,6 +39,7 @@
   "appid": "wx902cd58a7e7ea54b",
   "projectname": "pic-recogn",
   "libVersion": "2.14.1",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
       "list": []
