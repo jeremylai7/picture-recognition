@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    returnResult:''
   },
 
   /**
@@ -62,5 +62,42 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  // 上传图片
+  doUpload: function () {
+    // 选择图片
+    const that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath = res.tempFilePaths[0];
+        wx.uploadFile({
+          url: 'https://springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com/picture-reconize', //仅为示例，非真实的接口地址
+          filePath: filePath,
+          name: 'multipartFile',
+          formData: {
+            'user': 'test'
+          },
+          success (res){
+            wx.hideLoading();
+            const data = res.data;
+            console.log(data);
+            that.setData({
+              returnResult: data,
+            })
+            
+          }
+        })
+        
+
+
+      }
+    })
+  }      
 })
