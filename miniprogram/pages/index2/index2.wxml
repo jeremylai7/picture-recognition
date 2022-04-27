@@ -3,7 +3,7 @@
   <view class="page-section">
     <view class="page-section-title">文字结果</view>
     <view class="textarea-wrp">
-      <textarea value="{{returnResult}}" bindblur="bindTextAreaBlur" auto-height/>
+      <textarea value="{{returnResult}}" bindblur="bindTextAreaBlur" maxlength="-1" auto-height/>
     </view>
   </view>
   <!-- 上传图片 -->
