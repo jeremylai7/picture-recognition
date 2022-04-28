@@ -32,6 +32,12 @@
       <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
     </view>
   </view>
+  <!-- 节假日倒计时 -->
+  <view class="uploader">
+    <navigator url="../holiday/holiday" open-type="navigate" class="uploader-text">
+      <text>放假倒计时</text>
+    </navigator>
+  </view>
 
 
   <!-- 上传图片 -->
