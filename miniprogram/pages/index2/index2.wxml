@@ -1,9 +1,9 @@
 <!--miniprogram/pages/index2/index2.wxml-->
-<view class="container">
+<view class="page-body">
   <view class="page-section">
     <view class="page-section-title">文字结果</view>
-    <view class="textarea-wrp">
-      <textarea value="{{returnResult}}" bindblur="bindTextAreaBlur" maxlength="-1" auto-height/>
+    <view class="textarea-wrp" style="line-height:30px;">
+      <textarea value="{{returnResult}}" maxlength="-1" auto-height />
     </view>
   </view>
   <!-- 上传图片 -->
@@ -11,7 +11,6 @@
     <view class="uploader-text" bindtap="doUpload">
       <text>上传图片</text>
     </view>
-    
   </view>
-  
 </view>
+
