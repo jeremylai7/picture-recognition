@@ -78,7 +78,7 @@ Page({
         })
         const filePath = res.tempFilePaths[0];
         wx.uploadFile({
-          url: 'http://192.168.3.78:80/picture-reconize', //仅为示例，非真实的接口地址
+          url: 'https://springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com/picture-reconize', //仅为示例，非真实的接口地址
           filePath: filePath,
           name: 'multipartFile',
           formData: {
