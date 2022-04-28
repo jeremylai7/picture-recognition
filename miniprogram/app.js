@@ -14,6 +14,9 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      httptype: "https://",
+      url: "springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com"
+    }
   }
 })

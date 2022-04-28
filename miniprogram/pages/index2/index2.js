@@ -1,4 +1,4 @@
-// miniprogram/pages/index2/index2.js
+const app = getApp();
 Page({
 
   /**
@@ -78,7 +78,7 @@ Page({
         })
         const filePath = res.tempFilePaths[0];
         wx.uploadFile({
-          url: 'https://springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com/picture-reconize', //仅为示例，非真实的接口地址
+          url: app.globalData.httptype + app.globalData.url + "/picture-reconize",
           filePath: filePath,
           name: 'multipartFile',
           formData: {
