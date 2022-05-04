@@ -1,4 +1,4 @@
-<view style="line-height: 30px;margin: auto;">
+<view style="line-height: 30px;margin: auto; ">
 <view style="text-align:center;color:#a3a3a3;font-size: 14px;">
   2022年3月10日07：53
 </view>
@@ -29,7 +29,6 @@
 </view>
 <view>
   距离【五 一】还有：51天
-
 </view>
 <view>
   距离【端 午】还有：84天
