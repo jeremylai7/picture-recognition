@@ -63,6 +63,43 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 上传手写图片
+  doUploadHandwriting : function() {
+    // 选择图片
+    const that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath = res.tempFilePaths[0];
+        wx.uploadFile({
+          url: app.globalData.httptype + app.globalData.url + "/picture-handwriting",
+          filePath: filePath,
+          name: 'multipartFile',
+          formData: {
+            'user': 'test'
+          },
+          success (res){
+            wx.hideLoading();
+            const data = res.data;
+            console.log(data);
+            that.setData({
+              returnResult: data,
+            })
+            
+          }
+        })
+        
+
+
+      }
+    })
+  
+  },
 
   // 上传图片
   doUpload: function () {

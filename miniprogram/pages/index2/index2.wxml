@@ -6,11 +6,19 @@
       <textarea value="{{returnResult}}" maxlength="-1" auto-height />
     </view>
   </view>
-  <!-- 上传图片 -->
-  <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
+  <view style="">
+    <!-- 上传图片 -->
+    <view class="uploader">
+      <view class="uploader-text" bindtap="doUpload">
+        <text>上传图片</text>
+      </view>
+    </view>
+    <view class="uploader">
+      <view class="uploader-text" bindtap="doUploadHandwriting">
+        <text>上传手写图片</text>
+      </view>
     </view>
   </view>
+  
 </view>
 
