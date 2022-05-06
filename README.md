@@ -6,7 +6,7 @@
 ## 使用操作
 
 ### 在微信小程序搜索**图像文字识别plus**:
-![图像文字识别plus](https://user-images.githubusercontent.com/11553237/167056833-b396220b-1315-48a3-8372-752b09fd6ccf.jpg)
+![image](https://user-images.githubusercontent.com/11553237/167057596-a001f623-0aad-4a39-8a2b-9d38936344e3.png)
 
 
 ### 或扫描下方二维码：
@@ -16,12 +16,12 @@
 
 ### 上传图片
 
-![lADPJunPVgqFg6PNCeTNBJI_1170_2532](https://user-images.githubusercontent.com/11553237/167057422-8473389b-5dd4-481f-9a2a-af48535d1949.jpg)
+![image](https://user-images.githubusercontent.com/11553237/167057655-2006921c-4233-4f09-b0b8-ebf78017cbe6.png)
 
 
 ### 显示结果
 
-![lADPJu1c1K9lHInNCeTNBJI_1170_2532](https://user-images.githubusercontent.com/11553237/167057457-04c75a5b-0b68-4b47-961c-120d4787875c.jpg)
+![image](https://user-images.githubusercontent.com/11553237/167057688-d930f769-fb0d-41f2-9f4f-b809ff83fc53.png)
 
 
 ## 最后
