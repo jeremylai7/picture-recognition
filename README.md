@@ -14,16 +14,6 @@
 ![图像文字识别](https://user-images.githubusercontent.com/11553237/167056591-859809e5-e570-4046-8fcb-3b1f224c1e2a.jpg)
 
 
-### 上传图片
-
-![image](https://user-images.githubusercontent.com/11553237/167057655-2006921c-4233-4f09-b0b8-ebf78017cbe6.png)
-
-
-### 显示结果
-
-![image](https://user-images.githubusercontent.com/11553237/167057688-d930f769-fb0d-41f2-9f4f-b809ff83fc53.png)
-
-
 ## 最后
 
 感谢大家 Star & Fork 的支持。
