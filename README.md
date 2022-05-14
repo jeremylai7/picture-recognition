@@ -6,12 +6,8 @@
 ## 使用操作
 
 ### 在微信小程序搜索**图像文字识别plus**:
-![image](https://user-images.githubusercontent.com/11553237/167057596-a001f623-0aad-4a39-8a2b-9d38936344e3.png)
+![扫码_搜索联合传播样式-标准色版](https://user-images.githubusercontent.com/11553237/168418811-8bb1d958-42e8-4a1a-b6a1-fe5f4dffa2ec.png)
 
-
-### 或扫描下方二维码：
-
-![图像文字识别](https://user-images.githubusercontent.com/11553237/167056591-859809e5-e570-4046-8fcb-3b1f224c1e2a.jpg)
 
 
 ## 最后
