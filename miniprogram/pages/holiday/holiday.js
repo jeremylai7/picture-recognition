@@ -5,14 +5,57 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    nowTime:"",
+    date:"",
+    month:"",
+    intervalTime:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.updateTime();
+    setInterval(this.updateTime,1000);
+  },
 
+  updateTime(){
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+    const second = now.getSeconds();
+    const time = year + "年" + month + "月" + date + "日 " + this.fillZero(hour) + ":" + this.fillZero(minutes) + ":" + this.fillZero(second); 
+    const intervalTime = this.getDateInterval(hour);
+    this.setData({
+      nowTime:time,
+      month:month,
+      date:date,
+      intervalTime:intervalTime
+    })
+    
+  },
+
+  fillZero(time){
+    return time < 10 ? 0 + time : time;
+  },
+
+  getDateInterval(time) {
+    var intervalTime;
+    if(time >= 0 && time <= 6) {
+      intervalTime = "凌晨";
+    } else if(time > 6 && time < 12) {
+      intervalTime = "上午";
+    } else if(time == 12) {
+      intervalTime = "中午";
+    } else if(time > 12 && time <= 18) {
+      intervalTime = "下午";
+    } else {
+      intervalTime = "晚上";
+    }
+    return intervalTime;
   },
 
   /**
@@ -63,4 +106,5 @@ Page({
   onShareAppMessage() {
 
   }
+  
 })

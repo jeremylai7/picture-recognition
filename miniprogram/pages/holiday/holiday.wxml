@@ -1,9 +1,9 @@
 <view style="line-height: 30px;margin: auto; ">
 <view style="text-align:center;color:#a3a3a3;font-size: 14px;">
-  2022年3月10日07：53
+  {{nowTime}}
 </view>
 <view>
-  【摸鱼办】提醒您：3月10日上午好，摸鱼
+【摸鱼办】提醒您：{{month}}月{{date}}日{{intervalTime}}好，摸鱼
 </view>
 <view>
   人！漫长的岁月，竟没有一天适合上班！工
