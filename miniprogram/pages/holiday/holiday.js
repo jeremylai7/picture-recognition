@@ -1,4 +1,5 @@
 // pages/holiday/holiday.js
+const app = getApp();
 Page({
 
   /**
@@ -9,6 +10,10 @@ Page({
     date:"",
     month:"",
     intervalTime:"",
+    week:"",
+    weekArray:["日","一","二","三","四","五","六"],
+    hlidayDistance: "距离【text】还有：day天",
+    DomArray:{},
   },
 
   /**
@@ -17,6 +22,7 @@ Page({
   onLoad(options) {
     this.updateTime();
     setInterval(this.updateTime,1000);
+    this.getHolidayDistince();
   },
 
   updateTime(){
@@ -29,17 +35,38 @@ Page({
     const second = now.getSeconds();
     const time = year + "年" + month + "月" + date + "日 " + this.fillZero(hour) + ":" + this.fillZero(minutes) + ":" + this.fillZero(second); 
     const intervalTime = this.getDateInterval(hour);
+    const day = now.getDay();
+    var weekStr = this.data.weekArray[day];
     this.setData({
       nowTime:time,
       month:month,
       date:date,
-      intervalTime:intervalTime
+      intervalTime:intervalTime,
+      week:weekStr,
     })
     
   },
 
   fillZero(time){
     return time < 10 ? 0 + time : time;
+  },
+  getHolidayDistince() {
+    var that =  this;
+    wx.request({
+      url: app.globalData.httptype + app.globalData.url + "/holiday/all",
+      success:function(res) {
+        if(res.statusCode == 200) {
+          that.buildHolidayItem(res.data);
+        }
+      }
+    })
+  },
+
+  buildHolidayItem(data) {
+    this.setData({
+      DomArray:data
+    })
+
   },
 
   getDateInterval(time) {

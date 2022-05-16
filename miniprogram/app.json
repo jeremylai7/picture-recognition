@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/holiday/holiday",
     "pages/index2/index2",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -14,7 +13,8 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/holiday/holiday"
     
   ],
   "window": {
