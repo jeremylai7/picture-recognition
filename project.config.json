@@ -37,7 +37,8 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "useStaticServer": true
   },
   "appid": "wx902cd58a7e7ea54b",
   "projectname": "pic-recogn",

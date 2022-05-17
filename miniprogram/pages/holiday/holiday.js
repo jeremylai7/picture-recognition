@@ -131,7 +131,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return{
+      title: "上班要摸鱼，心情更美丽"
+    }
   }
   
 })
