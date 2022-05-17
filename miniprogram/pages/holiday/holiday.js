@@ -131,6 +131,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    return {
+      title: "【摸鱼办】提醒您,上班要摸鱼",
+      path:"/page/holiday"
+    }
 
   }
   
