@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index2/index2",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -15,6 +16,7 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/holiday/holiday"
+    
     
   ],
   "window": {
