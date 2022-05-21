@@ -1,16 +1,6 @@
 //app.js
 App({
   onLaunch: function () {
-    wx.getBackgroundFetchData({
-      fetchType: 'pre',
-      success(res) {
-        console.log(res.fetchedData);
-        var json = JSON.parse(JSON.parse(res.fetchedData));
-        getApp().globalData.aa = json;
-      }
-    })
-    
-
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -29,8 +19,18 @@ App({
       //httptype: "http://",
       url: "springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com",
       //url: "127.0.0.1:80",
-      aa:{}
+      holidayDate:[]
       
     }
+    let that = this;
+    wx.getBackgroundFetchData({
+      fetchType: 'pre',
+      success(res) {
+        var json = JSON.parse(JSON.parse(res.fetchedData));
+        that.globalData.holidayDate = json;
+      }
+    })
+
+
   }
 })
