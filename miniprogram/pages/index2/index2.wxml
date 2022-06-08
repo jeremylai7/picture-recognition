@@ -46,6 +46,12 @@
       </view>
     </view>
   </view>
+  <view>
+    <image class="qr-code" src="{{imgUrl}}" mode="aspectFill" />
+    <button class="text" bindtap="saveImage">保存图片</button>
+  </view>
+  
+
   
 </view>
 

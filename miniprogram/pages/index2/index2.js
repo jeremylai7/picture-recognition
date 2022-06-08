@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    returnResult:''
+    returnResult:'',
+    imgUrl:"https://p26-passport.byteacctimg.com/img/user-avatar/74c6c6c1d6e7dca73f0e27064f8e9ebd~300x300.image",
   },
 
   /**
@@ -63,6 +64,31 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 保存图片
+   */
+  saveImage : function() {
+    var that = this;
+    console.log(that.data.imgUrl);
+    wx.downloadFile({
+      url: that.data.imgUrl,
+      success: function(res) {
+        if (res.statusCode === 200) {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: function(data) {
+              wx.showToast({
+                title: '保存成功',
+                icon:'success',
+              })
+            }
+          })
+        }
+      }
+    })
+  },  
+
   // 上传手写图片
   doUploadHandwriting : function() {
     // 选择图片
