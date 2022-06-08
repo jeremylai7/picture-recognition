@@ -13,7 +13,7 @@ Page({
     week:"",
     weekArray:["日","一","二","三","四","五","六"],
     hlidayDistance: "距离【text】还有：day天",
-    DomArray:[],
+    holidayDate:[],
   },
 
   onLaunch() {
@@ -57,7 +57,7 @@ Page({
   },
   getHolidayDistince() {
     var that =  this;
-    that.buildHolidayItem(app.globalData.aa);
+    that.buildHolidayItem(app.globalData.holidayDate);
     
   },
 

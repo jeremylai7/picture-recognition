@@ -6,7 +6,7 @@
     "es6": true,
     "enhance": true,
     "postcss": true,
-    "preloadBackgroundData": false,
+    "preloadBackgroundData": true,
     "minified": true,
     "newFeature": true,
     "coverView": true,
@@ -37,8 +37,7 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "useStaticServer": true
+    "useCompilerPlugins": false
   },
   "appid": "wx902cd58a7e7ea54b",
   "projectname": "pic-recogn",
