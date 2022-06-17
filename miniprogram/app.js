@@ -16,9 +16,9 @@ App({
 
     this.globalData = {
       httptype: "https://",
-      //httptype: "http://",
       url: "springboot-cv01-1668851-1300949732.ap-shanghai.run.tcloudbase.com",
-      //url: "127.0.0.1:80",
+      //httptype: "http://",
+      //url: "192.168.3.78:80",
       holidayDate:[]
       
     }

@@ -70,7 +70,6 @@ Page({
    */
   saveImage : function() {
     var that = this;
-    console.log(that.data.imgUrl);
     wx.downloadFile({
       url: that.data.imgUrl,
       success: function(res) {
@@ -93,35 +92,17 @@ Page({
   doUploadHandwriting : function() {
     // 选择图片
     const that = this;
+    that.cleanText();
     wx.chooseImage({
-      count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
         wx.showLoading({
           title: '上传中',
         })
-        const filePath = res.tempFilePaths[0];
-        wx.uploadFile({
-          url: app.globalData.httptype + app.globalData.url + "/picture-handwriting",
-          filePath: filePath,
-          name: 'multipartFile',
-          formData: {
-            'user': 'test'
-          },
-          success (res){
-            wx.hideLoading();
-            const data = res.data;
-            console.log(data);
-            that.setData({
-              returnResult: data,
-            })
-            
-          }
-        })
-        
-
-
+        that.cleanText();
+        var tempFilePaths = res.tempFilePaths;
+        that.uploadFile(tempFilePaths,tempFilePaths.length,0,"picture-handwriting");
       }
     })
   
@@ -132,35 +113,43 @@ Page({
     // 选择图片
     const that = this;
     wx.chooseImage({
-      count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
         wx.showLoading({
           title: '上传中',
         })
-        const filePath = res.tempFilePaths[0];
-        wx.uploadFile({
-          url: app.globalData.httptype + app.globalData.url + "/picture-reconize",
-          filePath: filePath,
-          name: 'multipartFile',
-          formData: {
-            'user': 'test'
-          },
-          success (res){
-            wx.hideLoading();
-            const data = res.data;
-            console.log(data);
-            that.setData({
-              returnResult: data,
-            })
-            
-          }
-        })
-        
-
-
+        that.cleanText();
+        var tempFilePaths = res.tempFilePaths;
+        that.uploadFile(tempFilePaths,tempFilePaths.length,0,"picture-reconize");
       }
+    })
+  },
+  uploadFile:function(tempFilePaths,length,index,path) {
+    if(index >= length) {
+      wx.hideLoading();
+      return;
+    }
+    var that = this;
+    wx.uploadFile({
+      url: app.globalData.httptype + app.globalData.url + "/" + path,
+      filePath: tempFilePaths[index],
+      name: 'multipartFile',
+      formData: {
+        'user': 'test'
+      },
+      success (res){
+        console.log(that.data.returnResult);
+        that.setData({
+          returnResult:  that.data.returnResult + "/n" + res.data
+        })
+        that.uploadFile(tempFilePaths,tempFilePaths.length,index + 1,path);
+      }
+    })
+  },
+  cleanText:function() {
+    this.setData({
+      returnResult:""
     })
   }      
 })
