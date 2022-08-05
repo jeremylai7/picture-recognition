@@ -12,7 +12,6 @@ Page({
     intervalTime:"",
     week:"",
     weekArray:["日","一","二","三","四","五","六"],
-    hlidayDistance: "距离【text】还有：day天",
     holidayDate:[],
   },
 
@@ -57,8 +56,13 @@ Page({
   },
   getHolidayDistince() {
     var that =  this;
-    that.buildHolidayItem(app.globalData.holidayDate);
-    
+    wx.request({
+      url: app.globalData.httptype + app.globalData.url + "/holiday/all",
+      success (res){
+        console.log(res);
+        that.buildHolidayItem(res.data);
+      }
+    })
   },
 
   buildHolidayItem(data) {
