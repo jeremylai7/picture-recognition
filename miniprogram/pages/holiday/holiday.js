@@ -12,7 +12,6 @@ Page({
     intervalTime:"",
     week:"",
     weekArray:["日","一","二","三","四","五","六"],
-    holidayDate:[],
   },
 
   onLaunch() {
@@ -52,15 +51,18 @@ Page({
   },
 
   fillZero(time){
-    return time < 10 ? 0 + time : time;
+    return time < 10 ? 0 + "" + time : time;
   },
   getHolidayDistince() {
     var that =  this;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/all",
       success (res){
-        console.log(res);
         that.buildHolidayItem(res.data);
+        wx.hideLoading();
       }
     })
   },

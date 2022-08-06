@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/holiday/holiday",
     "pages/index2/index2",
-    "pages/index/index",
-    "pages/holiday/holiday"
+    "pages/index/index"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

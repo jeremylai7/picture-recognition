@@ -21,7 +21,7 @@
 <view>
   今天【星期{{week}}】
 </view>
-<view wx:for="{{DomArray}}">{{item}}</view>
+<view wx:for="{{DomArray}}" wx:key="unique" >{{item}}</view>
 <view>
   上班是帮老板赚钱，摸鱼是赚老板的钱！你
 </view>

@@ -19,18 +19,8 @@ App({
       url: "www.jeremy7.cn/springboot-schedule",
       //httptype: "http://",
       //url: "192.168.3.78:80",
-      holidayDate:[]
       
     }
-    let that = this;
-    wx.getBackgroundFetchData({
-      fetchType: 'pre',
-      success(res) {
-        var json = JSON.parse(JSON.parse(res.fetchedData));
-        that.globalData.holidayDate = json;
-      }
-    })
-
-
+  
   }
 })
