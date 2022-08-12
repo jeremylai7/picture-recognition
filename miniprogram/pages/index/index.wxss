@@ -69,6 +69,15 @@ page {
   flex: 1;
 }
 
+.ip_address {
+  padding: 0 0 0 40rpx;
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  color: #727272;
+  font-size: smaller;
+}
+
 .uploader, .tunnel {
   height: auto;
   padding: 0 0 0 40rpx;
