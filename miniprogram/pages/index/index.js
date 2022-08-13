@@ -41,7 +41,9 @@ Page({
     })
   },
   onShareAppMessage: function () {
-
+    return{
+      title: "来看看你的IP归属地在哪"
+    }
   },
 
   getUserProfile() {
