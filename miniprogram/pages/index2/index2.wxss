@@ -1,4 +1,26 @@
 /* miniprogram/pages/index2/index2.wxss */
+page {
+  height: 100%;
+}
+.btn-view {
+  width: 100%;
+  position: fixed;
+  bottom: 4%;
+  
+}
+.btn-upload {
+  color:  rgb(255, 255, 255);
+  vertical-align: center;
+  font-size: 24px;
+  width: 150px;
+  height: 50px;
+  border-radius: 12px;
+  background-color:rgb(117, 131, 243);
+  
+  
+}
+
+
 textarea {
   width: 700rpx;
   padding: 25rpx 0;
