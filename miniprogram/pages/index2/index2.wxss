@@ -20,9 +20,10 @@ page {
   width: 205px !important;
   height: 50px;
   border-radius: 12px;
-  background-color:rgb(117, 131, 243);
-  
-  
+  background-color:rgb(117, 131, 243);  
+}
+.show-text-view {
+   height: 100%;
 }
 
 

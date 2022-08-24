@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showResult: false,
     returnResult:'',
     imgUrl:"https://p26-passport.byteacctimg.com/img/user-avatar/74c6c6c1d6e7dca73f0e27064f8e9ebd~300x300.image",
   },
@@ -93,7 +94,7 @@ Page({
     // 选择图片
     const that = this;
     that.cleanText();
-    wx.chooseImage({
+    wx.chooseMedia({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
@@ -112,7 +113,7 @@ Page({
   doUpload: function () {
     // 选择图片
     const that = this;
-    wx.chooseImage({
+    wx.chooseMedia({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
@@ -120,7 +121,7 @@ Page({
           title: '上传中',
         })
         that.cleanText();
-        var tempFilePaths = res.tempFilePaths;
+        var tempFilePaths = res.tempFiles;
         that.uploadFile(tempFilePaths,tempFilePaths.length,0,"picture-reconize");
       }
     })
@@ -133,7 +134,7 @@ Page({
     var that = this;
     wx.uploadFile({
       url: app.globalData.httptype + app.globalData.url + "/" + path,
-      filePath: tempFilePaths[index],
+      filePath: tempFilePaths[index].tempFilePath,
       name: 'multipartFile',
       formData: {
         'user': 'test'
@@ -141,7 +142,8 @@ Page({
       success (res){
         console.log(that.data.returnResult);
         that.setData({
-          returnResult:  that.data.returnResult + "/n" + res.data
+          returnResult:  that.data.returnResult + "/n" + res.data,
+          showResult:true,
         })
         that.uploadFile(tempFilePaths,tempFilePaths.length,index + 1,path);
       }
