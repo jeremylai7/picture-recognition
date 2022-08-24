@@ -8,11 +8,16 @@ page {
   bottom: 4%;
   
 }
+.img-view {
+  height: 100%;
+  text-align: center;
+  margin-top: 38%;
+}
 .btn-upload {
   color:  rgb(255, 255, 255);
   vertical-align: center;
   font-size: 24px;
-  width: 150px;
+  width: 205px !important;
   height: 50px;
   border-radius: 12px;
   background-color:rgb(117, 131, 243);
