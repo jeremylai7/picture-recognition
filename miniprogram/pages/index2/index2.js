@@ -140,9 +140,8 @@ Page({
         'user': 'test'
       },
       success (res){
-        console.log(that.data.returnResult);
         that.setData({
-          returnResult:  that.data.returnResult + "/n" + res.data,
+          returnResult:  that.data.returnResult + res.data,
           showResult:true,
         })
         that.uploadFile(tempFilePaths,tempFilePaths.length,index + 1,path);
