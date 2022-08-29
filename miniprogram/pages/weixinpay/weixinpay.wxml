@@ -1,0 +1,7 @@
+<!--pages/weixinpay/weixinpay.wxml-->
+<view style='width:100%;text-align:center'>
+  <view>微信支付</view>
+  
+  <input style='border:1px solid #0E0E0E;height:30px' type='digit' bindinput='checkprice'  placeholder="金额" value="{{price}}" bindinput ="changeprice" />
+  <button type='primary' style='margin:10px;' size="default" bindtap="wxPay">打赏{{ price }}元</button>
+</view>
