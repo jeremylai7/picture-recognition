@@ -39,7 +39,12 @@
       <text>放假倒计时</text>
     </navigator>
   </view>
-  <view class="ip_address">IP 属地：{{address}}</view>
+  <view class="uploader">
+    <navigator url="../ipaddress/ipaddress" open-type="navigate" class="uploader-text">
+      <text>IP归属地</text>
+    </navigator>
+  </view>
+  
 
 
   <!-- 上传图片 -->

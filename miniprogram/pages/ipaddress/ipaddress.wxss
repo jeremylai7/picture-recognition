@@ -13,8 +13,8 @@ page {
 }
 
 .intro_icon {
-  padding-left: 30%;
-  margin-top: 5%;
+  padding-left: 25%;
+  margin-top: 8%;
 }
 
 .clean_float {
@@ -22,8 +22,8 @@ page {
 }
 
 .local_div {
-  width: 80%;
-  height: 150rpx; 
+  width: 90%;
+  height: 130rpx; 
   margin: 0 auto;
   background-color: #ffffff;
   margin-top: -10%;
@@ -31,25 +31,60 @@ page {
 }
 
 .local_bar {
-  margin-left: 10px;
-  margin-top: 20px;
+  margin-left: 30rpx;
+  margin-top: 50rpx;
   border-radius: 2px; 
   width: 8rpx;
-  height: 28px;
+  height: 50rpx;
   background-color: #6e74dd;
 }
 
 .local_text {
   font-size: small;
-  margin-left: 10px;
-  margin-top: 15px;
+  margin-left: 25rpx;
+  margin-top: 35rpx;
+  
 }
 
 .ip_find {
-  width: 80%;
-  height: 400rpx; 
+  width: 90%;
+  height: 700rpx; 
   margin: 0 auto;
   background-color: #ffffff;
   margin-top: 20px;
+  border-radius: 10px;
+}
+
+.ip_find_btn {
+  height: 78rpx; 
+  background-color: #6e74dd;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 24px;
+  text-align: center;
+  line-height:78rpx;
+}
+
+.ip_input {
+  height: 78rpx; 
+  background-color: #F5F5F5;
+  width: 90%;
+  margin: 30rpx auto;
+  border-radius: 24px;
+  text-align: center;
+  line-height:78rpx;
+}
+
+.ip_find_text {
+  padding-top: 28px;
+  padding-left: 20px;
+  font-weight: bolder;
+}
+
+.result_div {
+  width: 100%;
+  height: 130rpx; 
+  margin: 0 auto;
+  background-color: #ffffff;
   border-radius: 10px;
 }

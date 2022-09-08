@@ -1,5 +1,5 @@
 <view style="height: 100%;width: 100%;">
-  <view style="width: 100%;height: 190px;background-color: #6e74dd">
+  <view style="width: 100%;height: 330rpx;background-color: #6e74dd">
       <view class="ip_intro left_float">
         <view style="font-size:x-large">IP地址归属地</view>
         <view style="padding-top: 3%;">一键查询 快速方便</view>
@@ -14,20 +14,29 @@
         <view class="local_bar"></view>
       </view>
       <view class="left_float local_text">
-        <view>当前IP地址:</view>
-        <view>归属地：</view>
+        <view>当前IP地址：{{localIp}}</view>
+        <view style="margin-top: 12rpx;">归属地：{{localAddress}}</view>
       </view>
   </view>
   <view class="ip_find">
-     <view style="padding-top: 30px;padding-left: 20px;">IP归属地查询</view>
+     <view class="ip_find_text">IP归属地查询</view>
      <view>
-      <input type="text"/>
+      <input class="ip_input" type="text" bindinput="changeIp"/>
      </view>
-     <view>
-      <button type="primary">查询</button>
+     <view class="ip_find_btn">
+        <view bindtap="findAddress">查询</view>
      </view>
-
+     <view class="result_div" wx:if="{{showResult}}">
+        <view class="left_float">
+          <view class="local_bar"></view>
+        </view>
+        <view class="left_float local_text">
+          <view>当前IP地址：{{resultIp}}</view>
+          <view style="margin-top: 12rpx;">归属地：{{resultAddress}}</view>
+        </view>
+      </view>
+     
   </view>
-
+  
 
 </view>

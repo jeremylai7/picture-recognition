@@ -10,7 +10,6 @@ Page({
     takeSession: false,
     requestResult: '',
     canIUseGetUserProfile: false,
-    adress: "",
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
   },
 
@@ -25,24 +24,6 @@ Page({
       this.setData({
         canIUseGetUserProfile: true,
       })
-    }
-    this.getIpAddress();
-  },
-
-  getIpAddress() {
-    var that =  this;
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/holiday/ip-address",
-      success (res){
-        that.setData({
-          address:res.data,
-        })
-      }
-    })
-  },
-  onShareAppMessage: function () {
-    return{
-      title: "来看看你的IP归属地在哪"
     }
   },
 
