@@ -1,8 +1,21 @@
-<view >
+<view style="height: 100%;width: 100%;">
   <view style="width: 100%;height: 190px;background-color: #6e74dd">
-      <view>IP地址归属地</view>
-      <view>
-        <image src="/images/ip_search.png" mode="heightFix"></image>
+      <view class="ip_intro left_float">
+        <view style="font-size:x-large">IP地址归属地</view>
+        <view style="padding-top: 3%;">一键查询 快速方便</view>
+      </view>
+      <view class="left_float intro_icon">
+        <image style="width: 80px;height: 80px;"  src="/images/ip_search.png" mode="heightFix"></image>
+      </view>
+      
+  </view>
+  <view class="clean_float local_div">
+      <view class="left_float">
+        <view class="local_bar"></view>
+      </view>
+      <view class="left_float local_text">
+        <view>当前IP地址:</view>
+        <view>归属地：</view>
       </view>
   </view>
 

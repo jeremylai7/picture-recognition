@@ -1,1 +1,46 @@
-/* pages/ipaddress/ipaddress.wxss */
+page {
+  height: 100%;
+  
+}
+.ip_intro {
+  padding-left: 5%;
+  padding-top: 10%;
+  color: white;
+}
+
+.left_float {
+  float: left;
+}
+
+.intro_icon {
+  padding-left: 30%;
+  margin-top: 5%;
+}
+
+.clean_float {
+  clear:both;
+}
+
+.local_div {
+  width: 80%;
+  height: 150rpx; 
+  margin: 0 auto;
+  background-color: #ffffff;
+  margin-top: -10%;
+  border-radius: 10px;
+}
+
+.local_bar {
+  margin-left: 10px;
+  margin-top: 20px;
+  border-radius: 2px; 
+  width: 8rpx;
+  height: 28px;
+  background-color: #6e74dd;
+}
+
+.local_text {
+  font-size: small;
+  margin-left: 10px;
+  margin-top: 15px;
+}
