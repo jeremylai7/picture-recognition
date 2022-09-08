@@ -15,10 +15,10 @@ App({
     }
 
     this.globalData = {
-      //httptype: "https://",
-      //url: "www.jeremy7.cn/springboot-schedule",
-      httptype: "http://",
-      url: "192.168.3.78:8080",
+      httptype: "https://",
+      url: "www.jeremy7.cn/springboot-schedule",
+      //httptype: "http://",
+      //url: "192.168.3.78:8080",
       
     }
   

@@ -130,6 +130,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return{
+      title: "看看你的IP归属地在哪吧！"
+    }
   }
 })
