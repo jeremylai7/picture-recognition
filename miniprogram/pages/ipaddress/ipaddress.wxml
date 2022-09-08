@@ -18,5 +18,16 @@
         <view>归属地：</view>
       </view>
   </view>
+  <view class="ip_find">
+     <view style="padding-top: 30px;padding-left: 20px;">IP归属地查询</view>
+     <view>
+      <input type="text"/>
+     </view>
+     <view>
+      <button type="primary">查询</button>
+     </view>
+
+  </view>
+
 
 </view>
