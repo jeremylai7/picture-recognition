@@ -1,0 +1,38 @@
+/* pages/generateImage/generateImage.wxss */
+.ip_find {
+  width: 90%;
+  height: 900rpx; 
+  margin: 0 auto;
+  background-color: #ffffff;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.ip_find_btn {
+  height: 78rpx; 
+  background-color: #6e74dd;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 24px;
+  text-align: center;
+  line-height:78rpx;
+}
+
+.ip_input {
+  height: 78rpx; 
+  background-color: #F5F5F5;
+  width: 90%;
+  margin: 30rpx auto;
+  border-radius: 24px;
+  text-align: center;
+  line-height:78rpx;
+}
+
+.ip_find_text {
+  padding-top: 28px;
+  padding-left: 20px;
+  font-weight: bolder;
+}
+.img-view {
+  margin-top: 30rpx;
+}

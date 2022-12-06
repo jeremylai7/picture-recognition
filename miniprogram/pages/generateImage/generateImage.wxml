@@ -1,0 +1,14 @@
+<!--pages/generateImage/generateImage.wxml-->
+<view class="ip_find">
+     <view class="ip_find_text">输入文字</view>
+     <view>
+      <input class="ip_input" type="text" bindinput="changeText"/>
+     </view>
+     <view class="ip_find_btn">
+        <view bindtap="generateImage">生成图片</view>
+     </view>
+     <view class="img-view" wx:if="{{showResult}}">
+        <image src="{{imgSrc}}"></image>
+      </view>
+     
+  </view>
