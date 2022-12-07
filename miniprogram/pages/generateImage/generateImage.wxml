@@ -2,7 +2,7 @@
 <view class="ip_find">
      <view class="ip_find_text">输入文字</view>
      <view>
-      <input class="ip_input" type="text" bindinput="changeText"/>
+      <input class="ip_input" type="text" placeholder="请输入文字，比如：可爱的小狗" bindinput="changeText"/>
      </view>
      <view class="ip_find_btn">
         <view bindtap="generateImage">生成图片</view>

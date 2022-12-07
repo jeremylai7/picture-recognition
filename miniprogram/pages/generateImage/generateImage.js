@@ -107,6 +107,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return{
+      title: "输入文字就能生成图片了！！"
+    }
   }
 })
