@@ -49,6 +49,11 @@
       <text>文字生成图片</text>
     </navigator>
   </view>
+  <view class="uploader">
+    <navigator url="../chatAnswer/chatAnswer" open-type="navigate" class="uploader-text">
+      <text>智能回复</text>
+    </navigator>
+  </view>
   
 
 
