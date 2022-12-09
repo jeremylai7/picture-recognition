@@ -38,7 +38,7 @@ Page({
       },
       success (res){
         wx.hideLoading();
-        var url = res.data.choices[0].text;
+        var url = res.data;
         that.setData({
           resultText:url,
           showResult:true
