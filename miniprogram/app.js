@@ -18,7 +18,7 @@ App({
       httptype: "https://",
       url: "www.jeremy7.cn/springboot-schedule",
       //httptype: "http://",
-      //url: "127.0.0.1:8080",
+      //url: "192.168.3.78:8080",
       
     }
   

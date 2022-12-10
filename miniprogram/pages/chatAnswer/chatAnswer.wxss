@@ -1,6 +1,12 @@
+@import "../../iconfont/iconfont.wxss";
+
+page {
+  height: 100%;
+}
+
 .ip_find {
   width: 90%;
-  height: 900rpx; 
+  height: 90%; 
   margin: 0 auto;
   background-color: #ffffff;
   margin-top: 20px;
@@ -23,16 +29,57 @@
   width: 90%;
   margin: 30rpx auto;
   border-radius: 24px;
-  text-align: center;
   line-height:78rpx;
+  text-align: center;
 }
 
 .ip_find_text {
   padding-top: 28px;
   padding-left: 20px;
-  font-weight: bolder;
 }
 .text-view {
   margin-top: 30rpx;
   margin-left: 35rpx;
+}
+
+.input-text {
+  margin-left: 30rpx;
+  font-size:small;
+  text-align:justify;
+}
+
+.result-view {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 50rpx auto 50rpx;
+  
+}
+
+.result-title {
+  color: #c4c4d0;
+  background-color: #353f37e0;
+  border-radius: 6px 6px 0px 0px;
+  height: 78rpx;
+  line-height: 78rpx;
+}
+
+.title-result {
+   margin-left: 25rpx;
+   float: left;
+}
+
+.title-copy {
+  float: right;
+  margin-right: 20rpx;
+}
+
+.result-card {
+  min-height: 200rpx;
+  max-height: 600rpx;
+  overflow: scroll;
+  background-color: #65da75;
+  clear: both;
+  padding: 5%;
+  text-align: center;
+  
 }

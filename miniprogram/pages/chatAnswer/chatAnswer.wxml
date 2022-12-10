@@ -1,13 +1,30 @@
+
+
 <view class="ip_find">
-    <view class="ip_find_text">输入文字</view>
-    <view>
-    <input class="ip_input" type="text" placeholder="请输入文字，比如：写一个排序" bindinput="changeText"/>
+    <view class="ask-text">
+      <view class="ip_find_text">输入文字</view>
+      <view>
+        <view>
+          <input class="ip_input" type="text" placeholder="输入文字，比如：写个排序" placeholder-class="input-text" bindinput="changeText" 	/>
+        </view>
+        <view class="ip_find_btn">
+          <view bindtap="chatAnswer">发送</view>
+        </view>
+      </view>
     </view>
-    <view class="ip_find_btn">
-      <view bindtap="chatAnswer">发送</view>
+    <view class="result-view" wx:if="{{showResult}}">
+      <view class="result-title">
+         <view class="title-result">
+         结果
+         </view>
+         <view class="title-copy">
+          <view style="float: left;" class="iconfont icon-fuzhi"></view>
+          <view style="float: left;" bindtap="copyResult">复制文字</view>
+         </view>
+      </view>
+      <view class="result-card" >
+        {{resultText}}
+      </view>
     </view>
-    <view class="text-view" wx:if="{{showResult}}">
-      {{resultText}}
-    </view>
-    
+ 
 </view>

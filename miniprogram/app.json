@@ -6,6 +6,7 @@
     "pages/ipaddress/ipaddress",
     "pages/generateImage/generateImage",
     "pages/chatAnswer/chatAnswer"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

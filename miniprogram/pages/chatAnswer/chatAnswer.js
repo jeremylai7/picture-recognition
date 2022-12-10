@@ -52,6 +52,21 @@ Page({
     })
 
   },
+
+  copyResult() {
+    var resultText = this.data.resultText;
+    wx.setClipboardData({
+      data: resultText,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            
+            
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
