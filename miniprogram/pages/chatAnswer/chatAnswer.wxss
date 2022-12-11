@@ -28,36 +28,50 @@ page {
   background-color: #F5F5F5;
   width: 90%;
   margin: 30rpx auto;
-  border-radius: 24px;
+  border-radius: 10px;
   line-height:78rpx;
   text-align: center;
+
 }
 
 .ip_find_text {
   padding-top: 28px;
   padding-left: 20px;
+  background: linear-gradient(to right, red, blue);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 60rpx;
 }
+
+.ip_find_remark {
+  margin-top: 10rpx;
+  margin-left: 45rpx;
+  font-size: smaller;
+  color: #8d7777;
+}
+
 .text-view {
   margin-top: 30rpx;
   margin-left: 35rpx;
 }
 
 .input-text {
-  margin-left: 30rpx;
   font-size:small;
-  text-align:justify;
+  text-align: left;
+ 
 }
 
 .result-view {
   width: 90%;
   box-sizing: border-box;
   margin: 50rpx auto 50rpx;
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+
+  border-radius: 6px 6px 6px 6px;
   
 }
 
 .result-title {
-  color: #c4c4d0;
-  background-color: #353f37e0;
   border-radius: 6px 6px 0px 0px;
   height: 78rpx;
   line-height: 78rpx;
@@ -74,12 +88,12 @@ page {
 }
 
 .result-card {
-  min-height: 200rpx;
+  min-height: 100rpx;
   max-height: 600rpx;
   overflow: scroll;
-  background-color: #65da75;
   clear: both;
   padding: 5%;
   text-align: center;
+  border-radius: 0px 0px 6px 6px;
   
 }

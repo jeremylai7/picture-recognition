@@ -2,10 +2,11 @@
 
 <view class="ip_find">
     <view class="ask-text">
-      <view class="ip_find_text">输入文字</view>
+      <view class="ip_find_text">欢迎使用ChatGPT</view>
+      <view class="ip_find_remark">发送你想说的话，ChatGPT会告诉你答案哟。</view>
       <view>
         <view>
-          <input class="ip_input" type="text" placeholder="输入文字，比如：写个排序" placeholder-class="input-text" bindinput="changeText" 	/>
+          <input class="ip_input" type="text" placeholder="输入文字，比如：写个年度总结" placeholder-class="input-text" bindinput="changeText" 	/>
         </view>
         <view class="ip_find_btn">
           <view bindtap="chatAnswer">发送</view>
@@ -15,7 +16,7 @@
     <view class="result-view" wx:if="{{showResult}}">
       <view class="result-title">
          <view class="title-result">
-         结果
+         
          </view>
          <view class="title-copy">
           <view style="float: left;" class="iconfont icon-fuzhi"></view>
