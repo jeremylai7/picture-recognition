@@ -29,3 +29,6 @@
     </view>
  
 </view>
+<view class="content-info">
+  <towxml nodes="{{article}}"/>
+</view>

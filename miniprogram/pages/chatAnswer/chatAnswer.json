@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText":"ChatGPT",
-  "usingComponents": {}
+  "usingComponents": {
+    "towxml":"/towxml/towxml"
+  }
   
 }

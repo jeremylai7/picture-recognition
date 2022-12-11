@@ -9,6 +9,7 @@ Page({
     searchText:"",
     showResult:false,
     resultText:"",
+    article:"hahahh",
   },
 
   changeText: function (e){
