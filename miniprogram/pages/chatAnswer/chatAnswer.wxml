@@ -24,11 +24,11 @@
          </view>
       </view>
       <view class="result-card" >
-        {{resultText}}
+      
+        <view class="content-info">
+          <towxml nodes="{{article}}"/>
+        </view> 
       </view>
     </view>
  
-</view>
-<view class="content-info">
-  <towxml nodes="{{article}}"/>
 </view>

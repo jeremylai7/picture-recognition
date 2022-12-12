@@ -9,7 +9,7 @@ Page({
     searchText:"",
     showResult:false,
     resultText:"",
-    article:"hahahh",
+    article:{},
   },
 
   changeText: function (e){
@@ -40,8 +40,9 @@ Page({
       success (res){
         wx.hideLoading();
         var url = res.data;
+        let result = app.towxml(url,'markdown');
         that.setData({
-          resultText:url,
+          article:result,
           showResult:true
         })
         
@@ -72,7 +73,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    
+    
   },
 
   /**
