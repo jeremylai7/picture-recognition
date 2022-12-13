@@ -40,7 +40,8 @@ Page({
       success (res){
         wx.hideLoading();
         var url = res.data;
-        let result = app.towxml(url,'markdown');
+        console.log(url);
+        let result = app.towxml(url,'markdown',{theme:"light-no-background2"});
         that.setData({
           article:result,
           showResult:true
@@ -73,7 +74,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
     
   },
 
