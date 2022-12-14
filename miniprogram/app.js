@@ -3,6 +3,8 @@ App({
   // 引入`towxml3.0`解析方法
   towxml:require('/towxml/index'),
   onLaunch: function () {
+    var that = this;
+    that.login();
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -21,8 +23,27 @@ App({
       url: "www.jeremy7.cn/springboot-schedule",
       //httptype: "http://",
       //url: "127.0.0.1:8080",
-      
+      openid: "",
     }
   
+  },
+  login: function() {
+    var that = this;
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          wx.request({
+            url: that.globalData.httptype + that.globalData.url + "/wechat/login",
+            data: {
+              code:res.code
+            },
+            success(res) {
+              that.globalData.openid = res.data;
+            }
+          })
+        }
+      },
+    })
   }
+
 })
