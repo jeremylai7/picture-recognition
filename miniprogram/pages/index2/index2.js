@@ -132,12 +132,13 @@ Page({
       return;
     }
     var that = this;
+    var openid = app.globalData.openid;
     wx.uploadFile({
       url: app.globalData.httptype + app.globalData.url + "/" + path,
       filePath: tempFilePaths[index].tempFilePath,
       name: 'multipartFile',
       formData: {
-        'user': 'test'
+        openid: openid
       },
       success (res){
         that.setData({
