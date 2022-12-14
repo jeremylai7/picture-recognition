@@ -41,8 +41,10 @@ Page({
         wx.hideLoading();
         var url = res.data;
         console.log(url);
+        //随意写一个主题，就不会引用背景色
         let result = app.towxml(url,'markdown',{theme:"light-no-background2"});
         that.setData({
+          resultText:url,
           article:result,
           showResult:true
         })
@@ -61,12 +63,6 @@ Page({
     wx.setClipboardData({
       data: resultText,
       success (res) {
-        wx.getClipboardData({
-          success (res) {
-            
-            
-          }
-        })
       }
     })
   },
