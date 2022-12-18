@@ -32,16 +32,18 @@ Page({
     wx.showLoading({
       title: '请稍等',
     })
-    that.msgSecCheck();
+    that.answerChat();
   },
 
   answerChat() {
     var that =  this;
     var searchText = that.data.searchText;
+    var openid = app.globalData.openid;
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/chat-answer",
       data: {
-         msg:searchText
+         msg:searchText,
+         openid:openid
       },
       success (res){
         wx.hideLoading();
@@ -62,44 +64,6 @@ Page({
       
     })
   },
-
-  msgSecCheck(){
-    var that = this;
-    var openid = app.globalData.openid;
-    var searchText = this.data.searchText;
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/wechat/msg-sec-check",
-      data: {
-        openid:openid,
-        msg:searchText
-      },
-      success(res) {
-        if(res.statusCode == 200) {
-          if(res.data) {
-            that.answerChat();
-          } else {
-            var result = "您输入的内容不合规，请输入合规内容。"
-            let markdown = app.towxml(result,'markdown',{theme:"light-no-background2"});
-            that.setData({
-              resultText:result,
-              article:markdown,
-              showResult:true
-            })
-            wx.hideLoading();
-          }
-        }
-      },
-      fail(res) {
-        wx.hideLoading();
-      }
-    })
-    
-
-
-
-  },
-
-
 
   copyResult() {
     var resultText = this.data.resultText;
