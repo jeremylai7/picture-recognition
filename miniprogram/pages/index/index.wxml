@@ -51,7 +51,7 @@
   </view>
   <view class="uploader">
     <navigator url="../chatAnswer/chatAnswer" open-type="navigate" class="uploader-text">
-      <text>ChatGPT智能回复</text>
+      <text>智能AI回答</text>
     </navigator>
   </view>
   
