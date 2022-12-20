@@ -20,6 +20,7 @@ Page({
 
   chatAnswer() {
     var that =  this;
+    console.log(333333);
     var searchText = this.data.searchText;
     if(searchText == "") {
       wx.showToast({

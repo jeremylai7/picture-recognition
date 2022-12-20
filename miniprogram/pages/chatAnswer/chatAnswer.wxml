@@ -1,13 +1,21 @@
 <view class="ip_find">
+    <view class="iconfont icon-fenxiang" style="position: absolute;right: 70rpx;top: 60rpx;"></view>
     <view class="ask-text">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
+    </view>
+    <view>
+    <view>
+      <view style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); padding: 50rpx;border-radius:8rpx;margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 10rpx;">给一个10岁孩子过生日有什么创意吗？</view>
       
+      <view style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);; margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 30rpx;padding: 50rpx;border-radius:8rpx">给一个10岁孩子过生日有什么创意吗？</view>
+      <view style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%); margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 10rpx;padding: 50rpx;border-radius:8rpx">给一个10岁孩子过生日有什么创意吗？</view>
+      <view style="width: 90%;box-sizing: border-box;background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);; margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 30rpx;;padding: 50rpx;border-radius:8rpx">给一个10岁孩子过生日有什么创意吗？</view>
+    </view>  
     </view>
     <view class="result-view" wx:if="{{showResult}}">
       <view class="result-title">
          <view class="title-result">
-         
          </view>
          <view class="title-copy">
           <view style="float: left;" class="iconfont icon-fuzhi"></view>
@@ -20,15 +28,15 @@
         </view> 
       </view>
     </view>
-    <view style="position: absolute;bottom: 150rpx;width: 90%;">
+    <view style="position: absolute;bottom: 190rpx;width: 90%;">
       <view>
-        <view class="iconfont icon-fuzhi" style="position: absolute; right: 60rpx;top: 50rpx;"></view>
+        <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 60rpx;top: 50rpx;"></view>
         <input class="ip_input" type="text" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
-        
       </view>
-      <view class="ip_find_btn">
-        <view bindtap="chatAnswer">发送</view>
-      </view>
+      <!-- <view class="ip_find_btn">
+        <view >发送</view>
+      </view> -->
     </view>
+    
  
 </view>
