@@ -22,7 +22,9 @@
     </view>
     <view style="position: absolute;bottom: 150rpx;width: 90%;">
       <view>
-        <input class="ip_input" type="text" placeholder="输入文字，比如：写个年度总结" placeholder-class="input-text" bindinput="changeText" 	/>
+        <view class="iconfont icon-fuzhi" style="position: absolute; right: 60rpx;top: 50rpx;"></view>
+        <input class="ip_input" type="text" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
+        
       </view>
       <view class="ip_find_btn">
         <view bindtap="chatAnswer">发送</view>
