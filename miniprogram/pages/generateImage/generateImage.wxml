@@ -10,5 +10,8 @@
      <view class="img-view" wx:if="{{showResult}}">
         <image src="{{imgSrc}}"></image>
       </view>
+      <view style="margin: 30rpx auto;width: 90%;" wx:if="{{showText}}">
+        <view>{{reslutText}}</view>
+      </view>
      
   </view>

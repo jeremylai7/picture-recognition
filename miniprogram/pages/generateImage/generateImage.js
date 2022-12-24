@@ -9,6 +9,9 @@ Page({
     searchText:"",
     showResult:false,
     imgSrc:"",
+    reslutText:"",
+    showText:false
+
   },
 
   changeText: function (e){
@@ -20,6 +23,7 @@ Page({
   generateImage() {
     var that =  this;
     var searchText = this.data.searchText;
+    var openid = app.globalData.openid;
     if(searchText == "") {
       wx.showToast({
         title: "请输入文字",
@@ -34,17 +38,25 @@ Page({
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/generate-image",
       data: {
-         msg:searchText
+         msg:searchText,
+         openid:openid
       },
       success (res){
         wx.hideLoading();
-        var url = res.data.data[0].url;
-        console.log(url);
-        that.setData({
-          imgSrc:url,
-          showResult:true
-        })
-        
+        var url = res.data;
+        if(url.startsWith("https")) {
+          that.setData({
+            imgSrc:url,
+            showResult:true,
+            showText:false
+          })
+        } else {
+          that.setData({
+            reslutText:url,
+            showText:true,
+            showResult:false
+          })
+        }
       },
       fail (res) {
         wx.hideLoading();

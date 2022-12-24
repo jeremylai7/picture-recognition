@@ -72,6 +72,10 @@ page {
   
 }
 
+.button-hover {
+  background-color: #ffffff;
+}
+
 .result-title {
   border-radius: 6px 6px 0px 0px;
   height: 78rpx;

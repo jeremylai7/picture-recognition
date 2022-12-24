@@ -8,6 +8,7 @@ Page({
   data: {
     searchText:"",
     showResult:false,
+    demoShow:true,
     resultText:"",
     article:{},
   },
@@ -20,7 +21,6 @@ Page({
 
   chatAnswer() {
     var that =  this;
-    console.log(333333);
     var searchText = this.data.searchText;
     if(searchText == "") {
       wx.showToast({
@@ -55,7 +55,8 @@ Page({
         that.setData({
           resultText:url,
           article:result,
-          showResult:true
+          showResult:true,
+          demoShow:false
         })
         
       },
@@ -127,6 +128,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    console.log(2222);
+  },
+  share() {
+    console.log(1111);
+    
   }
 })
