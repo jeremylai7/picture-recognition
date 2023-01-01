@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText":"ChatGPT",
+  "navigationBarTitleText":"智能 AI 回答",
   "usingComponents": {
     "towxml":"/towxml/towxml"
   }

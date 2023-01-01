@@ -26,8 +26,8 @@ page {
 .ip_input {
   height: 78rpx; 
   background-color: #F5F5F5;
-  width: 90%;
-  margin: 30rpx auto;
+  width: 85%;
+  margin-left: 20rpx;
   border-radius: 10px;
   line-height:78rpx;
   text-align: center;
@@ -67,9 +67,7 @@ page {
   box-sizing: border-box;
   margin: 50rpx auto 50rpx;
   background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
-
   border-radius: 6px 6px 6px 6px;
-  
 }
 
 .button-hover {
