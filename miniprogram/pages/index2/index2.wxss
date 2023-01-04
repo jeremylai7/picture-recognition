@@ -11,7 +11,7 @@ page {
 .img-view {
   height: 100%;
   text-align: center;
-  margin-top: 38%;
+  margin-top: 52%;
 }
 .btn-upload {
   color:  rgb(255, 255, 255);

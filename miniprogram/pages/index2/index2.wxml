@@ -1,6 +1,7 @@
 <view style="height: 100%;">
   <view class="img-view" wx:if="{{!showResult}}">
     <image src="/images/background.png" mode="heightFix"></image>
+    <ad unit-id="adunit-53ceb16e96028fb1"></ad>
   </view>
   <view class="show-text-view" wx:else>
     <view class="page-section">
@@ -10,6 +11,7 @@
       </view>
     </view>  
   </view>
+  
   <view class="btn-view">
     <button class="btn-upload" bindtap="doUpload">拍照/相册选取</button>
   </view>
