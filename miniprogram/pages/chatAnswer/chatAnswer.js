@@ -23,9 +23,6 @@ Page({
 
   chatAnswer() {
     var that =  this;
-    if(that.data.videoCount > 0) {
-      that.answerVideo();
-    }
     var searchText = this.data.searchText;
     if(searchText == "") {
       wx.showToast({
@@ -35,9 +32,13 @@ Page({
       })
       return;
     }
-    wx.showLoading({
-      title: '请稍等',
-    })
+    if(that.data.videoCount > 0) {
+      that.answerVideo();
+    } else {
+      wx.showLoading({
+        title: '请稍等',
+      })
+    }
     that.answerChat();
   },
 
@@ -114,11 +115,11 @@ Page({
       interstitialAd.onClose(() => {})
     }
     // 展示插屏广告 
-    if (interstitialAd) {
-      interstitialAd.show().catch((err) => {
-        console.error(err)
-      })
-    }
+    // if (interstitialAd) {
+    //   interstitialAd.show().catch((err) => {
+    //     console.error(err)
+    //   })
+    // }
 
     let videoAd = null
     // 创建激励视频广告实例
@@ -128,7 +129,16 @@ Page({
       })
       videoAd.onLoad(() => {})
       videoAd.onError((err) => {})
-      videoAd.onClose((res) => {})
+      videoAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          console.log("11111");
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          console.log("22222");
+        }
+      })
     }
     that.setData({
       videoAd:videoAd
