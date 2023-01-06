@@ -45,11 +45,6 @@
     </navigator>
   </view>
   <view class="uploader">
-    <navigator url="../generateImage/generateImage" open-type="navigate" class="uploader-text">
-      <text>文字生成图片</text>
-    </navigator>
-  </view>
-  <view class="uploader">
     <navigator url="../chatAnswer/chatAnswer" open-type="navigate" class="uploader-text">
       <text>智能AI回答</text>
     </navigator>

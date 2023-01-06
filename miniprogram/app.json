@@ -5,7 +5,6 @@
     "pages/index/index",
     "pages/holiday/holiday",
     "pages/ipaddress/ipaddress",
-    "pages/generateImage/generateImage",
     "pages/chatAnswer/chatAnswer"
     
   ],
