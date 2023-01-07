@@ -13,6 +13,7 @@ Page({
     article:{},
     videoAd:null,
     videoCount:0,
+    loading:false,
   },
 
   changeText: function (e){
@@ -32,7 +33,7 @@ Page({
       })
       return;
     }
-    if(that.data.videoCount > 0) {
+    if(that.data.videoCount >= 0) {
       that.answerVideo();
     } else {
       wx.showLoading({
@@ -61,6 +62,9 @@ Page({
     var that =  this;
     var searchText = that.data.searchText;
     var openid = app.globalData.openid;
+    that.setData({
+      loading:true
+    })
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/chat-answer",
       data: {
@@ -80,6 +84,7 @@ Page({
           showResult:true,
           demoShow:false,
           videoCount:videoCount,
+          loading:false
         })
         
       },
@@ -130,6 +135,11 @@ Page({
       videoAd.onLoad(() => {})
       videoAd.onError((err) => {})
       videoAd.onClose((res) => {
+        if(that.data.loading) {
+          wx.showLoading({
+            title: '请耐心等候',
+          })
+        }
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
