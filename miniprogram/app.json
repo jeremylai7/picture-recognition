@@ -1,11 +1,11 @@
 {
   "pages": [
-    
+    "pages/chatAnswer/chatAnswer",
     "pages/index2/index2",
     "pages/index/index",
     "pages/holiday/holiday",
-    "pages/ipaddress/ipaddress",
-    "pages/chatAnswer/chatAnswer"
+    "pages/ipaddress/ipaddress"
+    
     
   ],
   "window": {

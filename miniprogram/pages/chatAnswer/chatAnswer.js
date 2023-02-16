@@ -108,24 +108,6 @@ Page({
    */
   onLoad(options) {
     var that = this;
-    // 定义插屏广告
-    let interstitialAd = null
-    // 插屏广告
-    if (wx.createInterstitialAd) {
-      interstitialAd = wx.createInterstitialAd({
-        adUnitId: 'adunit-549f6950b0cf582c'
-      })
-      interstitialAd.onLoad(() => {})
-      interstitialAd.onError((err) => {})
-      interstitialAd.onClose(() => {})
-    }
-    // 展示插屏广告 
-    // if (interstitialAd) {
-    //   interstitialAd.show().catch((err) => {
-    //     console.error(err)
-    //   })
-    // }
-
     let videoAd = null
     // 创建激励视频广告实例
     if (wx.createRewardedVideoAd) {
@@ -137,7 +119,7 @@ Page({
       videoAd.onClose((res) => {
         if(that.data.loading) {
           wx.showLoading({
-            title: '请耐心等候',
+            title: '请耐心等待...',
           })
         }
         // 用户点击了【关闭广告】按钮
