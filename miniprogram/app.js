@@ -19,10 +19,10 @@ App({
     }
 
     this.globalData = {
-      httptype: "https://",
-      url: "www.jeremy7.cn/springboot-schedule",
-      //httptype: "http://",
-      //url: "127.0.0.1:8080",
+      //httptype: "https://",
+      //url: "www.jeremy7.cn/springboot-schedule",
+      httptype: "http://",
+      url: "127.0.0.1:8080",
       openid: "",
     }
   
