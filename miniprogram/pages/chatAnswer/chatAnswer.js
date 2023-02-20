@@ -33,7 +33,8 @@ Page({
       })
       return;
     }
-    if(that.data.videoCount >= 0) {
+    // 第一次不调用广告
+    if(that.data.videoCount > 0) {
       that.answerVideo();
     } else {
       wx.showLoading({
@@ -92,6 +93,12 @@ Page({
         wx.hideLoading();
       }
       
+    })
+  },
+
+  copyDemo(e){
+    this.setData({
+      searchText: e.currentTarget.dataset.text
     })
   },
 
