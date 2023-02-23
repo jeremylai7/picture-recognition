@@ -8,7 +8,7 @@
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
     <view>
-    <view wx:if="{{demoShow}}">
+    <view style="margin-top: 20%;" wx:if="{{demoShow}}">
       <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); padding: 50rpx;border-radius:8rpx;margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 10rpx;">给一个10岁孩子过生日有什么创意吗？</view>
       
       <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);; margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 30rpx;padding: 50rpx;border-radius:8rpx">用 js 写一个冒泡排序</view>
@@ -31,9 +31,9 @@
         </view> 
       </view>
     </view>
-    <view style="position: absolute;bottom: 190rpx;width: 90%;">
+    <view style="position: absolute;bottom: 20rpx;width: 90%;">
       <view>
-        <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 20rpx;padding: 17rpx;z-index: 3;"></view>
+        <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 17rpx;z-index: 3;"></view>
         <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
       </view>
       <!-- <view class="ip_find_btn">

@@ -1,12 +1,10 @@
 {
   "pages": [
-    
-    "pages/index2/index2",
-    "pages/index/index",
+    "pages/chatAnswer/chatAnswer",
+    "pages/my/my",
+    "pages/pictureRecognize/pictureRecognize",
     "pages/holiday/holiday",
-    "pages/ipaddress/ipaddress",
-    "pages/chatAnswer/chatAnswer"
-    
+    "pages/ipaddress/ipaddress"
     
   ],
   "window": {
@@ -22,13 +20,13 @@
     "backgroundColor": "f7f7f7",
     "list": [
       {
-        "pagePath": "pages/index2/index2",
-        "text": "首页",
+        "pagePath": "pages/chatAnswer/chatAnswer",
+        "text": "问答",
         "iconPath": "images/index.png",
         "selectedIconPath": "images/index_fill.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my_fill.png"

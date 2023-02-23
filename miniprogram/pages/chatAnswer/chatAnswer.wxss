@@ -5,12 +5,12 @@ page {
 }
 
 .ip_find {
-  width: 90%;
-  height: 90%; 
+  width: 95%;
+  height: 100%; 
   margin: 0 auto;
   background-color: #ffffff;
-  margin-top: 20px;
-  border-radius: 10px;
+  margin-top: 10rpx;
+  border-radius: 20rpx;
 }
 
 .ip_find_btn {
