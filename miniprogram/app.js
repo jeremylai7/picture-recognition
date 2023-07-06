@@ -19,10 +19,12 @@ App({
     }
 
     this.globalData = {
-      httptype: "https://",
-      url: "www.jeremy7.cn/springboot-schedule",
-      //httptype: "http://",
-      //url: "127.0.0.1:8080",
+      //httptype: "https://",
+      //url: "www.jeremy7.cn/springboot-schedule",
+      //wstype:"wss://",
+      httptype: "http://",
+      url: "127.0.0.1:8080",
+      wstype:"ws://",
       openid: "",
     }
   
@@ -39,10 +41,22 @@ App({
             },
             success(res) {
               that.globalData.openid = res.data;
+              that.wxConnect();
             }
           })
         }
       },
+    })
+  },
+  wxConnect: function() {
+    var that = this;
+    var openId = that.globalData.openid;
+    console.log(1111);
+    wx.connectSocket({
+      url: that.globalData.wstype + that.globalData.url + "/ws/message",
+      success:function(res) {
+        console.log(res);
+      }
     })
   }
 

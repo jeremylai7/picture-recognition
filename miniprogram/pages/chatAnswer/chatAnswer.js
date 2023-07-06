@@ -142,6 +142,8 @@ Page({
     that.setData({
       videoAd:videoAd
     })
+    
+
   },
 
   /**

@@ -38,7 +38,8 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "useStaticServer": true
+    "useStaticServer": true,
+    "condition": false
   },
   "appid": "wx902cd58a7e7ea54b",
   "projectname": "picture-recognition",
