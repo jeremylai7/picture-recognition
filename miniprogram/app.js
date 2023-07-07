@@ -19,12 +19,12 @@ App({
     }
 
     this.globalData = {
-      //httptype: "https://",
-      //url: "www.jeremy7.cn/springboot-schedule",
-      //wstype:"wss://",
-      httptype: "http://",
-      url: "127.0.0.1:8080",
-      wstype:"ws://",
+      httptype: "https://",
+      url: "www.jeremy7.cn/springboot-schedule",
+      wstype:"wss://",
+      //httptype: "http://",
+      //url: "127.0.0.1:8080",
+      //wstype:"ws://",
       openid: "",
     }
   
@@ -51,13 +51,20 @@ App({
   wxConnect: function() {
     var that = this;
     var openId = that.globalData.openid;
-    console.log(1111);
     wx.connectSocket({
-      url: that.globalData.wstype + that.globalData.url + "/ws/message",
+      url: that.globalData.wstype + that.globalData.url + "/ws/message/"+openId,
       success:function(res) {
-        console.log(res);
+        console.log('websocket 已连接...');
       }
     })
+    
+    wx.onSocketOpen((result) => {
+      console.log('websocket 已打开...');
+    });
+
+    
+
+    
   }
 
 })

@@ -34,7 +34,7 @@ Page({
       return;
     }
     // 第一次不调用广告
-    if(that.data.videoCount > 0) {
+    if(that.data.videoCount > 100) {
       that.answerVideo();
     } else {
       wx.showLoading({
@@ -58,6 +58,7 @@ Page({
       })
     }
   },
+  
 
   answerChat() {
     var that =  this;
@@ -115,6 +116,17 @@ Page({
    */
   onLoad(options) {
     var that = this;
+    var resultText = that.data.resultText;
+    wx.onSocketMessage((res) => {
+      console.log(res.data);
+      resultText = resultText + res.data;
+      let result = app.towxml(resultText,'markdown',{theme:"light-no-background2"});
+      that.setData({
+        resultText:resultText,
+        article:result,
+      })
+    })
+
     let videoAd = null
     // 创建激励视频广告实例
     if (wx.createRewardedVideoAd) {
