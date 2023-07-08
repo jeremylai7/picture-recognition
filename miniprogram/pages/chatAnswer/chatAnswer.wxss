@@ -92,8 +92,8 @@ page {
 
 .result-card {
   min-height: 100rpx;
-  max-height: 600rpx;
-  overflow: scroll;
+  max-height: 800rpx;
+  /* overflow: scroll; */
   clear: both;
   padding: 0% 5% 5% 5%;
   text-align: center;

@@ -10,6 +10,7 @@ Page({
     showResult:false,
     demoShow:true,
     resultText:"",
+    scrollTop:0,
     article:{},
     videoAd:null,
     videoCount:0,
@@ -125,6 +126,20 @@ Page({
         resultText:resultText,
         article:result,
       })
+      const query = wx.createSelectorQuery()
+      query.select('.result-card').boundingClientRect()
+      query.select('.content-info').boundingClientRect()
+      query.exec((res) => {
+          const resultCar = res[0].height;
+          const contentInfo = res[1].height;
+          if(contentInfo > resultCar) {
+            const differ = contentInfo - resultCar;
+            that.setData({
+              scrollTop:differ + 100
+            })
+          }
+      })  
+
     })
 
     let videoAd = null

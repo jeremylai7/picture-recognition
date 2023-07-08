@@ -25,11 +25,11 @@
           <view style="float: left;" bindtap="copyResult">复制文字</view>
          </view>
       </view>
-      <view class="result-card" >
+      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card" >
         <view class="content-info">
           <towxml nodes="{{article}}"/>
         </view> 
-      </view>
+      </scroll-view>
     </view>
     <view style="position: absolute;bottom: 20rpx;width: 90%;">
       <view>
