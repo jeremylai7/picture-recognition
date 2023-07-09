@@ -117,9 +117,16 @@ Page({
    */
   onLoad(options) {
     var that = this;
-    var resultText = that.data.resultText;
     wx.onSocketMessage((res) => {
       console.log(res.data);
+      var resultText = that.data.resultText;
+      if(resultText == "正在生成回答，请稍后....") {
+        resultText = "";
+        that.setData({
+          resultText:"",
+          article:{},
+        })
+      }
       resultText = resultText + res.data;
       let result = app.towxml(resultText,'markdown',{theme:"light-no-background2"});
       that.setData({
