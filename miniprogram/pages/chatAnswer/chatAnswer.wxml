@@ -7,14 +7,18 @@
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
-    <view>
-    <view style="margin-top: 20%;" wx:if="{{demoShow}}">
-      <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); padding: 50rpx;border-radius:8rpx;margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 10rpx;">给一个10岁孩子过生日有什么创意吗？</view>
-      
-      <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);; margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 30rpx;padding: 50rpx;border-radius:8rpx">用 js 写一个冒泡排序</view>
-      <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%); margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 10rpx;padding: 50rpx;border-radius:8rpx">写一个 2022 年营销总结</view>
-      <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" style="width: 90%;box-sizing: border-box;background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);; margin-top: 50rpx;margin-bottom: 50rpx;margin-left: 30rpx;;padding: 50rpx;border-radius:8rpx">使用 Java写一个登录模块</view>
-    </view>  
+    <view class="chat-frame">
+      <view style="margin-top: 10%;" wx:if="{{demoShow}}">
+        <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" class="content-card content-card-left">给一个10岁孩子过生日有什么创意吗？</view>
+        
+        <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" class="content-card content-card-right">用 js 写一个冒泡排序</view>
+        <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
+        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
+        <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
+        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view><view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
+        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
+        
+      </view>  
     </view>
     <view class="result-view" wx:if="{{showResult}}">
       <view class="result-title">

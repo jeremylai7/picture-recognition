@@ -1,10 +1,12 @@
 {
   "pages": [
+    
     "pages/chatAnswer/chatAnswer",
     "pages/my/my",
     "pages/pictureRecognize/pictureRecognize",
     "pages/holiday/holiday",
     "pages/ipaddress/ipaddress"
+    
     
   ],
   "window": {

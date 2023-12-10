@@ -5,12 +5,19 @@ page {
 }
 
 .ip_find {
+  display: flex;      /* 启用弹性盒子布局 */
+  flex-direction: column; /* 子元素垂直堆叠 */
   width: 95%;
   height: 100%; 
   margin: 0 auto;
   background-color: #ffffff;
   margin-top: 10rpx;
   border-radius: 20rpx;
+}
+
+.chat-frame {
+  flex-grow: 1; /* 占据所有剩余空间 */
+  overflow-y: auto;   /* 当内容超出高度时显示滚动条 */
 }
 
 .ip_find_btn {
@@ -99,4 +106,30 @@ page {
   text-align: center;
   border-radius: 0px 0px 6px 6px;
   
+}
+
+.content-card {
+  width: 85%;
+  box-sizing: border-box;
+  padding: 50rpx;
+  border-radius:8rpx;
+  margin-bottom: 50rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+}
+
+.content-card-left {
+  float: left;
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); 
+  /* margin-left: 10rpx; */
+}
+
+.content-card-right {
+  float:right;
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  /* margin-left: 30rpx; */
+}
+
+.content-card-left .content-card-right ::after {
+  clear: both;
 }

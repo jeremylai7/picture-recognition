@@ -20,11 +20,28 @@ Page({
   onLoad(options) {
     this.getIpAddress();
   },
-
   getIpAddress() {
     var that =  this;
+    var index = 0;
+    let timeInterval = setInterval(function () {
+      //  需要执行的代码
+      console.log('定时器执行了');
+      if(index == 2 || app.globalData.openid != "") {
+        that.delayGetIpAddress();
+        clearInterval(timeInterval);
+      }
+      index++;
+  }, 1000);
+  },
+
+  delayGetIpAddress() {
+    var that =  this;
+    var openid = app.globalData.openid;
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/ip-address",
+      data: {
+        openid:openid
+     },
       success (res){
         var data = res.data;
         that.setData({
