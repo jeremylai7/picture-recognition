@@ -35,15 +35,13 @@
         </view> 
       </scroll-view>
     </view>
-    <view style="position: absolute;bottom: 20rpx;width: 90%;">
-      <view>
-        <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 17rpx;z-index: 3;"></view>
-        <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
-      </view>
-      <!-- <view class="ip_find_btn">
-        <view >发送</view>
-      </view> -->
-    </view>
+    
     
  
+</view>
+<view class="botton-input">
+  <view class="botton-input-view">
+    <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 21rpx;z-index: 3;"></view>
+    <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
+  </view>
 </view>
