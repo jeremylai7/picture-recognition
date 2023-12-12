@@ -56,6 +56,11 @@ page {
 
 }
 
+.welcome_text_init {
+  margin: auto;
+  margin-top: 53%;
+}
+
 .ip_find_text {
   padding-top: 28px;
   padding-left: 20px;

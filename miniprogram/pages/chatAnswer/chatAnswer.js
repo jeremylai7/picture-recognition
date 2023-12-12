@@ -65,6 +65,7 @@ Page({
     var that =  this;
     var searchText = that.data.searchText;
     var openid = app.globalData.openid;
+    $("#ask-text").removeClass("welcome_text_init");
     that.setData({
       loading:true
     })

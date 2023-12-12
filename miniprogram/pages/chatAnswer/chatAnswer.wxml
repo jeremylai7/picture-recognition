@@ -3,12 +3,12 @@
     <view class="iconfont icon-fenxiang"></view>
    </button>
     
-    <view class="ask-text">
+    <view id="ask-text" class="ask-text welcome_text_init">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
     <view class="chat-frame">
-      <view style="margin-top: 10%;" wx:if="{{demoShow}}">
+      <view  style="display: none; margin-top: 10%;" wx:if="{{demoShow}}">
         <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" class="content-card content-card-left">给一个10岁孩子过生日有什么创意吗？</view>
         
         <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" class="content-card content-card-right">用 js 写一个冒泡排序</view>
