@@ -11,8 +11,11 @@ page {
   height: 100%; 
   margin: 0 auto;
   background-color: #ffffff;
-  margin-top: 10rpx;
   border-radius: 20rpx;
+}
+
+.ask-text {
+    margin-top: 10rpx;
 }
 
 .chat-frame {
