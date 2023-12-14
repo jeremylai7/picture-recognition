@@ -15,6 +15,9 @@ Page({
     videoAd:null,
     videoCount:0,
     loading:false,
+    welcomeTextInit:"",
+    marginAnimation: {},
+
   },
 
   changeText: function (e){
@@ -65,7 +68,6 @@ Page({
     var that =  this;
     var searchText = that.data.searchText;
     var openid = app.globalData.openid;
-    $("#ask-text").removeClass("welcome_text_init");
     that.setData({
       loading:true
     })
@@ -76,6 +78,7 @@ Page({
          openid:openid
       },
       success (res){
+
         wx.hideLoading();
         var url = res.data;
         console.log(url);
@@ -99,6 +102,39 @@ Page({
     })
   },
 
+  initAnimation: function () {
+    const animation = wx.createAnimation({
+      duration: 1000, // 动画持续时间
+      timingFunction: 'ease', // 缓动函数，可以根据需要修改
+    });
+    this.setData({
+      marginAnimation: animation,
+    });
+  },
+
+  welcomeInit() {
+    var that = this;
+    var openid = getApp().globalData.openid;
+    wx.request({
+      url: app.globalData.httptype + app.globalData.url + "/holiday/getMessagesSize",
+      data: {
+         openid:openid
+      },
+      success (res){
+        let count = res.data;
+        
+
+        if(count == 0) {
+          that.data.marginAnimation.marginTop("53%").step();
+          that.setData({
+            welcomeTextInit: 'welcome_text_init'
+          })
+        }
+      }
+    })
+    
+  },
+
   copyDemo(e){
     this.setData({
       searchText: e.currentTarget.dataset.text
@@ -113,11 +149,23 @@ Page({
       }
     })
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     var that = this;
+    let intervalId = setInterval(function() {
+        var openid = getApp().globalData.openid;
+        if(openid != "") {
+         that.welcomeInit();
+          clearInterval(intervalId);
+        }
+    }, 500);
+    // 初始化动画
+    that.initAnimation();
+    
     wx.onSocketMessage((res) => {
       console.log(res.data);
       var resultText = that.data.resultText;
