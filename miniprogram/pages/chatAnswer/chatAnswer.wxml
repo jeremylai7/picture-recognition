@@ -3,7 +3,7 @@
     <view class="iconfont icon-fenxiang"></view>
    </button>
     
-    <view id="ask-text" class="ask-text {{welcomeTextInit}}">
+    <view id="ask-text" animation="{{animationData}}" class="ask-text">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>

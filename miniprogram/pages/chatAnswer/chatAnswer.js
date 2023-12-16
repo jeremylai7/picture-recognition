@@ -16,7 +16,7 @@ Page({
     videoCount:0,
     loading:false,
     welcomeTextInit:"",
-    marginAnimation: {},
+    animationData: {},
 
   },
 
@@ -104,11 +104,11 @@ Page({
 
   initAnimation: function () {
     const animation = wx.createAnimation({
-      duration: 1000, // 动画持续时间
+      duration: 2000, // 动画持续时间
       timingFunction: 'ease', // 缓动函数，可以根据需要修改
     });
     this.setData({
-      marginAnimation: animation,
+      animationData: animation,
     });
   },
 
@@ -121,15 +121,11 @@ Page({
          openid:openid
       },
       success (res){
-        let count = res.data;
-        
-
-        if(count == 0) {
-          that.data.marginAnimation.marginTop("53%").step();
-          that.setData({
-            welcomeTextInit: 'welcome_text_init'
-          })
-        }
+        let moveX = that.data.animationData;
+        moveX.translateY(200).translateX(30).step();
+        that.setData({
+          animationData:moveX.export()
+        })
       }
     })
     
