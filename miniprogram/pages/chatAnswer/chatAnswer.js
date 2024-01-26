@@ -7,7 +7,7 @@ Page({
    */
   data: {
     searchText:"",
-    showResult:false,
+    showResult:true,
     demoShow:true,
     resultText:"",
     scrollTop:0,
@@ -17,6 +17,7 @@ Page({
     loading:false,
     welcomeTextInit:"",
     animationData: {},
+    chatCount:0,
 
   },
 
@@ -121,11 +122,18 @@ Page({
          openid:openid
       },
       success (res){
-        let moveX = that.data.animationData;
-        moveX.translateY(200).translateX(30).step();
-        that.setData({
-          animationData:moveX.export()
-        })
+        var data = res.data;
+        var size = data.length;
+        if(size > 0) {
+          that.setData({
+            chatCount:size
+          })
+
+
+        }
+        
+
+        
       }
     })
     

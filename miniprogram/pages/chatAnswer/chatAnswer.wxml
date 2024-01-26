@@ -2,25 +2,34 @@
    <button open-type="share" style="width: 40rpx; z-index: 2; position: absolute;right: 60rpx;top: 60rpx;">
     <view class="iconfont icon-fenxiang"></view>
    </button>
-    
-    <view id="ask-text" animation="{{animationData}}" class="ask-text">
+   <view wx:if="{{chatCount == 0}}" style="margin: 50% auto;">
+    <view id="ask-text"  class="ask-text">
+      <view class="ip_find_text">欢迎使用智能AI回答</view>
+      <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
+    </view>
+   </view>
+   <view wx:else>
+    <view id="ask-text"  class="ask-text">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
     <view class="chat-frame">
       <view  style="display: none; margin-top: 10%;" wx:if="{{demoShow}}">
         <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" class="content-card content-card-left">给一个10岁孩子过生日有什么创意吗？</view>
-        
         <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" class="content-card content-card-right">用 js 写一个冒泡排序</view>
         <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
         <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
-        <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
-        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view><view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
-        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
-        
       </view>  
     </view>
-    <view class="result-view" wx:if="{{showResult}}">
+    <view class="result-view-left">
+      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card" >
+        <view class="content-info">
+          <towxml nodes="{{article}}"/>
+        </view> 
+      </scroll-view>
+    </view>
+
+    <view class="result-view-right">
       <view class="result-title">
          <view class="title-result">
          </view>
@@ -35,6 +44,10 @@
         </view> 
       </scroll-view>
     </view>
+   </view> 
+    
+    
+    
     
     
  

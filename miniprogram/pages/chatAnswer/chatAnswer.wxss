@@ -90,11 +90,35 @@ page {
 }
 
 .result-view {
-  width: 90%;
+  width: 80%;
   box-sizing: border-box;
   margin: 50rpx auto 50rpx;
   background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
   border-radius: 6px 6px 6px 6px;
+}
+
+.result-view-left {
+  float: left;
+  width: 80%;
+  box-sizing: border-box;
+  margin: 30rpx 0;
+  margin-left: 25rpx;
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  border-radius: 6px 6px 6px 6px;
+}
+
+.result-view-right {
+  float: right;
+  width: 80%;
+  box-sizing: border-box;
+  margin: 30rpx 0;
+  margin-right: 25rpx;
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  border-radius: 6px 6px 6px 6px;
+}
+
+.result-view-left .result-view-right ::after {
+  clear: both;
 }
 
 .button-hover {

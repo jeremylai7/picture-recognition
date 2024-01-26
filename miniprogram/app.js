@@ -25,6 +25,7 @@ App({
       httptype: "http://",
       url: "127.0.0.1:8080",
       wstype:"ws://",
+
       openid: "",
       
     }
