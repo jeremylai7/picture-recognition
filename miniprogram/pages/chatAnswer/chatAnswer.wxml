@@ -21,7 +21,22 @@
         <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
       </view>  
     </view>
-    <view class="result-view-left">
+    <view wx:for="{{chatArray}}" class="{{item.type == 2 ? 'result-view-left' : 'result-view-right'}}" >
+      <view wx:if="{{item.type == 2}}" class="result-title">
+         <view class="title-result">
+         </view>
+         <view class="title-copy">
+          <view style="float: left;" class="iconfont icon-fuzhi"></view>
+          <view style="float: left;" bindtap="copyResult">复制文字</view>
+         </view>
+      </view>
+      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card" >
+        <view class="content-info">
+          <towxml nodes="{{item.message}}"/>
+        </view> 
+      </scroll-view>
+    </view> 
+    <view class="result-view-left" style="display: none;">
       <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card" >
         <view class="content-info">
           <towxml nodes="{{article}}"/>
@@ -29,7 +44,7 @@
       </scroll-view>
     </view>
 
-    <view class="result-view-right">
+    <view class="result-view-right" style="display: none;">
       <view class="result-title">
          <view class="title-result">
          </view>

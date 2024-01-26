@@ -18,6 +18,7 @@ Page({
     welcomeTextInit:"",
     animationData: {},
     chatCount:0,
+    chatArray:{},
 
   },
 
@@ -38,40 +39,13 @@ Page({
       })
       return;
     }
-    // 第一次不调用广告
-    if(that.data.videoCount > 100) {
-      that.answerVideo();
-    } else {
-      wx.showLoading({
-        title: '请稍等',
-      })
-    }
     that.answerChat();
   },
-
-  answerVideo() {
-    var videoAd = this.data.videoAd;
-    // 用户触发广告后，显示激励视频广告
-    if (videoAd) {
-      videoAd.show().catch(() => {
-        // 失败重试
-        videoAd.load()
-          .then(() => videoAd.show())
-          .catch(err => {
-            console.log('激励视频 广告显示失败')
-          })
-      })
-    }
-  },
-  
 
   answerChat() {
     var that =  this;
     var searchText = that.data.searchText;
     var openid = app.globalData.openid;
-    that.setData({
-      loading:true
-    })
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/chat-answer",
       data: {
@@ -79,15 +53,19 @@ Page({
          openid:openid
       },
       success (res){
-
-        wx.hideLoading();
-        var url = res.data;
-        console.log(url);
+        // chatArray 新增一条数据
+        var data = res.data;
         //随意写一个主题，就不会引用背景色
-        let result = app.towxml(url,'markdown',{theme:"light-no-background2"});
+        let result = app.towxml(data,'markdown',{theme:"light-no-background2"});
+        var json = {check:true,createTime:1706251711000,id:99,message:result,openid:2222,type:2};
+        var chatArray = that.data.chatArray;
+        //chatArray.push(json);
+        that.setData({
+          chatArray:chatArray
+        }) 
+
         var videoCount = that.data.videoCount + 1;
         that.setData({
-          resultText:url,
           article:result,
           showResult:true,
           demoShow:false,
@@ -125,8 +103,12 @@ Page({
         var data = res.data;
         var size = data.length;
         if(size > 0) {
+          for (var i = 0; i < data.length; i++) {
+            data[i].message = app.towxml(data[i].message,'markdown',{theme:"light-no-background2"});
+          }
           that.setData({
-            chatCount:size
+            chatCount:size,
+            chatArray:data
           })
 
 
@@ -159,6 +141,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.request({
+      url: 'https://www.jeremy7.cn/bootstrap/index/getTableData?limit=10&offset=0&search=&order=asc',
+      success:function(res){
+        console.log(res);
+      }
+    })
     var that = this;
     let intervalId = setInterval(function() {
         var openid = getApp().globalData.openid;
@@ -199,38 +187,7 @@ Page({
             })
           }
       })  
-
     })
-
-    let videoAd = null
-    // 创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-b58e6827e03f56b7'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {})
-      videoAd.onClose((res) => {
-        if(that.data.loading) {
-          wx.showLoading({
-            title: '请耐心等待...',
-          })
-        }
-        // 用户点击了【关闭广告】按钮
-        if (res && res.isEnded) {
-          // 正常播放结束，可以下发游戏奖励
-          console.log("11111");
-        } else {
-          // 播放中途退出，不下发游戏奖励
-          console.log("22222");
-        }
-      })
-    }
-    that.setData({
-      videoAd:videoAd
-    })
-    
-
   },
 
   /**
