@@ -18,7 +18,30 @@ Page({
     welcomeTextInit:"",
     animationData: {},
     chatCount:0,
-    chatArray:{},
+    chatArray:[],
+    index:0,
+  },
+  onButtonClick() {
+    var chatArray = this.data.chatArray;
+    console.log(chatArray);
+    var index = this.data.index;
+    var type = index%2 == 0 ? 1 : 2;
+    let result = app.towxml("哈哈哈",'markdown',{theme:"light-no-background2"});
+    let json = {id:99,message:result,type:type};
+    chatArray.push(json);
+
+
+
+    this.setData({
+      index:index+1,
+      chatArray:chatArray,
+      chatCount:chatArray.length
+    })
+    
+    
+
+    
+    
 
   },
 
@@ -137,6 +160,7 @@ Page({
   },
 
 
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -144,7 +168,7 @@ Page({
     wx.request({
       url: 'https://www.jeremy7.cn/bootstrap/index/getTableData?limit=10&offset=0&search=&order=asc',
       success:function(res){
-        console.log(res);
+        //console.log(res);
       }
     })
     var that = this;
