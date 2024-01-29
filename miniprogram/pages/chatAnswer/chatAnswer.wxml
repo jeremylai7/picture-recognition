@@ -3,31 +3,19 @@
    <button open-type="share" style="width: 40rpx; z-index: 2; position: absolute;right: 60rpx;top: 60rpx;">
     <view class="iconfont icon-fenxiang"></view>
    </button>
-   <!-- <view wx:if="{{chatCount == 0}}" style="margin: 50% auto;">
+   <view wx:if="{{chatCount == 0}}" style="margin: 50% auto;">
     <view id="ask-text"  class="ask-text">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
-   </view> -->
-   <view>
-    <view id="ask-text"  class="ask-text">
+   </view>
+   <view wx:else style="display: flex; flex-direction: column; height: 100%;">
+    <view style="flex: 0 1 auto;" id="ask-text"  class="ask-text">
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
-    <view class="chat-frame">
-      <view style="margin-top: 10%;" wx:if="{{demoShow}}">
-        <view data-text="给一个10岁孩子过生日有什么创意吗？" bindtap="copyDemo" class="content-card content-card-left">给一个10岁孩子过生日有什么创意吗？</view>
-
-        <view data-text="用 js 写一个冒泡排序" bindtap="copyDemo" class="content-card content-card-right">用 js 写一个冒泡排序</view>
-        <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
-        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
-        <view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
-        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view><view data-text="写一个 2022 年营销总结" bindtap="copyDemo" class="content-card content-card-left">写一个 2022 年营销总结</view>
-        <view data-text="使用 Java写一个登录模块" bindtap="copyDemo" class="content-card content-card-right">使用 Java写一个登录模块</view>
-      </view>
-  
-
-      <!-- <view wx:for="{{chatArray}}" class="{{item.type == 2 ? 'result-view-left' : 'result-view-right'}}" >
+    <scroll-view style="flex: 1 1 auto;padding-bottom: 60px; " class="chat-frame" scroll-y="true">
+      <view wx:for="{{chatArray}}" class="{{item.type == 1 ? 'result-view-left' : 'result-view-right'}}" >
       <view wx:if="{{item.type == 2}}" class="result-title">
          <view class="title-result">
          </view>
@@ -41,8 +29,8 @@
           <towxml nodes="{{item.message}}"/>
         </view> 
       </scroll-view>
-    </view>  -->
-    </view>
+    </view> 
+    </scroll-view>
    </view> 
  </view>
 <view class="botton-input">

@@ -102,7 +102,7 @@ page {
   box-sizing: border-box;
   margin: 30rpx 0;
   margin-left: 25rpx;
-  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
   border-radius: 6px 6px 6px 6px;
 }
 
@@ -112,7 +112,7 @@ page {
   box-sizing: border-box;
   margin: 30rpx 0;
   margin-right: 25rpx;
-  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
   border-radius: 6px 6px 6px 6px;
 }
 

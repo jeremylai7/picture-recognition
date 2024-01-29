@@ -69,6 +69,14 @@ Page({
     var that =  this;
     var searchText = that.data.searchText;
     var openid = app.globalData.openid;
+    var chatArray = this.data.chatArray;
+    let message = app.towxml(searchText,'markdown',{theme:"light-no-background2"});
+    let json = {id:99,message:message,type:1};
+    chatArray.push(json);
+    that.setData({
+      chatArray:chatArray,
+      chatCount:chatArray.length
+    })
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/chat-answer",
       data: {
@@ -76,23 +84,18 @@ Page({
          openid:openid
       },
       success (res){
-        // chatArray 新增一条数据
-        var data = res.data;
-        //随意写一个主题，就不会引用背景色
-        let result = app.towxml(data,'markdown',{theme:"light-no-background2"});
-        var json = {check:true,createTime:1706251711000,id:99,message:result,openid:2222,type:2};
-        var chatArray = that.data.chatArray;
-        //chatArray.push(json);
+        chatArray = that.data.chatArray;
+        let resultMsg = "正在生成回答，请稍后....";
+        let mdResultMessage = app.towxml(resultMsg,'markdown',{theme:"light-no-background2"});
+        let json = {id:99,message:mdResultMessage,type:2};
+        chatArray.push(json);
         that.setData({
-          chatArray:chatArray
-        }) 
-
-        var videoCount = that.data.videoCount + 1;
-        that.setData({
-          article:result,
+          chatArray:chatArray,
+          chatCount:chatArray.length,
+          resultText:resultMsg,
+          searchText:"",
           showResult:true,
           demoShow:false,
-          videoCount:videoCount,
           loading:false
         })
         
@@ -133,15 +136,9 @@ Page({
             chatCount:size,
             chatArray:data
           })
-
-
         }
-        
-
-        
       }
     })
-    
   },
 
   copyDemo(e){
@@ -179,25 +176,30 @@ Page({
           clearInterval(intervalId);
         }
     }, 500);
-    // 初始化动画
-    that.initAnimation();
-    
     wx.onSocketMessage((res) => {
       console.log(res.data);
       var resultText = that.data.resultText;
+      var stop = "【stop】------";
       if(resultText == "正在生成回答，请稍后....") {
         resultText = "";
         that.setData({
           resultText:"",
-          article:{},
         })
       }
       resultText = resultText + res.data;
       let result = app.towxml(resultText,'markdown',{theme:"light-no-background2"});
-      that.setData({
-        resultText:resultText,
-        article:result,
-      })
+      var chatArray = that.data.chatArray;
+      var length = chatArray.length;
+      if(length > 0) {
+        chatArray[length-1].message = result;
+        that.setData({
+          resultText:resultText,
+          chatArray:chatArray
+        })
+      }
+      
+
+
       const query = wx.createSelectorQuery()
       query.select('.result-card').boundingClientRect()
       query.select('.content-info').boundingClientRect()
