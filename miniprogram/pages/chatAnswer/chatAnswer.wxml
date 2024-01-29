@@ -1,41 +1,44 @@
 <!-- <button type="primary" bindtap="onButtonClick">点击我</button> -->
 <view class="ip_find">
-   <button open-type="share" style="width: 40rpx; z-index: 2; position: absolute;right: 60rpx;top: 60rpx;">
+  <button open-type="share" style="width: 40rpx; z-index: 2; position: absolute;right: 60rpx;top: 60rpx;">
     <view class="iconfont icon-fenxiang"></view>
-   </button>
-   <view wx:if="{{chatCount == 0}}" style="margin: 50% auto;">
-    <view id="ask-text"  class="ask-text">
+  </button>
+  <view wx:if="{{chatCount == 0}}" style="margin: 50% auto;">
+    <view id="ask-text" class="ask-text" >
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
-   </view>
-   <view wx:else style="display: flex; flex-direction: column; height: 100%;">
-    <view style="flex: 0 1 auto;" id="ask-text"  class="ask-text">
+  </view>
+  <view  wx:else style="display: flex; flex-direction: column; height: 100%;">
+    <view style="flex: 0 1 auto;" id="ask-text" class="ask-text" >
       <view class="ip_find_text">欢迎使用智能AI回答</view>
       <view class="ip_find_remark">发送你想说的话，AI 会告诉你答案哟。</view>
     </view>
-    <scroll-view style="flex: 1 1 auto;padding-bottom: 60px; " class="chat-frame" scroll-y="true">
-      <view wx:for="{{chatArray}}" class="{{item.type == 1 ? 'result-view-left' : 'result-view-right'}}" >
-      <view wx:if="{{item.type == 2}}" class="result-title">
-         <view class="title-result">
-         </view>
-         <view class="title-copy">
-          <view style="float: left;" class="iconfont icon-fuzhi"></view>
-          <view style="float: left;" bindtap="copyResult">复制文字</view>
-         </view>
+    <scroll-view scroll-top="{{headScrollTop}}" style="flex: 1 1 auto;padding-bottom: 60px; " class="chat-frame" scroll-y="true">
+      <view class="chat-content">
+        <view wx:for="{{chatArray}}" class="{{item.type == 1 ? 'result-view-left' : 'result-view-right'}}">
+          <view wx:if="{{item.type == 2}}" class="result-title">
+            <view class="title-result">
+            </view>
+            <view class="title-copy">
+              <view style="float: left;" class="iconfont icon-fuzhi"></view>
+              <view style="float: left;" bindtap="copyResult">复制文字</view>
+            </view>
+          </view>
+          <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card">
+            <view class="content-info">
+              <towxml nodes="{{item.message}}" />
+            </view>
+          </scroll-view>
+        </view>
       </view>
-      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card" >
-        <view class="content-info">
-          <towxml nodes="{{item.message}}"/>
-        </view> 
-      </scroll-view>
-    </view> 
+
     </scroll-view>
-   </view> 
- </view>
+  </view>
+</view>
 <view class="botton-input">
   <view class="botton-input-view">
     <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 21rpx;z-index: 3;"></view>
-    <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" 	/>
+    <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" bindconfirm="onConfirm" />
   </view>
 </view>

@@ -176,3 +176,8 @@ page {
 .content-card-left .content-card-right ::after {
   clear: both;
 }
+
+.chat-content {
+  width: 100%;
+  
+}

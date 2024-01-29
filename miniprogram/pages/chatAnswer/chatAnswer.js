@@ -20,6 +20,7 @@ Page({
     chatCount:0,
     chatArray:[],
     index:0,
+    headScrollTop:9999,
   },
   onButtonClick() {
     var chatArray = this.data.chatArray;
@@ -49,6 +50,10 @@ Page({
     this.setData({
       searchText: e.detail.value
     })
+  },
+  // 回车确认
+  onConfirm() {
+    this.chatAnswer();
   },
 
   chatAnswer() {
@@ -194,25 +199,33 @@ Page({
         chatArray[length-1].message = result;
         that.setData({
           resultText:resultText,
-          chatArray:chatArray
+          chatArray:chatArray,
+          headScrollTop:9999,
         })
       }
-      
-
-
       const query = wx.createSelectorQuery()
-      query.select('.result-card').boundingClientRect()
-      query.select('.content-info').boundingClientRect()
+      query.select('.chat-frame').boundingClientRect()
+      query.select('.chat-content').boundingClientRect()
       query.exec((res) => {
           const resultCar = res[0].height;
           const contentInfo = res[1].height;
-          if(contentInfo > resultCar) {
-            const differ = contentInfo - resultCar;
-            that.setData({
-              scrollTop:differ + 100
-            })
-          }
-      })  
+          console.log(resultCar);
+      })
+
+
+      // const query = wx.createSelectorQuery()
+      // query.select('.result-card').boundingClientRect()
+      // query.select('.content-info').boundingClientRect()
+      // query.exec((res) => {
+      //     const resultCar = res[0].height;
+      //     const contentInfo = res[1].height;
+      //     if(contentInfo > resultCar) {
+      //       const differ = contentInfo - resultCar;
+      //       that.setData({
+      //         scrollTop:differ + 100
+      //       })
+      //     }
+      // })  
     })
   },
 
