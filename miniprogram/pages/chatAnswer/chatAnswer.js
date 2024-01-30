@@ -21,30 +21,13 @@ Page({
     chatArray:[],
     index:0,
     headScrollTop:9999,
+    indexShow:false,
+    showResult: false,
+    returnResult:'',
+    imgUrl:"https://p26-passport.byteacctimg.com/img/user-avatar/74c6c6c1d6e7dca73f0e27064f8e9ebd~300x300.image",
   },
-  onButtonClick() {
-    var chatArray = this.data.chatArray;
-    console.log(chatArray);
-    var index = this.data.index;
-    var type = index%2 == 0 ? 1 : 2;
-    let result = app.towxml("哈哈哈",'markdown',{theme:"light-no-background2"});
-    let json = {id:99,message:result,type:type};
-    chatArray.push(json);
-
-
-
-    this.setData({
-      index:index+1,
-      chatArray:chatArray,
-      chatCount:chatArray.length
-    })
+  
     
-    
-
-    
-    
-
-  },
 
   changeText: function (e){
     this.setData({
@@ -160,6 +143,51 @@ Page({
       }
     })
   },
+  // 上传图片
+  doUpload: function () {
+    // 选择图片
+    const that = this;
+    wx.chooseMedia({
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中',
+        })
+        that.cleanText();
+        var tempFilePaths = res.tempFiles;
+        that.uploadFile(tempFilePaths,tempFilePaths.length,0,"picture-reconize");
+      }
+    })
+  },
+  uploadFile:function(tempFilePaths,length,index,path) {
+    if(index >= length) {
+      wx.hideLoading();
+      return;
+    }
+    var that = this;
+    var openid = app.globalData.openid;
+    wx.uploadFile({
+      url: app.globalData.httptype + app.globalData.url + "/" + path,
+      filePath: tempFilePaths[index].tempFilePath,
+      name: 'multipartFile',
+      formData: {
+        openid: openid
+      },
+      success (res){
+        that.setData({
+          returnResult:  that.data.returnResult + res.data,
+          showResult:true,
+        })
+        that.uploadFile(tempFilePaths,tempFilePaths.length,index + 1,path);
+      }
+    })
+  },
+  cleanText:function() {
+    this.setData({
+      returnResult:""
+    })
+  },  
 
 
 
@@ -167,10 +195,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var that = this;
     wx.request({
-      url: 'https://www.jeremy7.cn/bootstrap/index/getTableData?limit=10&offset=0&search=&order=asc',
+      url: app.globalData.httptype + app.globalData.url + "/holiday/getShow",
       success:function(res){
-        //console.log(res);
+        let status = res.statusCode;
+        if(status == 200) {
+          let data = res.data;
+          that.setData({
+            indexShow:data
+          })
+        } 
+        
       }
     })
     var that = this;
