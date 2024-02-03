@@ -23,7 +23,7 @@
     "list": [
       {
         "pagePath": "pages/chatAnswer/chatAnswer",
-        "text": "问答",
+        "text": "图片文字识别",
         "iconPath": "images/index.png",
         "selectedIconPath": "images/index_fill.png"
       },

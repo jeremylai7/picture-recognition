@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText":"智能 AI 回答",
+  "navigationBarTitleText":"图片文字识别",
   "usingComponents": {
     "towxml":"/towxml/towxml"
   }

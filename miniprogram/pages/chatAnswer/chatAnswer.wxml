@@ -1,5 +1,24 @@
-<!-- <button type="primary" bindtap="onButtonClick">点击我</button> -->
-<view class="ip_find">
+<view wx:if="{{!indexShow}}">
+  <view style="height: 100%;">
+  <view class="img-view" wx:if="{{!showResult}}">
+    <image src="/images/background.png" mode="heightFix"></image>
+    <ad unit-id="adunit-53ceb16e96028fb1"></ad>
+  </view>
+  <view class="show-text-view" wx:else>
+    <view class="page-section">
+      <view class="page-section-title">文字结果</view>
+      <view class="textarea-wrp" style="line-height:30px;">
+        <textarea value="{{returnResult}}" maxlength="-1" auto-height />
+      </view>
+    </view>  
+  </view>
+  
+  <view class="btn-view">
+    <button class="btn-upload" bindtap="doUpload">拍照/相册选取</button>
+  </view>
+</view>
+</view>
+<view wx:else class="ip_find">
   <button open-type="share" style="width: 40rpx; z-index: 2; position: absolute;right: 60rpx;top: 60rpx;">
     <view class="iconfont icon-fenxiang"></view>
   </button>
@@ -36,7 +55,7 @@
     </scroll-view>
   </view>
 </view>
-<view class="botton-input">
+<view wx:if="{{indexShow}}" class="botton-input">
   <view class="botton-input-view">
     <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 21rpx;z-index: 3;"></view>
     <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" bindconfirm="onConfirm" />

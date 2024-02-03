@@ -177,7 +177,65 @@ page {
   clear: both;
 }
 
+
+
 .chat-content {
   width: 100%;
   
+}
+
+/* miniprogram/pages/index2/index2.wxss */
+page {
+  height: 100%;
+}
+.btn-view {
+  width: 100%;
+  position: fixed;
+  bottom: 4%;
+  
+}
+.img-view {
+  height: 100%;
+  text-align: center;
+  margin-top: 52%;
+}
+.btn-upload {
+  color:  rgb(255, 255, 255);
+  vertical-align: center;
+  font-size: 24px;
+  width: 205px !important;
+  height: 50px;
+  border-radius: 12px;
+  background-color:rgb(117, 131, 243);  
+}
+.show-text-view {
+   height: 100%;
+}
+
+
+textarea {
+  width: 700rpx;
+  padding: 25rpx 0;
+}
+
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.page-section:last-child{
+  margin-bottom: 0;
+}
+
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
