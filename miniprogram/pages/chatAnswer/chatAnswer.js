@@ -183,8 +183,11 @@ Page({
     }, 500);
     wx.onSocketMessage((res) => {
       console.log(res.data);
-      var resultText = that.data.resultText;
       var stop = "【stop】------";
+      if(res.data == stop) {
+        return;
+      }
+      var resultText = that.data.resultText;
       if(resultText == "正在生成回答，请稍后....") {
         resultText = "";
         that.setData({
@@ -209,7 +212,6 @@ Page({
       query.exec((res) => {
           const resultCar = res[0].height;
           const contentInfo = res[1].height;
-          console.log(resultCar);
       })
 
 
