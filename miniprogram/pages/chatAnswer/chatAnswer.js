@@ -59,7 +59,7 @@ Page({
     var openid = app.globalData.openid;
     var chatArray = this.data.chatArray;
     let message = app.towxml(searchText,'markdown',{theme:"light-no-background2"});
-    let json = {id:99,message:message,type:1};
+    let json = {id:9999,message:searchText,messageMarkdown:message,type:1};
     chatArray.push(json);
     that.setData({
       chatArray:chatArray,
@@ -118,7 +118,7 @@ Page({
         var size = data.length;
         if(size > 0) {
           for (var i = 0; i < data.length; i++) {
-            data[i].message = app.towxml(data[i].message,'markdown',{theme:"light-no-background2"});
+            data[i].messageMarkdown = app.towxml(data[i].message,'markdown',{theme:"light-no-background2"});
           }
           that.setData({
             chatCount:size,
@@ -135,13 +135,23 @@ Page({
     })
   },
 
-  copyResult() {
-    var resultText = this.data.resultText;
-    wx.setClipboardData({
-      data: resultText,
-      success (res) {
+  copyResult(event) {
+    const message = event.currentTarget.dataset.message;
+    const encodedMarkdownText = encodeURIComponent(message);
+    var resultText;
+    wx.request({
+      url: app.globalData.httptype + app.globalData.url + "/holiday/markdownToStr?markdownStr="+encodedMarkdownText,
+      method:'POST',
+      success:function(res) {
+        resultText = res.data;
+        wx.setClipboardData({
+          data: resultText,
+          success (res) {
+          }
+        }) 
       }
-    })
+    })  
+    
   },
   // 上传图片
   doUpload: function () {
@@ -195,6 +205,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const accountInfo = wx.getAccountInfoSync();
+    console.log(accountInfo.miniProgram.envVersion) // 小程序 appId
+    
     var that = this;
     wx.request({
       url: app.globalData.httptype + app.globalData.url + "/holiday/getShow",
@@ -217,9 +230,9 @@ Page({
           clearInterval(intervalId);
         }
     }, 500);
+    var stop = "******【stop】******";
     wx.onSocketMessage((res) => {
       console.log(res.data);
-      var stop = "【stop】------";
       if(res.data == stop) {
         return;
       }
@@ -235,7 +248,7 @@ Page({
       var chatArray = that.data.chatArray;
       var length = chatArray.length;
       if(length > 0) {
-        chatArray[length-1].message = result;
+        chatArray[length-1].messageMarkdown = result;
         that.setData({
           resultText:resultText,
           chatArray:chatArray,

@@ -41,12 +41,12 @@
             </view>
             <view class="title-copy">
               <view style="float: left;" class="iconfont icon-fuzhi"></view>
-              <view style="float: left;" bindtap="copyResult">复制文字</view>
+              <view style="float: left;" data-message="{{item.message}}" bindtap="copyResult">复制文字</view>
             </view>
           </view>
           <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card">
             <view class="content-info">
-              <towxml nodes="{{item.message}}" />
+              <towxml nodes="{{item.messageMarkdown}}" />
             </view>
           </scroll-view>
         </view>

@@ -137,7 +137,7 @@ page {
 
 .title-copy {
   float: right;
-  margin-right: 20rpx;
+  margin-right: 40rpx;
 }
 
 .result-card {
