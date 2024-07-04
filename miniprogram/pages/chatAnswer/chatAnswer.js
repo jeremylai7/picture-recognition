@@ -249,6 +249,7 @@ Page({
       var length = chatArray.length;
       if(length > 0) {
         chatArray[length-1].messageMarkdown = result;
+        chatArray[length-1].message = resultText;
         that.setData({
           resultText:resultText,
           chatArray:chatArray,

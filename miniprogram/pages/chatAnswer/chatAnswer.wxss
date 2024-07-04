@@ -31,8 +31,8 @@ page {
 }
 
 .botton-input-view {
-  margin-bottom:10px;
-  margin-top: 10px;
+  margin-bottom:23rpx;
+  margin-top: 23rpx;
 }
 
 .ip_find_btn {
@@ -47,13 +47,18 @@ page {
 
 .ip_input {
   height: 78rpx; 
+  padding-left: 25rpx;
   background-color: #F5F5F5;
-  width: 85%;
+  width: 83%;
   margin-left: 20rpx;
   border-radius: 10px;
   line-height:78rpx;
-  text-align: center;
-
+}
+.send_icon {
+  position: absolute; 
+  right: 0rpx;
+  padding: 24rpx;
+  z-index: 3;
 }
 
 .welcome_text_init {

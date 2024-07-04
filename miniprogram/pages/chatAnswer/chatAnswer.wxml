@@ -35,13 +35,13 @@
     </view>
     <scroll-view scroll-top="{{headScrollTop}}" style="flex: 1 1 auto;padding-bottom: 60px; " class="chat-frame" scroll-y="true">
       <view class="chat-content">
-        <view wx:for="{{chatArray}}" class="{{item.type == 1 ? 'result-view-left' : 'result-view-right'}}">
+        <view wx:for="{{chatArray}}" wx:key="unique" class="{{item.type == 1 ? 'result-view-left' : 'result-view-right'}}">
           <view wx:if="{{item.type == 2}}" class="result-title">
             <view class="title-result">
             </view>
-            <view class="title-copy">
+            <view class="title-copy" data-message="{{item.message}}" bindtap="copyResult">
               <view style="float: left;" class="iconfont icon-fuzhi"></view>
-              <view style="float: left;" data-message="{{item.message}}" bindtap="copyResult">复制文字</view>
+              <view style="float: left;" >复制文字</view>
             </view>
           </view>
           <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="result-card">
@@ -57,7 +57,7 @@
 </view>
 <view wx:if="{{indexShow}}" class="botton-input">
   <view class="botton-input-view">
-    <view bindtap="chatAnswer" class="iconfont icon-fasong" style="position: absolute; right: 0rpx;padding: 21rpx;z-index: 3;"></view>
+    <view bindtap="chatAnswer" class="iconfont icon-fasong send_icon"></view>
     <input class="ip_input" type="text" value="{{searchText}}" placeholder="输入内容" placeholder-class="input-text" bindinput="changeText" bindconfirm="onConfirm" />
   </view>
 </view>
