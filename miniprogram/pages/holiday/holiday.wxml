@@ -1,41 +1,32 @@
-<view style="line-height: 30px;margin: auto; ">
-<view style="text-align:center;color:#a3a3a3;font-size: 14px;">
-  {{nowTime}}
-</view>
-<view>
-【摸鱼办】提醒您：{{month}}月{{date}}日{{intervalTime}}好，摸鱼
-</view>
-<view>
-  人！漫长的岁月，竟没有一天适合上班！工
-</view>
-<view>
-  作再忙，也要记得摸鱼，切勿久坐，记得提
-</view>
-肛。有事没事去茶水间，去厕所，去走廊走
-<view>
-  走！钱是老板的，命是自己的！摸鱼之余，
-</view>
-<view>
-  别忘了顺便完成今天的工作！
-</view>
-<view>
-  今天【星期{{week}}】
-</view>
-<view wx:for="{{DomArray}}" wx:key="unique" >{{item}}</view>
-<view>
-  上班是帮老板赚钱，摸鱼是赚老板的钱！你
-</view>
-<view>
-  摸鱼我摸鱼，老板宝马变爱玛！小摸怡情，
-</view>
-<view>
-  大摸伤钱，最后，祝愿天下所有摸鱼人，都
-</view>
-<view>
-  能愉快的渡过每一天...
-</view>
+<view class="holiday-page">
+  <view class="hero-card">
+    <view class="hero-kicker">HOLIDAY COUNTDOWN</view>
+    <view class="hero-row">
+      <view>
+        <view class="hero-title">节假日倒计时</view>
+        <view class="time-value">{{nowTime}}</view>
+      </view>
+      <view class="week-pill">周{{week}}</view>
+    </view>
+  </view>
 
+  <view class="notice-card">
+    <view class="section-title">今日提醒</view>
+    <view class="notice-text">
+      <text class="notice-strong">【摸鱼办】</text>{{month}}月{{date}}日{{intervalTime}}好。工作再忙，也要记得休息、走动、喝水，顺便完成今天的工作。
+    </view>
+  </view>
+
+  <view class="countdown-card">
+    <view class="section-head">
+      <view class="section-title">假期距离</view>
+      <view class="section-note">盼头清单</view>
+    </view>
+    <view class="holiday-grid">
+      <view wx:for="{{DomArray}}" wx:key="unique" class="holiday-item">
+        <view class="holiday-dot"></view>
+        <view class="holiday-text">{{item}}</view>
+      </view>
+    </view>
+  </view>
 </view>
-
-
-
