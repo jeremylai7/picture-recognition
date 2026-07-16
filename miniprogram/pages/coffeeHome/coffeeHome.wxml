@@ -1,0 +1,105 @@
+<view class="coffee-page">
+  <view class="hero">
+    <image class="hero-image" src="/images/coffee-sports-hero.jpg" mode="aspectFill"></image>
+    <view class="hero-shade"></view>
+
+    <view class="hero-tools" style="top: {{statusBarHeight + 50}}px;">
+      <view class="scan-button" hover-class="tool-active" bindtap="scanCode">
+        <view class="scan-corner scan-corner--tl"></view>
+        <view class="scan-corner scan-corner--tr"></view>
+        <view class="scan-corner scan-corner--bl"></view>
+        <view class="scan-corner scan-corner--br"></view>
+      </view>
+    </view>
+
+    <view class="hero-copy">
+      <text class="hero-eyebrow">LUCKY COFFEE · 盛夏开赛</text>
+      <text class="hero-title">为热爱加杯冰咖啡</text>
+      <text class="hero-subtitle">清爽一夏，幸运开场</text>
+      <view class="hero-cta" hover-class="hero-cta--active" bindtap="showCampaign">立即参与</view>
+    </view>
+
+    <view class="hero-pagination">
+      <view class="page-dot page-dot--active"></view>
+      <view class="page-dot"></view>
+      <view class="page-dot"></view>
+      <view class="page-dot"></view>
+    </view>
+  </view>
+
+  <view class="member-bar" hover-class="card-active" bindtap="openMember">
+    <view class="member-avatar">☕</view>
+    <text class="member-greeting">Hey，来跟幸运打个招呼！</text>
+    <text class="member-level">Lv1 小蓝鹿</text>
+  </view>
+
+  <view class="service-card">
+    <view class="primary-services">
+      <view class="service-item service-item--primary" wx:for="{{primaryServices}}" wx:key="title" bindtap="tapService" data-title="{{item.title}}">
+        <view class="primary-icon {{item.iconClass}}">{{item.icon}}</view>
+        <text class="service-title">{{item.title}}</text>
+        <text class="service-subtitle">{{item.subtitle}}</text>
+      </view>
+    </view>
+    <view class="secondary-services">
+      <view class="service-item service-item--secondary" wx:for="{{secondaryServices}}" wx:key="title" bindtap="tapService" data-title="{{item.title}}">
+        <view class="secondary-icon">{{item.icon}}</view>
+        <view wx:if="{{item.badge}}" class="service-badge">{{item.badge}}</view>
+        <text class="secondary-title">{{item.title}}</text>
+        <text class="secondary-subtitle">{{item.subtitle}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="promotion-grid">
+    <view class="promotion-card promotion-card--large" hover-class="card-active" bindtap="showPromotion">
+      <view class="promotion-content">
+        <view><text class="price-major">9.9</text><text class="price-unit">元 × 3张饮品券</text></view>
+        <text class="promotion-subtitle">加幸运营 · 好礼周周领</text>
+        <view class="red-pill">立即领取</view>
+      </view>
+      <image class="promo-mascot" src="/images/coffee-sports-hero.jpg" mode="aspectFill"></image>
+    </view>
+
+    <view class="promotion-column">
+      <view class="promotion-card promotion-card--small orange-card" hover-class="card-active" bindtap="showPromotion">
+        <view class="small-promo-copy">
+          <text class="small-promo-title">瑞幸橙C · 鲜活C位</text>
+          <text class="small-promo-subtitle">果咖首创爆品升级</text>
+          <text class="buy-now">立即购买 ›</text>
+        </view>
+        <view class="drink-art drink-art--orange">C</view>
+      </view>
+      <view class="promotion-card promotion-card--small" hover-class="card-active" bindtap="showPromotion">
+        <view class="small-promo-copy">
+          <text class="small-promo-title"><text class="red-text">29.9元</text> 8杯咖啡</text>
+          <text class="small-promo-subtitle">赠高硼硅吸管杯</text>
+          <text class="buy-now">立即购买 ›</text>
+        </view>
+        <view class="drink-art">☕</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="recommend-section">
+    <view class="recommend-title-row">
+      <text class="recommend-title">人气推荐</text>
+      <text class="recommend-brand">LUCKY COFFEE · AI Lucky</text>
+    </view>
+    <view class="recommend-list">
+      <view class="coffee-product" wx:for="{{products}}" wx:key="name">
+        <view class="product-cup {{item.color}}">☕</view>
+        <text class="product-name">{{item.name}}</text>
+        <text class="product-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-spacer"></view>
+  <view class="bottom-tabs">
+    <view class="tab-item {{activeTab === index ? 'tab-item--active' : ''}}" wx:for="{{tabs}}" wx:key="title" bindtap="switchTab" data-index="{{index}}">
+      <view class="tab-icon">{{item.icon}}</view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

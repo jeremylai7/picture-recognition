@@ -1,0 +1,135 @@
+<view class="page">
+  <view class="step-banner">
+    <text>下单步骤图为后台配置。</text>
+    <text class="ratio-tip">图片比例为：4:3</text>
+  </view>
+
+  <view class="form-card">
+    <view class="upload-heading">
+      <text class="required">*</text>
+      <text>上传内容（{{attachmentCount}}/30）</text>
+    </view>
+    <view class="upload-description">（支持上传图片jpg、jpeg、png和文件PDF、.xlsx）</view>
+
+    <view class="upload-actions">
+      <view class="upload-button" hover-class="upload-button--active" bindtap="chooseImages">
+        <view class="picture-icon upload-icon" aria-hidden="true">
+          <view class="picture-mountain"></view>
+          <text class="icon-plus">+</text>
+        </view>
+        <text>上传图片</text>
+      </view>
+      <view class="upload-button" hover-class="upload-button--active" bindtap="chooseFiles">
+        <view class="file-icon upload-icon" aria-hidden="true">
+          <view class="file-fold"></view>
+          <text class="file-plus">+</text>
+        </view>
+        <text>上传文件</text>
+      </view>
+    </view>
+
+    <view class="attachment-list" wx:if="{{attachmentCount}}">
+      <view class="attachment-item" wx:for="{{attachments}}" wx:key="id">
+        <image wx:if="{{item.kind === 'image'}}" class="attachment-thumb" src="{{item.path}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+        <view wx:else class="attachment-file">{{item.extension}}</view>
+        <text class="attachment-name">{{item.name}}</text>
+        <view class="remove-attachment" bindtap="removeAttachment" data-index="{{index}}">×</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="store-row" hover-class="row--active" bindtap="chooseStore">
+      <text>选择出货门店：</text>
+      <view class="store-value">
+        <text class="{{selectedStore ? 'selected-value' : 'placeholder'}}">{{selectedStore || '请选择'}}</text>
+        <view class="chevron"></view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="remark-section">
+      <text class="field-label">备注说明：</text>
+      <view class="textarea-wrap">
+        <textarea
+          class="remark-input"
+          value="{{remark}}"
+          maxlength="1000"
+          placeholder="请输入备注，最多1000字符"
+          placeholder-class="remark-placeholder"
+          bindinput="onRemarkInput"
+        ></textarea>
+        <text class="remark-count" wx:if="{{remark.length}}">{{remark.length}}/1000</text>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <view><text class="required">*</text><text>联系人：</text></view>
+      <text class="info-value">{{contactName}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <view><text class="required">*</text><text>联系方式：</text></view>
+      <text class="info-value">{{contactPhone}}</text>
+    </view>
+
+    <view class="divider"></view>
+  </view>
+
+  <view class="bottom-spacer"></view>
+  <view class="submit-bar">
+    <button class="submit-button" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitOrder">提交</button>
+  </view>
+
+  <page-container
+    show="{{storeSelectorVisible}}"
+    position="bottom"
+    round="{{false}}"
+    overlay="true"
+    duration="250"
+    close-on-slide-down="true"
+    custom-style="height: 88vh; overflow: hidden; border-radius: 14rpx 14rpx 0 0;"
+    overlay-style="background-color: rgba(0, 0, 0, 0.4);"
+    bindclickoverlay="closeStoreSelector"
+    bindafterleave="onStoreSelectorClosed"
+  >
+    <view class="store-selector">
+      <view class="selector-header">
+        <text class="selector-title">选择出货门店</text>
+        <view class="selector-close" hover-class="selector-close--active" bindtap="closeStoreSelector">
+          <view class="close-line close-line--left"></view>
+          <view class="close-line close-line--right"></view>
+        </view>
+      </view>
+
+      <scroll-view class="store-list" scroll-y="true" enhanced="true" show-scrollbar="false">
+        <view
+          class="store-option"
+          wx:for="{{storeOptions}}"
+          wx:key="id"
+          hover-class="store-option--active"
+          bindtap="toggleStore"
+          data-index="{{index}}"
+        >
+          <view class="check-circle {{item.selected ? 'check-circle--selected' : ''}}">
+            <view wx:if="{{item.selected}}" class="check-mark">
+              <view class="check-stroke check-stroke--short"></view>
+              <view class="check-stroke check-stroke--long"></view>
+            </view>
+          </view>
+          <text class="store-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+
+      <view class="selector-footer">
+        <text>已选({{draftStoreCount}})</text>
+        <view class="confirm-store-button" hover-class="confirm-store-button--active" bindtap="confirmStores">确认选择</view>
+      </view>
+    </view>
+  </page-container>
+</view>

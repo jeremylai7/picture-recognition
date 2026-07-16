@@ -21,7 +21,7 @@ Page({
     chatArray:[],
     index:0,
     headScrollTop:9999,
-    indexShow:false,
+    indexShow:true,
     showResult: false,
     returnResult:'',
     imgUrl:"https://p26-passport.byteacctimg.com/img/user-avatar/74c6c6c1d6e7dca73f0e27064f8e9ebd~300x300.image",
