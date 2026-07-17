@@ -1,7 +1,21 @@
 <view class="coffee-page">
   <view class="hero">
-    <image class="hero-image" src="/images/coffee-sports-hero.jpg" mode="aspectFill"></image>
-    <view class="hero-shade"></view>
+    <swiper
+      class="hero-swiper"
+      autoplay="true"
+      circular="true"
+      interval="4500"
+      duration="500"
+      bindchange="changeHero"
+    >
+      <swiper-item wx:for="{{heroBanners}}" wx:key="image">
+        <view class="hero-slide" bindtap="showCampaign">
+          <image class="hero-image" src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view wx:if="{{currentHero === 0}}" class="hero-shade"></view>
 
     <view class="hero-tools" style="top: {{statusBarHeight + 50}}px;">
       <view class="scan-button" hover-class="tool-active" bindtap="scanCode">
@@ -9,21 +23,23 @@
         <view class="scan-corner scan-corner--tr"></view>
         <view class="scan-corner scan-corner--bl"></view>
         <view class="scan-corner scan-corner--br"></view>
+        <view class="scan-line"></view>
       </view>
     </view>
 
-    <view class="hero-copy">
+    <view wx:if="{{currentHero === 0}}" class="hero-copy">
       <text class="hero-eyebrow">LUCKY COFFEE · 盛夏开赛</text>
       <text class="hero-title">为热爱加杯冰咖啡</text>
       <text class="hero-subtitle">清爽一夏，幸运开场</text>
       <view class="hero-cta" hover-class="hero-cta--active" bindtap="showCampaign">立即参与</view>
     </view>
 
-    <view class="hero-pagination">
-      <view class="page-dot page-dot--active"></view>
-      <view class="page-dot"></view>
-      <view class="page-dot"></view>
-      <view class="page-dot"></view>
+    <view wx:if="{{currentHero === 0}}" class="hero-pagination">
+      <view
+        class="page-dot {{currentHero === index ? 'page-dot--active' : ''}}"
+        wx:for="{{heroBanners}}"
+        wx:key="image"
+      ></view>
     </view>
   </view>
 
@@ -91,6 +107,56 @@
         <view class="product-cup {{item.color}}">☕</view>
         <text class="product-name">{{item.name}}</text>
         <text class="product-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="mall-section">
+    <view class="mall-category-bar">
+      <view
+        class="mall-category {{activeMallCategory === index ? 'mall-category--active' : ''}}"
+        wx:for="{{mallCategories}}"
+        wx:key="*this"
+        bindtap="switchMallCategory"
+        data-index="{{index}}"
+      >
+        <text>{{item}}</text>
+        <view class="mall-category-line"></view>
+      </view>
+      <view class="mall-more" bindtap="openMallMore">更多 <text class="mall-arrow">›</text></view>
+    </view>
+
+    <view class="mall-grid">
+      <view
+        class="mall-product-card"
+        wx:for="{{mallProducts}}"
+        wx:key="title"
+        bindtap="openMallProduct"
+        data-index="{{index}}"
+        hover-class="card-active"
+      >
+        <view class="mall-art">
+          <image class="mall-product-image" src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+        <view class="mall-product-info">
+          <text class="mall-product-title">{{item.title}}</text>
+          <view class="mall-tags">
+            <text class="mall-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+          <view class="mall-price-row">
+            <text wx:if="{{item.priceLabel}}" class="mall-price-label">{{item.priceLabel}}</text>
+            <text class="mall-price"><text class="mall-yen">¥</text>{{item.price}}</text>
+          </view>
+          <view class="mall-hand-row">
+            <text class="mall-hand-label">预估到手</text>
+            <text class="mall-hand-price">¥{{item.handPrice}}</text>
+            <text class="mall-info-icon">i</text>
+          </view>
+          <view class="mall-sales-row">
+            <text>{{item.sold}}</text>
+            <text wx:if="{{item.limit}}" class="mall-limit">{{item.limit}}</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
