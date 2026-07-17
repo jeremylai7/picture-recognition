@@ -1,0 +1,50 @@
+<view class="enjoy-page">
+  <view class="enjoy-header" style="padding-top: {{statusBarHeight + 13}}px;">
+    <text class="enjoy-title">瑞幸即享</text>
+  </view>
+
+  <scroll-view class="enjoy-scroll" scroll-y enhanced show-scrollbar="false">
+    <scroll-view class="hero-scroll" scroll-x enhanced show-scrollbar="false">
+      <view class="hero-list">
+        <image class="hero-card" src="/images/coffee-enjoy-hero-1.jpg" mode="aspectFill" bindtap="openCampaign" data-title="冻干咖啡限时抢购"></image>
+        <image class="hero-card" src="/images/coffee-enjoy-hero-2.jpg" mode="aspectFill" bindtap="openCampaign" data-title="指定即享咖啡赠礼"></image>
+      </view>
+    </scroll-view>
+    <view class="hero-dots"><view class="hero-dot hero-dot--active"></view><view class="hero-dot"></view></view>
+
+    <view class="category-panel">
+      <view class="category-item" wx:for="{{categories}}" wx:key="title" data-index="{{index}}" bindtap="openCategory">
+        <view class="category-image-wrap">
+          <image class="category-image" src="{{item.image}}" mode="aspectFill"></image>
+          <text wx:if="{{item.badge}}" class="category-badge">{{item.badge}}</text>
+        </view>
+        <text class="category-title">{{item.title}}</text>
+      </view>
+    </view>
+
+    <view class="campaign-row">
+      <image class="campaign-card" src="/images/coffee-enjoy-promo-1.jpg" mode="aspectFill" bindtap="openCampaign" data-title="海绵宝宝联名上新"></image>
+      <image class="campaign-card" src="/images/coffee-enjoy-promo-2.jpg" mode="aspectFill" bindtap="openCampaign" data-title="官方正品周边"></image>
+    </view>
+
+    <view class="product-grid">
+      <view class="product-card" wx:for="{{products}}" wx:key="title" data-index="{{index}}" bindtap="openProduct">
+        <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="product-content">
+          <text class="product-title">{{item.title}}</text>
+          <view class="product-tags"><text class="product-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text></view>
+          <view class="product-price-row"><text class="product-price-label">{{item.priceLabel}}</text><text class="product-price"><text class="product-yen">¥</text>{{item.price}}</text></view>
+          <text class="product-sold">{{item.sold}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="page-bottom-space"></view>
+  </scroll-view>
+
+  <view class="enjoy-bottom-tabs">
+    <view class="bottom-tab {{index === 2 ? 'bottom-tab--active' : ''}}" wx:for="{{bottomTabs}}" wx:key="title" data-index="{{index}}" bindtap="switchBottomTab">
+      <view class="bottom-tab-icon">{{item.icon}}</view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

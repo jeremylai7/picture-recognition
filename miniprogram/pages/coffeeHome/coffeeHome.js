@@ -259,6 +259,10 @@ Page({
       wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
       return;
     }
+    if (title === '即享咖啡') {
+      wx.navigateTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
+      return;
+    }
     wx.showToast({ title, icon: 'none' });
   },
 
@@ -287,6 +291,10 @@ Page({
     const tabIndex = Number(event.currentTarget.dataset.index);
     if (tabIndex === 1) {
       wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
+      return;
+    }
+    if (tabIndex === 2) {
+      wx.navigateTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
       return;
     }
     this.setData({ activeTab: tabIndex });

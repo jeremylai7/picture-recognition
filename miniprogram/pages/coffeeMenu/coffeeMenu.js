@@ -103,6 +103,10 @@ Page({
       });
       return;
     }
+    if (tabIndex === 2) {
+      wx.redirectTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
+      return;
+    }
     if (tabIndex !== 1) {
       wx.showToast({ title: this.data.bottomTabs[tabIndex].title, icon: 'none' });
     }
