@@ -1,0 +1,47 @@
+page { height: 100%; background: #faf9f5; color: #121212; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+.member-page { height: 100vh; display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(180deg,#eef3ff 0,#fff 38%,#fbfaf7 100%); }
+.member-scroll { flex: 1; min-height: 0; }
+.member-header { box-sizing: border-box; padding-left: 28rpx; padding-right: 28rpx; }
+.header-row { height: 88rpx; display: flex; align-items: center; justify-content: space-between; }
+.header-title { color: #182b6a; font-size: 34rpx; font-weight: 700; }
+.more-button { margin-right: 155rpx; padding: 9rpx 16rpx; border-radius: 26rpx; background: rgba(255,255,255,.78); font-size: 23rpx; }
+.member-card-image { display: block; width: 560rpx; height: 319rpx; margin: 58rpx auto 0; border-radius: 20rpx; box-shadow: 0 8rpx 25rpx rgba(30,45,115,.12); }
+.benefit-title { margin: 27rpx 0 24rpx; display: flex; align-items: center; justify-content: center; gap: 14rpx; font-size: 30rpx; font-weight: 600; }
+.crown { color: #d8aa51; font-size: 37rpx; }
+.section-card { margin: 0 16rpx 18rpx; padding: 28rpx 20rpx; border: 1rpx solid #e8e6e1; border-radius: 27rpx; background: rgba(255,255,255,.93); box-shadow: 0 5rpx 16rpx rgba(79,66,36,.04); }
+.section-heading { display: flex; align-items: center; gap: 12rpx; font-size: 27rpx; font-weight: 600; }
+.heading-tag { padding: 5rpx 10rpx; color: #fff; border-radius: 6rpx; background: #20201f; font-size: 20rpx; font-weight: 400; }
+.info-icon { width: 24rpx; height: 24rpx; color: #8c8c8c; border: 1rpx solid #a5a5a5; border-radius: 50%; text-align: center; font-size: 17rpx; line-height: 24rpx; }
+.coupon-ticket { margin-top: 25rpx; min-height: 135rpx; display: flex; align-items: center; overflow: hidden; border-radius: 18rpx; background: linear-gradient(90deg,#fff 0,#fff 63%,#fae7ca 100%); box-shadow: 0 5rpx 18rpx rgba(201,151,78,.2); }
+.coupon-price { width: 26%; text-align: center; font-size: 48rpx; font-weight: 700; }
+.coupon-yen { margin-right: 8rpx; font-size: 25rpx; }
+.coupon-detail { width: 44%; display: flex; flex-direction: column; gap: 8rpx; }
+.coupon-name { font-size: 27rpx; font-weight: 600; }
+.coupon-note { font-size: 20rpx; }
+.coupon-count { flex: 1; display: flex; align-items: baseline; justify-content: center; gap: 8rpx; font-size: 20rpx; }
+.count-main { font-size: 40rpx; font-weight: 700; }
+.drink-section { padding-left: 16rpx; padding-right: 16rpx; }
+.drink-scroll { margin-top: 26rpx; width: 100%; white-space: nowrap; }
+.drink-list { display: inline-flex; gap: 12rpx; }
+.drink-card { width: 235rpx; height: 260rpx; box-sizing: border-box; padding: 20rpx 16rpx 14rpx; overflow: hidden; border: 1rpx solid #ececec; border-radius: 20rpx; background: #fff; }
+.drink-name { display: block; font-size: 24rpx; font-weight: 600; }
+.drink-image { display: block; width: 150rpx; height: 150rpx; margin: 5rpx auto 0; border-radius: 50%; }
+.drink-price-row { display: flex; align-items: flex-end; justify-content: space-between; }
+.member-price-label { padding: 4rpx 7rpx; color: #7c5e32; border-radius: 4rpx; background: #f7e7c9; font-size: 18rpx; }
+.drink-price { font-size: 26rpx; font-weight: 700; }
+.plan-row { margin: 0 20rpx 16rpx; display: flex; gap: 12rpx; }
+.plan-card { position: relative; width: 50%; min-height: 110rpx; box-sizing: border-box; padding: 27rpx 22rpx 17rpx; display: flex; flex-direction: column; justify-content: center; gap: 6rpx; color: #777; border: 2rpx solid transparent; border-radius: 18rpx; background: #f5f5f5; }
+.plan-card--active { color: #183276; border-color: #183b93; background: linear-gradient(135deg,#f4f2ff,#eaf7ff); }
+.plan-badge { position: absolute; right: -2rpx; top: -19rpx; padding: 4rpx 13rpx; color: #fff; border-radius: 17rpx 17rpx 17rpx 0; background: #ff603d; font-size: 18rpx; }
+.plan-title { font-size: 25rpx; font-weight: 700; }
+.plan-old { color: #858585; font-size: 18rpx; text-decoration: line-through; }
+.plan-note { font-size: 18rpx; }
+.subscribe-button { margin: 0 24rpx; height: 82rpx; color: #fff; border-radius: 44rpx; background: #123ab8; text-align: center; font-size: 31rpx; font-weight: 600; line-height: 82rpx; }
+.agreement-row { margin: 16rpx 24rpx 0; display: flex; align-items: flex-start; justify-content: center; gap: 8rpx; color: #2c437c; font-size: 19rpx; line-height: 29rpx; }
+.agreement-check { width: 27rpx; height: 27rpx; flex: none; color: #fff; border: 2rpx solid #b9b9b9; border-radius: 50%; text-align: center; line-height: 27rpx; }
+.agreement-check--active { border-color: #123ab8; background: #123ab8; }
+.member-bottom-space { height: 28rpx; }
+.member-bottom-tabs { flex: none; height: 118rpx; padding-bottom: env(safe-area-inset-bottom); display: flex; background: rgba(255,255,255,.97); border-top: 1rpx solid #ececec; box-shadow: 0 -4rpx 16rpx rgba(0,0,0,.04); }
+.bottom-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3rpx; color: #8b939b; font-size: 21rpx; }
+.bottom-tab-icon { height: 42rpx; font-size: 35rpx; line-height: 42rpx; font-weight: 700; }
+.bottom-tab--active { color: #123b9c; }

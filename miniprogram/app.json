@@ -3,6 +3,8 @@
     "pages/coffeeHome/coffeeHome",
     "pages/coffeeMenu/coffeeMenu",
     "pages/coffeeEnjoy/coffeeEnjoy",
+    "pages/coffeeMy/coffeeMy",
+    "pages/coffeeMember/coffeeMember",
     "pages/findOrderFilled/findOrderFilled",
     "pages/findOrder/findOrder",
     "pages/chatAnswer/chatAnswer",

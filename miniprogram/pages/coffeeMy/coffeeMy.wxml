@@ -1,0 +1,70 @@
+<view class="my-page">
+  <scroll-view class="my-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="profile-header" style="padding-top: {{statusBarHeight + 70}}px;">
+      <view class="header-decoration"><view class="decoration-head"></view><view class="decoration-body"></view></view>
+      <view class="settings" bindtap="showAction" data-title="设置">⚙</view>
+      <view class="profile-row">
+        <image class="avatar" src="/images/coffee-my-avatar.jpg" mode="aspectFill"></image>
+        <view class="profile-info">
+          <text class="profile-name">赖志成Jeremy*Lai ›</text>
+          <view class="level-chip"><text class="level-main">LV1. 小蓝鹿</text><text class="level-bean"> ◒ 268 ›</text></view>
+        </view>
+      </view>
+      <view class="asset-row">
+        <view class="asset-item" wx:for="{{assets}}" wx:key="title" bindtap="showAction" data-title="{{item.title}}">
+          <view class="asset-number"><text class="asset-value">{{item.value}}</text><text class="asset-unit">{{item.unit}}</text><text wx:if="{{item.badge}}" class="asset-badge">{{item.badge}}</text></view>
+          <text class="asset-title">{{item.title}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="overview-row">
+      <view class="order-card panel-card" bindtap="showAction" data-title="我的订单">
+        <text class="panel-title">我的订单 ›</text>
+        <view class="order-content">
+          <view><text class="order-name">生椰拿铁（首创）</text><text class="order-again">再来一单</text></view>
+          <image class="order-image" src="/images/coffee-menu-product-1.jpg" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="service-card panel-card">
+        <text class="panel-title">服务中心</text>
+        <view class="service-link" bindtap="showAction" data-title="客服中心"><text class="service-icon">◖</text> 客服中心 ›</view>
+        <view class="service-link" bindtap="showAction" data-title="发票管理"><text class="service-icon">▤</text> 发票管理 ›</view>
+      </view>
+    </view>
+
+    <view class="function-card panel-card">
+      <view class="function-header"><text class="panel-title">我的功能</text><text class="expand" bindtap="showAction" data-title="展开全部">展开全部⌄</text></view>
+      <view class="function-list">
+        <view class="function-item" wx:for="{{functions}}" wx:key="title" bindtap="showAction" data-title="{{item.title}}">
+          <text class="function-icon">{{item.icon}}</text><text>{{item.title}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="offer-row">
+      <view class="offer-card" bindtap="showAction" data-title="瓜分万元奖池">
+        <text class="offer-title">瓜分万元奖池</text><text class="offer-subtitle">最高得90杯免费咖啡</text>
+        <text class="offer-art offer-art--ticket">免费</text><text class="offer-button">立即领取</text>
+      </view>
+      <view class="offer-card" bindtap="showAction" data-title="好友猜口令">
+        <text class="offer-title">好友猜口令</text><text class="offer-subtitle">得全套球迷周边</text>
+        <text class="offer-art offer-art--cup">☕⚽</text><text class="offer-button">立即参与</text>
+      </view>
+    </view>
+
+    <image class="member-banner" src="/images/coffee-my-banner.jpg" mode="aspectFill" bindtap="showAction" data-title="会员咖啡券包"></image>
+
+    <view class="more-row">
+      <view class="more-card"><text class="panel-title">我的小幸运</text><text class="more-art">🎟</text></view>
+      <view class="more-card"><text class="panel-title">我的勋章墙 ›</text><text class="more-art">🏅</text></view>
+    </view>
+    <view class="my-bottom-space"></view>
+  </scroll-view>
+
+  <view class="my-bottom-tabs">
+    <view class="bottom-tab {{index === 4 ? 'bottom-tab--active' : ''}}" wx:for="{{bottomTabs}}" wx:key="title" data-index="{{index}}" bindtap="switchBottomTab">
+      <view class="bottom-tab-icon">{{item.icon}}</view><text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

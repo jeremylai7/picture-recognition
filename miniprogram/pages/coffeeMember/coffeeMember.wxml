@@ -1,0 +1,59 @@
+<view class="member-page">
+  <scroll-view class="member-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="member-header" style="padding-top: {{statusBarHeight + 48}}px;">
+      <view class="header-row">
+        <text class="header-title">瑞王卡</text>
+        <view class="more-button" bindtap="showAction" data-title="更多功能">更多功能</view>
+      </view>
+      <image class="member-card-image" src="/images/coffee-member-card.jpg" mode="aspectFill"></image>
+    </view>
+
+    <view class="benefit-title"><text class="crown">♛</text><text>超值权益 到店专享</text></view>
+
+    <view class="coupon-section section-card">
+      <view class="section-heading"><text class="heading-tag">超值特权</text><text>全场饮品9.9元</text><text class="info-icon">i</text></view>
+      <view class="coupon-ticket">
+        <view class="coupon-price"><text class="coupon-yen">¥</text>9.9</view>
+        <view class="coupon-detail"><text class="coupon-name">饮品兑换券</text><text class="coupon-note">大杯可用 限定饮品除外</text></view>
+        <view class="coupon-count"><text class="count-main">×2</text><text>张/30天</text></view>
+      </view>
+    </view>
+
+    <view class="drink-section section-card">
+      <view class="section-heading"><text class="heading-tag">天天特价</text><text>9.9元起！爆品天天喝</text><text class="info-icon">i</text></view>
+      <scroll-view class="drink-scroll" scroll-x enhanced show-scrollbar="false">
+        <view class="drink-list">
+          <view class="drink-card" wx:for="{{drinks}}" wx:key="name">
+            <text class="drink-name">{{item.name}}</text>
+            <image class="drink-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="drink-price-row"><text class="member-price-label">会员价</text><text class="drink-price">¥9.9</text></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="plan-row">
+      <view class="plan-card {{selectedPlan === 0 ? 'plan-card--active' : ''}}" data-index="0" bindtap="selectPlan">
+        <text class="plan-badge">爆款天天9.9起</text>
+        <text class="plan-title">连续包月¥9.90<text class="plan-old"> ¥19.90</text></text>
+        <text class="plan-note">到期以¥9.9自动续费 可随时取消</text>
+      </view>
+      <view class="plan-card {{selectedPlan === 1 ? 'plan-card--active' : ''}}" data-index="1" bindtap="selectPlan">
+        <text class="plan-title">月卡¥15.90<text class="plan-old"> ¥19.90</text></text>
+      </view>
+    </view>
+
+    <view class="subscribe-button" bindtap="subscribe">开通{{selectedPlan === 0 ? '连续包月 ¥9.90' : '月卡 ¥15.90'}}</view>
+    <view class="agreement-row" bindtap="toggleAgreement">
+      <view class="agreement-check {{agreementChecked ? 'agreement-check--active' : ''}}">{{agreementChecked ? '✓' : ''}}</view>
+      <text>开通会员代表接受《付费会员服务协议》《自动续费说明》</text>
+    </view>
+    <view class="member-bottom-space"></view>
+  </scroll-view>
+
+  <view class="member-bottom-tabs">
+    <view class="bottom-tab {{index === 3 ? 'bottom-tab--active' : ''}}" wx:for="{{bottomTabs}}" wx:key="title" data-index="{{index}}" bindtap="switchBottomTab">
+      <view class="bottom-tab-icon">{{item.icon}}</view><text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

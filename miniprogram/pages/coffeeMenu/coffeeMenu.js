@@ -107,6 +107,14 @@ Page({
       wx.redirectTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
       return;
     }
+    if (tabIndex === 3) {
+      wx.redirectTo({ url: '/pages/coffeeMember/coffeeMember' });
+      return;
+    }
+    if (tabIndex === 4) {
+      wx.redirectTo({ url: '/pages/coffeeMy/coffeeMy' });
+      return;
+    }
     if (tabIndex !== 1) {
       wx.showToast({ title: this.data.bottomTabs[tabIndex].title, icon: 'none' });
     }

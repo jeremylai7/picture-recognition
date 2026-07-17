@@ -297,6 +297,14 @@ Page({
       wx.navigateTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
       return;
     }
+    if (tabIndex === 3) {
+      wx.navigateTo({ url: '/pages/coffeeMember/coffeeMember' });
+      return;
+    }
+    if (tabIndex === 4) {
+      wx.navigateTo({ url: '/pages/coffeeMy/coffeeMy' });
+      return;
+    }
     this.setData({ activeTab: tabIndex });
   }
 });
