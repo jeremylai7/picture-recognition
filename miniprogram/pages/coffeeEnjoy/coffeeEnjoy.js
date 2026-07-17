@@ -72,24 +72,13 @@ Page({
 
   switchBottomTab(event) {
     const tabIndex = Number(event.currentTarget.dataset.index);
-    if (tabIndex === 0) {
-      wx.redirectTo({ url: '/pages/coffeeHome/coffeeHome' });
-      return;
-    }
-    if (tabIndex === 1) {
-      wx.redirectTo({ url: '/pages/coffeeMenu/coffeeMenu' });
-      return;
-    }
-    if (tabIndex === 3) {
-      wx.redirectTo({ url: '/pages/coffeeMember/coffeeMember' });
-      return;
-    }
-    if (tabIndex === 4) {
-      wx.redirectTo({ url: '/pages/coffeeMy/coffeeMy' });
-      return;
-    }
-    if (tabIndex !== 2) {
-      wx.showToast({ title: this.data.bottomTabs[tabIndex].title, icon: 'none' });
-    }
+    const tabPaths = [
+      '/pages/coffeeHome/coffeeHome',
+      '/pages/coffeeMenu/coffeeMenu',
+      '/pages/coffeeEnjoy/coffeeEnjoy',
+      '/pages/coffeeMember/coffeeMember',
+      '/pages/coffeeMy/coffeeMy'
+    ];
+    if (tabIndex !== 2) wx.switchTab({ url: tabPaths[tabIndex] });
   }
 });

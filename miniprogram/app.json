@@ -21,21 +21,30 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "custom": true,
     "color": "#898b8c",
-    "selectedColor": "#000000",
-    "backgroundColor": "f7f7f7",
+    "selectedColor": "#123b9c",
+    "backgroundColor": "#f7f7f7",
     "list": [
       {
-        "pagePath": "pages/chatAnswer/chatAnswer",
-        "text": "图片文字识别",
-        "iconPath": "images/index.png",
-        "selectedIconPath": "images/index_fill.png"
+        "pagePath": "pages/coffeeHome/coffeeHome",
+        "text": "首页"
       },
       {
-        "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/my_fill.png"
+        "pagePath": "pages/coffeeMenu/coffeeMenu",
+        "text": "菜单"
+      },
+      {
+        "pagePath": "pages/coffeeEnjoy/coffeeEnjoy",
+        "text": "即享"
+      },
+      {
+        "pagePath": "pages/coffeeMember/coffeeMember",
+        "text": "会员卡"
+      },
+      {
+        "pagePath": "pages/coffeeMy/coffeeMy",
+        "text": "我的"
       }
     ]
   },

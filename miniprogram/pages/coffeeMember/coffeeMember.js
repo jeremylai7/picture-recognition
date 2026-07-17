@@ -44,20 +44,13 @@ Page({
 
   switchBottomTab(event) {
     const tabIndex = Number(event.currentTarget.dataset.index);
-    if (tabIndex === 0) {
-      wx.redirectTo({ url: '/pages/coffeeHome/coffeeHome' });
-      return;
-    }
-    if (tabIndex === 1) {
-      wx.redirectTo({ url: '/pages/coffeeMenu/coffeeMenu' });
-      return;
-    }
-    if (tabIndex === 2) {
-      wx.redirectTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
-      return;
-    }
-    if (tabIndex === 4) {
-      wx.redirectTo({ url: '/pages/coffeeMy/coffeeMy' });
-    }
+    const tabPaths = [
+      '/pages/coffeeHome/coffeeHome',
+      '/pages/coffeeMenu/coffeeMenu',
+      '/pages/coffeeEnjoy/coffeeEnjoy',
+      '/pages/coffeeMember/coffeeMember',
+      '/pages/coffeeMy/coffeeMy'
+    ];
+    if (tabIndex !== 3) wx.switchTab({ url: tabPaths[tabIndex] });
   }
 });

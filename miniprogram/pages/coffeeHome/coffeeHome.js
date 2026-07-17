@@ -256,11 +256,11 @@ Page({
   tapService(event) {
     const title = event.currentTarget.dataset.title;
     if (title === '到店取') {
-      wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
+      wx.switchTab({ url: '/pages/coffeeMenu/coffeeMenu' });
       return;
     }
     if (title === '即享咖啡') {
-      wx.navigateTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
+      wx.switchTab({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
       return;
     }
     wx.showToast({ title, icon: 'none' });
@@ -289,22 +289,13 @@ Page({
 
   switchTab(event) {
     const tabIndex = Number(event.currentTarget.dataset.index);
-    if (tabIndex === 1) {
-      wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
-      return;
-    }
-    if (tabIndex === 2) {
-      wx.navigateTo({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
-      return;
-    }
-    if (tabIndex === 3) {
-      wx.navigateTo({ url: '/pages/coffeeMember/coffeeMember' });
-      return;
-    }
-    if (tabIndex === 4) {
-      wx.navigateTo({ url: '/pages/coffeeMy/coffeeMy' });
-      return;
-    }
-    this.setData({ activeTab: tabIndex });
+    const tabPaths = [
+      '/pages/coffeeHome/coffeeHome',
+      '/pages/coffeeMenu/coffeeMenu',
+      '/pages/coffeeEnjoy/coffeeEnjoy',
+      '/pages/coffeeMember/coffeeMember',
+      '/pages/coffeeMy/coffeeMy'
+    ];
+    if (tabIndex !== 0) wx.switchTab({ url: tabPaths[tabIndex] });
   }
 });
