@@ -17,7 +17,7 @@
 
     <view wx:if="{{currentHero === 0}}" class="hero-shade"></view>
 
-    <view class="hero-tools" style="top: {{statusBarHeight + 50}}px;">
+    <view class="hero-tools" style="top: {{statusBarHeight + 3}}px;">
       <view class="scan-button" hover-class="tool-active" bindtap="scanCode">
         <view class="scan-corner scan-corner--tl"></view>
         <view class="scan-corner scan-corner--tr"></view>

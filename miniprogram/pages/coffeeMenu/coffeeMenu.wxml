@@ -1,0 +1,99 @@
+<view class="menu-page">
+  <view class="menu-header" style="padding-top: {{statusBarHeight + 12}}px;">
+    <view class="top-row">
+      <view class="service-switch">
+        <text
+          class="service-mode {{serviceMode === index ? 'service-mode--active' : ''}}"
+          wx:for="{{serviceModes}}"
+          wx:key="*this"
+          data-index="{{index}}"
+          bindtap="selectServiceMode"
+        >{{item}}</text>
+      </view>
+      <view class="header-actions">
+        <view class="search-button" bindtap="showSearch"></view>
+        <view class="more-button">•••</view>
+      </view>
+    </view>
+
+    <view class="store-row">
+      <view class="store-location"><text class="location-icon">●</text> IBC MALL B1层店 <text class="distance">60m ›</text></view>
+      <view class="group-order" bindtap="showGroupOrder">▣ 拼单</view>
+    </view>
+
+    <scroll-view class="coupon-scroll" scroll-x enhanced show-scrollbar="false">
+      <view class="coupon-list">
+        <view class="coupon" wx:for="{{coupons}}" wx:key="*this">{{item}}</view>
+      </view>
+    </scroll-view>
+
+    <view class="menu-tabs">
+      <view
+        class="menu-tab {{activeMenuTab === index ? 'menu-tab--active' : ''}}"
+        wx:for="{{menuTabs}}"
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="selectMenuTab"
+      >
+        <text>{{item}}</text>
+        <view class="menu-tab-line"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-content">
+    <scroll-view class="category-scroll" scroll-y enhanced show-scrollbar="false">
+      <view
+        class="category-item {{activeCategory === index ? 'category-item--active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="title"
+        data-index="{{index}}"
+        bindtap="selectCategory"
+      >
+        <view class="category-marker"></view>
+        <text wx:if="{{item.icon}}" class="category-icon">{{item.icon}}</text>
+        <text wx:if="{{item.badge}}" class="category-badge">{{item.badge}}</text>
+        <text class="category-title">{{item.title}}</text>
+      </view>
+    </scroll-view>
+
+    <scroll-view class="product-scroll" scroll-y enhanced show-scrollbar="false">
+      <view class="product-heading">
+        <text class="product-heading-title">人气Top</text>
+        <text class="product-heading-subtitle">瑞幸必喝爆款，无限回购</text>
+      </view>
+
+      <view class="drink-card" wx:for="{{products}}" wx:key="name">
+        <image class="drink-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="drink-info">
+          <text class="drink-name">{{item.name}}</text>
+          <view class="drink-badges">
+            <text class="drink-badge" wx:for="{{item.badges}}" wx:for-item="badge" wx:key="*this">{{badge}}</text>
+          </view>
+          <text class="drink-description">{{item.description}}</text>
+          <view class="drink-buy-row">
+            <view class="drink-price-wrap">
+              <text class="drink-price"><text class="drink-yen">¥</text>{{item.price}}</text>
+              <text class="drink-original-price">¥{{item.originalPrice}}</text>
+            </view>
+            <view class="select-button" data-index="{{index}}" bindtap="selectProduct">选规格</view>
+          </view>
+        </view>
+      </view>
+      <view class="product-bottom-space"></view>
+    </scroll-view>
+  </view>
+
+  <view class="menu-bottom-tabs">
+    <view
+      class="bottom-tab {{index === 1 ? 'bottom-tab--active' : ''}}"
+      wx:for="{{bottomTabs}}"
+      wx:key="title"
+      data-index="{{index}}"
+      bindtap="switchBottomTab"
+    >
+      <view class="bottom-tab-icon">{{item.icon}}</view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

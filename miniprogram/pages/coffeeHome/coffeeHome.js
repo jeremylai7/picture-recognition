@@ -254,7 +254,12 @@ Page({
   },
 
   tapService(event) {
-    wx.showToast({ title: event.currentTarget.dataset.title, icon: 'none' });
+    const title = event.currentTarget.dataset.title;
+    if (title === '到店取') {
+      wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
+      return;
+    }
+    wx.showToast({ title, icon: 'none' });
   },
 
   showPromotion() {
@@ -279,6 +284,11 @@ Page({
   },
 
   switchTab(event) {
-    this.setData({ activeTab: Number(event.currentTarget.dataset.index) });
+    const tabIndex = Number(event.currentTarget.dataset.index);
+    if (tabIndex === 1) {
+      wx.navigateTo({ url: '/pages/coffeeMenu/coffeeMenu' });
+      return;
+    }
+    this.setData({ activeTab: tabIndex });
   }
 });

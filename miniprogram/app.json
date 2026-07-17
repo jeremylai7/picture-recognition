@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/coffeeHome/coffeeHome",
+    "pages/coffeeMenu/coffeeMenu",
     "pages/findOrderFilled/findOrderFilled",
     "pages/findOrder/findOrder",
     "pages/chatAnswer/chatAnswer",
