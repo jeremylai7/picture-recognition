@@ -566,6 +566,25 @@ page {
   height: 100%;
 }
 
+.mall-product-image--countdown {
+  height: calc(100% - 44rpx);
+}
+
+.mall-countdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 44rpx;
+  background: #e90012;
+  color: #ffffff;
+  text-align: center;
+  font-size: 21rpx;
+  line-height: 44rpx;
+  white-space: nowrap;
+}
+
 .mall-product-info {
   min-height: 300rpx;
   padding: 20rpx 18rpx 16rpx;

@@ -48,7 +48,84 @@
   "compileType": "miniprogram",
   "srcMiniprogramRoot": "miniprogram/",
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "value": "pages/addFunction",
+        "type": "folder"
+      },
+      {
+        "value": "pages/chooseLib",
+        "type": "folder"
+      },
+      {
+        "value": "pages/databaseGuide",
+        "type": "folder"
+      },
+      {
+        "value": "pages/deployFunctions",
+        "type": "folder"
+      },
+      {
+        "value": "pages/im",
+        "type": "folder"
+      },
+      {
+        "value": "pages/index",
+        "type": "folder"
+      },
+      {
+        "value": "pages/openapi",
+        "type": "folder"
+      },
+      {
+        "value": "pages/storageConsole",
+        "type": "folder"
+      },
+      {
+        "value": "pages/userConsole",
+        "type": "folder"
+      },
+      {
+        "value": "pages/weixinpay",
+        "type": "folder"
+      },
+      {
+        "value": "components/chatroom",
+        "type": "folder"
+      },
+      {
+        "value": "images/code-db-inc-dec.png",
+        "type": "file"
+      },
+      {
+        "value": "images/code-db-onAdd.png",
+        "type": "file"
+      },
+      {
+        "value": "images/code-db-onQuery.png",
+        "type": "file"
+      },
+      {
+        "value": "images/code-db-onRemove.png",
+        "type": "file"
+      },
+      {
+        "value": "images/code-func-sum.png",
+        "type": "file"
+      },
+      {
+        "value": "images/console-entrance.png",
+        "type": "file"
+      },
+      {
+        "value": "images/copy.png",
+        "type": "file"
+      },
+      {
+        "value": "images/create-collection.png",
+        "type": "file"
+      }
+    ],
     "include": []
   },
   "editorSetting": {

@@ -136,7 +136,14 @@
         hover-class="card-active"
       >
         <view class="mall-art">
-          <image class="mall-product-image" src="{{item.image}}" mode="aspectFill"></image>
+          <image
+            class="mall-product-image {{item.countdown ? 'mall-product-image--countdown' : ''}}"
+            src="{{item.image}}"
+            mode="aspectFill"
+          ></image>
+          <view wx:if="{{item.countdown}}" class="mall-countdown">
+            秒杀结束还剩 {{item.countdown}}
+          </view>
         </view>
         <view class="mall-product-info">
           <text class="mall-product-title">{{item.title}}</text>
