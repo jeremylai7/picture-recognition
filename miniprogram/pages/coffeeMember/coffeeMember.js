@@ -3,6 +3,7 @@ Page({
     statusBarHeight: 20,
     selectedPlan: 0,
     agreementChecked: false,
+    memberActive: false,
     drinks: [
       { name: '小青桔C美式', image: '/images/coffee-menu-product-4.jpg' },
       { name: '标准美式', image: '/images/coffee-menu-product-3.jpg' },
@@ -22,6 +23,11 @@ Page({
     this.setData({ statusBarHeight: windowInfo.statusBarHeight || 20 });
   },
 
+  onShow() {
+    const membership = wx.getStorageSync('coffeeMembership');
+    this.setData({ memberActive: Boolean(membership && membership.active) });
+  },
+
   selectPlan(event) {
     this.setData({ selectedPlan: Number(event.currentTarget.dataset.index) });
   },
@@ -31,11 +37,23 @@ Page({
   },
 
   subscribe() {
+    if (this.data.memberActive) {
+      wx.showToast({ title: '瑞王卡权益已生效', icon: 'none' });
+      return;
+    }
     if (!this.data.agreementChecked) {
       wx.showToast({ title: '请先勾选会员服务协议', icon: 'none' });
       return;
     }
-    wx.showToast({ title: '开通连续包月', icon: 'none' });
+    const membership = {
+      active: true,
+      plan: this.data.selectedPlan === 0 ? '连续包月' : '月卡',
+      price: this.data.selectedPlan === 0 ? '9.90' : '15.90',
+      startedAt: Date.now()
+    };
+    wx.setStorageSync('coffeeMembership', membership);
+    this.setData({ memberActive: true });
+    wx.showModal({ title: '开通成功', content: `${membership.plan}权益已生效`, showCancel: false });
   },
 
   showAction(event) {

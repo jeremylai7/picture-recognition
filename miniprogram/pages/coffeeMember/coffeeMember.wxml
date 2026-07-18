@@ -43,7 +43,7 @@
       </view>
     </view>
 
-    <view class="subscribe-button" bindtap="subscribe">开通{{selectedPlan === 0 ? '连续包月 ¥9.90' : '月卡 ¥15.90'}}</view>
+    <view class="subscribe-button {{memberActive ? 'subscribe-button--active' : ''}}" bindtap="subscribe">{{memberActive ? '瑞王卡权益已生效' : '开通' + (selectedPlan === 0 ? '连续包月 ¥9.90' : '月卡 ¥15.90')}}</view>
     <view class="agreement-row" bindtap="toggleAgreement">
       <view class="agreement-check {{agreementChecked ? 'agreement-check--active' : ''}}">{{agreementChecked ? '✓' : ''}}</view>
       <text>开通会员代表接受《付费会员服务协议》《自动续费说明》</text>

@@ -1,6 +1,6 @@
 <view class="my-page">
   <scroll-view class="my-scroll" scroll-y enhanced show-scrollbar="false">
-    <view class="profile-header" style="padding-top: {{statusBarHeight + 70}}px;">
+    <view class="profile-header" style="padding-top: {{statusBarHeight + 48}}px;">
       <view class="header-decoration"><view class="decoration-head"></view><view class="decoration-body"></view></view>
       <view class="settings" bindtap="showAction" data-title="设置">⚙</view>
       <view class="profile-row">
@@ -22,8 +22,8 @@
       <view class="order-card panel-card" bindtap="showAction" data-title="我的订单">
         <text class="panel-title">我的订单 ›</text>
         <view class="order-content">
-          <view><text class="order-name">生椰拿铁（首创）</text><text class="order-again">再来一单</text></view>
-          <image class="order-image" src="/images/coffee-menu-product-1.jpg" mode="aspectFill"></image>
+          <view><text class="order-name">{{lastOrderName}}</text><text class="order-again">{{lastOrderStatus}}</text></view>
+          <image class="order-image" src="/images/coffee-menu-product-1.jpg" mode="aspectFit"></image>
         </view>
       </view>
       <view class="service-card panel-card">

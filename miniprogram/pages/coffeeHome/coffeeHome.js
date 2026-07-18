@@ -242,7 +242,7 @@ Page({
   },
 
   openMember() {
-    wx.showToast({ title: '会员中心', icon: 'none' });
+    wx.switchTab({ url: '/pages/coffeeMember/coffeeMember' });
   },
 
   showCampaign() {
@@ -256,6 +256,12 @@ Page({
   tapService(event) {
     const title = event.currentTarget.dataset.title;
     if (title === '到店取') {
+      wx.setStorageSync('coffeeServiceMode', 0);
+      wx.switchTab({ url: '/pages/coffeeMenu/coffeeMenu' });
+      return;
+    }
+    if (title === '幸运送') {
+      wx.setStorageSync('coffeeServiceMode', 1);
       wx.switchTab({ url: '/pages/coffeeMenu/coffeeMenu' });
       return;
     }
@@ -280,11 +286,12 @@ Page({
 
   openMallProduct(event) {
     const product = this.data.mallProducts[Number(event.currentTarget.dataset.index)];
-    wx.showToast({ title: product ? product.title.slice(0, 10) : '商品详情', icon: 'none' });
+    if (product) wx.setStorageSync('coffeeEnjoySelectedProduct', product.title);
+    wx.switchTab({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
   },
 
   openMallMore() {
-    wx.showToast({ title: '更多即享商品', icon: 'none' });
+    wx.switchTab({ url: '/pages/coffeeEnjoy/coffeeEnjoy' });
   },
 
   switchTab(event) {

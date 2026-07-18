@@ -37,6 +37,7 @@ page { height: 100%; background: #faf9f5; color: #121212; font-family: -apple-sy
 .plan-old { color: #858585; font-size: 18rpx; text-decoration: line-through; }
 .plan-note { font-size: 18rpx; }
 .subscribe-button { margin: 0 24rpx; height: 82rpx; color: #fff; border-radius: 44rpx; background: #123ab8; text-align: center; font-size: 31rpx; font-weight: 600; line-height: 82rpx; }
+.subscribe-button--active { background: #7890c5; }
 .agreement-row { margin: 16rpx 24rpx 0; display: flex; align-items: flex-start; justify-content: center; gap: 8rpx; color: #2c437c; font-size: 19rpx; line-height: 29rpx; }
 .agreement-check { width: 27rpx; height: 27rpx; flex: none; color: #fff; border: 2rpx solid #b9b9b9; border-radius: 50%; text-align: center; line-height: 27rpx; }
 .agreement-check--active { border-color: #123ab8; background: #123ab8; }

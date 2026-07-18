@@ -10,14 +10,16 @@
           bindtap="selectServiceMode"
         >{{item}}</text>
       </view>
-      <view class="header-actions">
-        <view class="search-button" bindtap="showSearch"></view>
-        <view class="more-button">•••</view>
+      <view
+        class="header-actions"
+        style="top: {{capsuleTop}}px; right: {{windowWidth - capsuleLeft + 8}}px; width: {{capsuleHeight}}px; height: {{capsuleHeight}}px;"
+      >
+        <view class="search-button" style="width: {{capsuleHeight}}px; height: {{capsuleHeight}}px;" bindtap="showSearch"></view>
       </view>
     </view>
 
     <view class="store-row">
-      <view class="store-location"><text class="location-icon">●</text> IBC MALL B1层店 <text class="distance">60m ›</text></view>
+      <view class="store-location" bindtap="chooseStore"><text class="location-icon">●</text> {{serviceMode === 0 ? currentStore : currentStore}} <text class="distance">{{serviceMode === 0 ? '60m' : '配送地址'}} ›</text></view>
       <view class="group-order" bindtap="showGroupOrder">▣ 拼单</view>
     </view>
 
@@ -76,12 +78,23 @@
               <text class="drink-price"><text class="drink-yen">¥</text>{{item.price}}</text>
               <text class="drink-original-price">¥{{item.originalPrice}}</text>
             </view>
-            <view class="select-button" data-index="{{index}}" bindtap="selectProduct">选规格</view>
+            <view wx:if="{{!item.quantity}}" class="select-button" data-index="{{index}}" bindtap="selectProduct">选规格</view>
+            <view wx:else class="quantity-stepper">
+              <view class="stepper-button stepper-button--minus" data-index="{{index}}" catchtap="decreaseQuantity">−</view>
+              <text class="stepper-count">{{item.quantity}}</text>
+              <view class="stepper-button" data-index="{{index}}" catchtap="increaseQuantity">＋</view>
+            </view>
           </view>
         </view>
       </view>
-      <view class="product-bottom-space"></view>
+      <view class="product-bottom-space {{cartCount > 0 ? 'product-bottom-space--cart' : ''}}"></view>
     </scroll-view>
+  </view>
+
+  <view wx:if="{{cartCount > 0}}" class="cart-bar">
+    <view class="cart-icon-wrap"><text class="cart-icon">▣</text><text class="cart-badge">{{cartCount}}</text></view>
+    <view class="cart-summary"><text class="cart-total"><text class="cart-yen">¥</text>{{cartTotal}}</text><text class="cart-tip">已享优惠价</text></view>
+    <view class="checkout-button" bindtap="openCheckout">去结算</view>
   </view>
 
   <view class="menu-bottom-tabs">
@@ -94,6 +107,98 @@
     >
       <view class="bottom-tab-icon">{{item.icon}}</view>
       <text>{{item.title}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{searchVisible}}" class="modal-layer">
+    <view class="search-panel">
+      <view class="search-input-row">
+        <input class="search-input" focus placeholder="搜索饮品名称" value="{{searchKeyword}}" bindinput="inputSearch" bindconfirm="confirmSearch" confirm-type="search"></input>
+        <text class="search-action" bindtap="confirmSearch">搜索</text>
+        <text class="search-cancel" bindtap="closeSearch">取消</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{specVisible}}" class="modal-layer modal-layer--bottom" bindtap="closeSpecification">
+    <view class="sheet-panel specification-sheet" catchtap="stopPropagation">
+      <view class="spec-drag-zone" catchtap="closeSpecification" bindtouchstart="specTouchStart" bindtouchend="specTouchEnd">
+        <view class="spec-handle"></view>
+      </view>
+      <view class="spec-store-row">
+        <view class="spec-store-info">
+          <view><text class="pickup-label">{{serviceModes[serviceMode]}}</text><text class="spec-store-name">{{currentStore}} ›</text></view>
+          <text class="spec-address">罗湖区东晓街道布心路3008号水贝珠宝总部大厦…</text>
+        </view>
+        <view class="pickup-time"><text>预计取餐时间</text><text class="pickup-time-value">09:47</text></view>
+      </view>
+      <scroll-view class="spec-scroll" scroll-y enhanced show-scrollbar="false">
+        <view class="spec-product-card">
+          <image class="spec-product-image" src="{{products[selectedProductIndex].image}}" mode="aspectFit"></image>
+          <view class="spec-product-info"><text class="spec-product-name">{{products[selectedProductIndex].name}}</text><text class="spec-product-desc">瑞幸专属印尼生椰岛｜清爽甘甜｜1H冷榨锁鲜</text><view class="spec-product-price"><text>限时购 ¥{{products[selectedProductIndex].price}}</text><text class="spec-old-price">¥{{products[selectedProductIndex].originalPrice}}</text></view></view>
+          <view class="spec-quantity"><view class="spec-quantity-button" bindtap="decreaseSpecQuantity">−</view><text>{{specQuantity}}</text><view class="spec-quantity-button spec-quantity-button--plus" bindtap="increaseSpecQuantity">＋</view></view>
+        </view>
+
+        <view class="taste-header"><text>选择口味</text><text class="save-taste">♡ 保存口味</text></view>
+
+        <view class="spec-group">
+          <text class="spec-title">杯型</text>
+          <view class="option-grid option-grid--two"><view class="detail-option {{selectedCup === item.label ? 'detail-option--active' : ''}}" wx:for="{{cupOptions}}" wx:key="label" data-value="{{item.label}}" bindtap="selectCup"><text wx:if="{{item.badge}}" class="option-badge">{{item.badge}}</text><text class="detail-option-title">▯ {{item.label}}{{item.extra ? ' +￥' + item.extra : ''}}</text><text class="detail-option-subtitle">{{item.subtitle}}</text></view></view>
+        </view>
+
+        <view class="spec-group">
+          <text class="spec-title">温度</text>
+          <view class="option-grid option-grid--two"><view class="detail-option detail-option--simple {{selectedTemperature === item ? 'detail-option--active' : ''}}" wx:for="{{temperatureOptions}}" wx:key="*this" data-value="{{item}}" bindtap="selectTemperature">{{item}}</view></view>
+        </view>
+
+        <view wx:if="{{selectedTemperature === '冰'}}" class="spec-group">
+          <text class="spec-title">冰量</text>
+          <view class="option-grid option-grid--three"><view class="detail-option detail-option--simple {{selectedIce === item ? 'detail-option--active' : ''}}" wx:for="{{iceOptions}}" wx:key="*this" data-value="{{item}}" bindtap="selectIce">{{item}}</view></view>
+        </view>
+
+        <view class="spec-group">
+          <text class="spec-title">咖啡豆</text>
+          <view class="option-grid option-grid--two"><view class="detail-option {{selectedBean === item.label ? 'detail-option--active' : ''}}" wx:for="{{beanOptions}}" wx:key="label" data-value="{{item.label}}" bindtap="selectBean"><text class="option-badge">{{item.badge}}</text><text class="detail-option-title">{{item.label}}</text><text class="detail-option-subtitle">{{item.subtitle}}</text></view></view>
+        </view>
+
+        <view class="spec-group">
+          <text class="spec-title">咖啡浓度</text>
+          <view class="option-grid option-grid--two"><view class="detail-option detail-option--simple {{selectedConcentration === item.label ? 'detail-option--active' : ''}}" wx:for="{{concentrationOptions}}" wx:key="label" data-value="{{item.label}}" bindtap="selectConcentration">{{item.label}}{{item.extra ? ' +￥' + item.extra : ''}}</view></view>
+        </view>
+
+        <view class="spec-group">
+          <text class="spec-title">糖度</text>
+          <view class="option-grid option-grid--two"><view class="detail-option detail-option--simple {{selectedSugar === item.label ? 'detail-option--active' : ''}}" wx:for="{{sugarOptions}}" wx:key="label" data-value="{{item.label}}" bindtap="selectSugar"><text wx:if="{{item.badge}}" class="option-badge">{{item.badge}}</text>{{item.label}}</view></view>
+        </view>
+
+        <view class="addon-section">
+          <view class="addon-heading">咖啡搭子 · 一起买<text>更划算</text></view>
+          <scroll-view class="addon-scroll" scroll-x enhanced show-scrollbar="false"><view class="addon-list"><view class="addon-card" wx:for="{{addons}}" wx:key="name"><image class="addon-image" src="{{item.image}}" mode="aspectFill"></image><text class="addon-name">{{item.name}}</text><view class="addon-price-row"><view><text class="addon-price">¥{{item.price}}</text><text class="addon-old-price">¥{{item.originalPrice}}</text></view><view wx:if="{{!item.quantity}}" class="addon-plus" data-index="{{index}}" bindtap="increaseAddon">＋</view><view wx:else class="addon-stepper"><text data-index="{{index}}" bindtap="decreaseAddon">−</text><text>{{item.quantity}}</text><text data-index="{{index}}" bindtap="increaseAddon">＋</text></view></view></view></view></scroll-view>
+        </view>
+
+        <view class="spec-summary-card">
+          <view class="summary-line"><text class="summary-title">瑞幸优惠 <text class="summary-tip">已为您选择最佳优惠</text></text><text class="summary-discount">-¥{{specDiscount}}</text></view>
+          <view class="summary-line"><text>限时购</text><text>-¥{{specDiscount}}</text></view>
+          <view class="summary-link">更改优惠</view>
+          <view class="summary-line summary-line--border"><text>好运卡</text><text class="summary-muted">无可用卡 ›</text></view>
+          <view class="summary-line"><text>应付</text><text class="summary-pay">¥{{specTotal}}</text></view>
+        </view>
+        <view class="payment-card"><view><text>支付方式</text><text>🟢 微信支付 ›</text></view><view><text>备注特殊要求</text><text>›</text></view></view>
+        <text class="spec-warm-tip">温馨提示：建议您按需点单，杜绝浪费。本单仅支持开具电子发票。</text>
+        <view class="spec-scroll-bottom"></view>
+      </scroll-view>
+      <view class="spec-action-bar"><view class="add-cart-action" bindtap="confirmSpecification">加入购物车</view><view class="submit-spec-action" bindtap="submitSpecification"><text>¥{{specTotal}} 提交订单</text><text class="submit-discount">总计优惠¥{{specDiscount}}</text></view></view>
+    </view>
+  </view>
+
+  <view wx:if="{{checkoutVisible}}" class="modal-layer modal-layer--bottom">
+    <view class="sheet-panel checkout-sheet">
+      <view class="sheet-header"><view><text class="sheet-title">确认订单</text><text class="sheet-subtitle">{{serviceModes[serviceMode]}} · {{currentStore}}</text></view><text class="sheet-close" bindtap="closeCheckout">×</text></view>
+      <view class="checkout-items">
+        <view class="checkout-item" wx:for="{{cartItems}}" wx:key="name"><view><text>{{item.name}} ×{{item.quantity}}</text><text class="checkout-specs">{{item.configuredSpecs}}</text></view><text>¥{{item.lineTotal}}</text></view>
+      </view>
+      <view class="checkout-total-row"><text>合计</text><text class="checkout-total">¥{{cartTotal}}</text></view>
+      <view class="submit-order" bindtap="submitOrder">提交订单</view>
     </view>
   </view>
 </view>

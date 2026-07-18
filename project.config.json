@@ -124,6 +124,22 @@
       {
         "value": "images/create-collection.png",
         "type": "file"
+      },
+      {
+        "value": "images/index.png",
+        "type": "file"
+      },
+      {
+        "value": "images/index_fill.png",
+        "type": "file"
+      },
+      {
+        "value": "images/my.png",
+        "type": "file"
+      },
+      {
+        "value": "images/my_fill.png",
+        "type": "file"
       }
     ],
     "include": []
