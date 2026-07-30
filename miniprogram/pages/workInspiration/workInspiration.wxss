@@ -1,0 +1,195 @@
+page {
+  height: 100%;
+  background: #080a12;
+  color: #ffffff;
+}
+
+.work-page {
+  min-height: 100%;
+  background: #080a12;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.nav {
+  height: 96rpx;
+  background: #0a0b13;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+}
+
+.nav-title {
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.content {
+  padding: 20rpx 18rpx 60rpx;
+  background: #080a12;
+  box-sizing: border-box;
+}
+
+.slogan-row {
+  height: 54rpx;
+  display: flex;
+  align-items: center;
+}
+
+.green-dot {
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 14rpx;
+  border-radius: 50%;
+  background: #12dd86;
+  box-shadow: 0 0 18rpx #12dd86;
+  flex-shrink: 0;
+}
+
+.slogan {
+  flex: 1;
+  color: #22d47f;
+  font-size: 28rpx;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.clock {
+  color: #8c95aa;
+  font-size: 25rpx;
+}
+
+.income-card {
+  height: 348rpx;
+  margin-top: 18rpx;
+  padding: 48rpx 38rpx 34rpx;
+  border: 1rpx solid rgba(35, 236, 154, 0.22);
+  border-radius: 20rpx;
+  background: #121525;
+  box-shadow: 0 0 34rpx rgba(12, 210, 128, 0.14);
+  box-sizing: border-box;
+}
+
+.income-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muted {
+  color: #8c94a7;
+  font-size: 27rpx;
+}
+
+.bonus {
+  color: #e8c057;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.money-row {
+  margin-top: 18rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.currency {
+  margin-right: 12rpx;
+  color: #10dc83;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.money {
+  color: #12dd86;
+  font-size: 92rpx;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 24rpx rgba(18, 221, 134, 0.5);
+}
+
+.live-row {
+  margin-top: 22rpx;
+  color: #18c783;
+  display: flex;
+  align-items: center;
+  font-size: 25rpx;
+}
+
+.live-dot {
+  width: 18rpx;
+  height: 18rpx;
+  margin-right: 12rpx;
+  border-radius: 50%;
+  background: #17d989;
+}
+
+.progress-track {
+  height: 13rpx;
+  margin-top: 26rpx;
+  border-radius: 8rpx;
+  background: #242838;
+}
+
+.progress-fill {
+  width: 42rpx;
+  height: 100%;
+  border-radius: 8rpx;
+  background: #15df89;
+}
+
+.progress-text {
+  display: block;
+  margin-top: 14rpx;
+  color: #8b93a5;
+  font-size: 24rpx;
+}
+
+.salary-grid {
+  margin-top: 28rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.salary-card {
+  width: 48%;
+  height: 142rpx;
+  margin-bottom: 18rpx;
+  padding: 32rpx 28rpx;
+  border-radius: 12rpx;
+  background: #141828;
+  box-sizing: border-box;
+}
+
+.blur-line {
+  height: 18rpx;
+  border-radius: 9rpx;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.blur-line.short {
+  width: 55rpx;
+}
+
+.blur-line.long {
+  width: 96rpx;
+  margin-top: 20rpx;
+}
+
+.amount-row {
+  margin-top: 20rpx;
+  color: rgba(255, 255, 255, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.tiny-plus {
+  color: rgba(244, 196, 87, 0.75);
+  font-size: 20rpx;
+}

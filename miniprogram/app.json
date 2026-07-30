@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/workInspiration/workInspiration",
     "pages/coffeeHome/coffeeHome",
     "pages/coffeeMenu/coffeeMenu",
     "pages/coffeeEnjoy/coffeeEnjoy",

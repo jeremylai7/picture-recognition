@@ -1,0 +1,43 @@
+<view class="work-page">
+  <view class="nav" style="padding-top: {{statusBarHeight}}px;">
+    <text class="nav-title">上班鼓励器</text>
+  </view>
+
+  <view class="content">
+    <view class="slogan-row">
+      <view class="green-dot"></view>
+      <text class="slogan">稳步守住此刻，日子会越来越宽裕</text>
+      <text class="clock">{{clock}}</text>
+    </view>
+
+    <view class="income-card">
+      <view class="income-top">
+        <text class="muted">今日</text>
+        <text class="bonus">+¥0.0145</text>
+      </view>
+      <view class="money-row">
+        <text class="currency">¥</text>
+        <text class="money">26.90</text>
+      </view>
+      <view class="live-row">
+        <view class="live-dot"></view>
+        <text>LIVE</text>
+      </view>
+      <view class="progress-track">
+        <view class="progress-fill"></view>
+      </view>
+      <text class="progress-text">今日进度 5.2%</text>
+    </view>
+
+    <view class="salary-grid">
+      <view class="salary-card" wx:for="{{salaryItems}}" wx:key="*this">
+        <view class="blur-line short"></view>
+        <view class="blur-line long"></view>
+        <view class="amount-row">
+          <text class="hidden-stars">****</text>
+          <text class="tiny-plus">+¥{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
