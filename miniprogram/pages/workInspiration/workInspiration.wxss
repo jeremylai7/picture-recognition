@@ -14,6 +14,7 @@ page {
 .nav {
   height: 96rpx;
   background: #0a0b13;
+  border-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,9 +85,36 @@ page {
 }
 
 .bonus {
+  position: relative;
   color: #e8c057;
   font-size: 25rpx;
   font-weight: 700;
+  opacity: 0;
+  transform: translateY(10rpx);
+  will-change: transform, opacity;
+}
+
+.bonus--pulse {
+  animation: bonus-float-up 1000ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes bonus-float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10rpx);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(6rpx);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-34rpx);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-64rpx);
+  }
 }
 
 .money-row {
@@ -124,6 +152,16 @@ page {
   margin-right: 12rpx;
   border-radius: 50%;
   background: #17d989;
+  box-shadow: none;
+}
+
+.live-row--paused {
+  color: #8c94a7;
+}
+
+.live-dot--paused {
+  background: #687083;
+  box-shadow: none;
 }
 
 .progress-track {
@@ -134,10 +172,10 @@ page {
 }
 
 .progress-fill {
-  width: 42rpx;
   height: 100%;
   border-radius: 8rpx;
   background: #15df89;
+  transition: width 500ms ease;
 }
 
 .progress-text {
@@ -147,49 +185,194 @@ page {
   font-size: 24rpx;
 }
 
-.salary-grid {
+.config-card {
   margin-top: 28rpx;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.salary-card {
-  width: 48%;
-  height: 142rpx;
-  margin-bottom: 18rpx;
-  padding: 32rpx 28rpx;
-  border-radius: 12rpx;
-  background: #141828;
+  padding: 30rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.05);
+  border-radius: 20rpx;
+  background: #121525;
+  box-shadow: none;
   box-sizing: border-box;
 }
 
-.blur-line {
-  height: 18rpx;
-  border-radius: 9rpx;
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.blur-line.short {
-  width: 55rpx;
-}
-
-.blur-line.long {
-  width: 96rpx;
-  margin-top: 20rpx;
-}
-
-.amount-row {
-  margin-top: 20rpx;
-  color: rgba(255, 255, 255, 0.72);
+.config-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  font-size: 24rpx;
+}
+
+.config-title,
+.config-caption {
+  display: block;
+}
+
+.config-title {
+  color: #ffffff;
+  font-size: 30rpx;
   font-weight: 700;
 }
 
-.tiny-plus {
-  color: rgba(244, 196, 87, 0.75);
-  font-size: 20rpx;
+.config-caption {
+  margin-top: 8rpx;
+  color: #737c90;
+  font-size: 22rpx;
+}
+
+.config-status {
+  padding: 8rpx 16rpx;
+  border: 1rpx solid rgba(22, 221, 137, 0.35);
+  border-radius: 18rpx;
+  color: #18d98a;
+  background: rgba(22, 221, 137, 0.08);
+  font-size: 21rpx;
+  line-height: 1;
+}
+
+.config-status--editing {
+  border-color: rgba(237, 194, 85, 0.42);
+  color: #edc255;
+  background: rgba(237, 194, 85, 0.09);
+}
+
+.config-summary {
+  margin-top: 28rpx;
+  overflow: hidden;
+  border-radius: 14rpx;
+  background: #171b2d;
+}
+
+.config-summary-row {
+  min-height: 82rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-summary-row + .config-summary-row {
+  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+}
+
+.config-summary-row--time {
+  min-height: 112rpx;
+}
+
+.config-label {
+  color: #9aa2b5;
+  font-size: 25rpx;
+}
+
+.config-value {
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.config-value--salary {
+  color: #edc255;
+  font-size: 34rpx;
+}
+
+.confirmed-times {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 25rpx;
+  line-height: 1.75;
+}
+
+.config-button {
+  height: 72rpx;
+  margin: 26rpx 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 72rpx;
+}
+
+.config-button::after {
+  border: 0;
+}
+
+.config-button--primary,
+.config-button--confirm {
+  color: #07100c;
+  background: #16dd89;
+  box-shadow: none;
+  box-shadow: none;
+}
+
+.config-field {
+  min-height: 90rpx;
+  margin-top: 24rpx;
+  padding: 0 24rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  border-radius: 14rpx;
+  background: #171b2d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.salary-input-wrap {
+  color: #edc255;
+  display: flex;
+  align-items: center;
+  font-size: 31rpx;
+  font-weight: 700;
+}
+
+.salary-input {
+  width: 200rpx;
+  height: 70rpx;
+  margin-left: 8rpx;
+  color: #ffffff;
+  text-align: right;
+  font-size: 30rpx;
+}
+
+.config-field--times {
+  min-height: 94rpx;
+}
+
+.time-range {
+  display: flex;
+  align-items: center;
+}
+
+.time-picker {
+  min-width: 126rpx;
+  height: 58rpx;
+  border: 1rpx solid rgba(22, 221, 137, 0.26);
+  border-radius: 10rpx;
+  color: #ffffff;
+  background: rgba(22, 221, 137, 0.06);
+  text-align: center;
+  font-size: 25rpx;
+  line-height: 58rpx;
+}
+
+.time-separator {
+  margin: 0 16rpx;
+  color: #737c90;
+  font-size: 22rpx;
+}
+
+.config-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.config-actions .config-button {
+  flex: 1;
+}
+
+.config-button--secondary {
+  border: 1rpx solid rgba(255, 255, 255, 0.12);
+  color: #a5adbd;
+  background: #181c2d;
 }
