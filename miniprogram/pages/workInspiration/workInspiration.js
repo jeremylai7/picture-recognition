@@ -1,3 +1,5 @@
+const HOLIDAY_API_URL = 'https://timor.tech/api/holiday/info/';
+
 Page({
   data: {
     statusBarHeight: 20,
@@ -8,6 +10,12 @@ Page({
     twoSecondAmount: '0.0222',
     bonusPulse: false,
     isWorking: false,
+    isDayOff: false,
+    dayOffType: '',
+    holidayDateKey: '',
+    holidayApiLoaded: false,
+    apiDayOff: false,
+    apiDayOffType: '',
     workStatus: '未到上班时间',
     monthlySalary: '6600',
     morningStart: '09:00',
@@ -84,9 +92,14 @@ Page({
   updateClock() {
     const now = new Date();
     const pad = (value) => String(value).padStart(2, '0');
+    const dateKey = this.getDateKey(now);
     this.setData({
       clock: `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`
     });
+
+    if (dateKey !== this.data.holidayDateKey) {
+      this.fetchHolidayInfo(dateKey);
+    }
   },
 
   timeToSeconds(value) {
@@ -98,7 +111,83 @@ Page({
     return Number(this.data.monthlySalary || 0) / 22;
   },
 
+  getDateKey(date) {
+    const pad = (value) => String(value).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  },
+
+  fetchHolidayInfo(dateKey) {
+    this.setData({
+      holidayDateKey: dateKey,
+      holidayApiLoaded: false,
+      apiDayOff: false,
+      apiDayOffType: ''
+    });
+
+    wx.request({
+      url: `${HOLIDAY_API_URL}${dateKey}`,
+      method: 'GET',
+      success: (response) => {
+        // 接口类型：0 工作日、1 周末、2 节日、3 调休补班。
+        const result = response.data || {};
+        const type = result.type || {};
+        const holiday = result.holiday || {};
+        const typeValue = Number(type.type);
+        const isDayOff = holiday.holiday === true || typeValue === 1 || typeValue === 2;
+
+        // 日期跨天时丢弃上一天的异步响应。
+        if (dateKey !== this.getDateKey(new Date())) {
+          return;
+        }
+
+        this.setData({
+          holidayApiLoaded: true,
+          apiDayOff: isDayOff,
+          apiDayOffType: holiday.name || type.name || (isDayOff ? '休息日' : '')
+        }, () => {
+          this.refreshIncomeRate();
+          this.updateIncome();
+        });
+      },
+      fail: () => {
+        // 网络不可用时，仍保证普通周末有放假提示。
+        this.setData({ holidayApiLoaded: true });
+        this.updateIncome();
+      }
+    });
+  },
+
+  getDayOffInfo(now = new Date()) {
+    const dateKey = this.getDateKey(now);
+
+    if (this.data.holidayApiLoaded && this.data.holidayDateKey === dateKey) {
+      return {
+        isDayOff: this.data.apiDayOff,
+        dayOffType: this.data.apiDayOffType
+      };
+    }
+
+    // 接口结果返回前，以周末做临时兜底；接口返回后会覆盖该状态。
+    if (now.getDay() === 0 || now.getDay() === 6) {
+      return { isDayOff: true, dayOffType: '周末' };
+    }
+
+    return { isDayOff: false, dayOffType: '' };
+  },
+
   getWorkState(now = new Date()) {
+    const dayOffInfo = this.getDayOffInfo(now);
+
+    if (dayOffInfo.isDayOff) {
+      return {
+        elapsedWorkSeconds: 0,
+        totalWorkSeconds: 1,
+        isWorking: false,
+        workStatus: '今日放假',
+        ...dayOffInfo
+      };
+    }
+
     const secondOfDay = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
     const morningStart = this.timeToSeconds(this.data.morningStart);
     const morningEnd = this.timeToSeconds(this.data.morningEnd);
@@ -133,7 +222,9 @@ Page({
       elapsedWorkSeconds: Math.max(0, Math.min(totalWorkSeconds, elapsedWorkSeconds)),
       totalWorkSeconds,
       isWorking,
-      workStatus
+      workStatus,
+      isDayOff: false,
+      dayOffType: ''
     };
   },
 
@@ -148,6 +239,8 @@ Page({
       progressPercent: Math.min(100, progress).toFixed(1),
       progressWidth: `${Math.min(100, progress)}%`,
       isWorking: state.isWorking,
+      isDayOff: state.isDayOff,
+      dayOffType: state.dayOffType,
       workStatus: state.workStatus
     });
   },

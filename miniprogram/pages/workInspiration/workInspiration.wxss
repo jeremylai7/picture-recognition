@@ -73,6 +73,39 @@ page {
   box-sizing: border-box;
 }
 
+.income-card--day-off {
+  border-color: rgba(237, 194, 85, 0.28);
+  background: linear-gradient(135deg, #1a1826, #121525);
+  box-shadow: 0 0 34rpx rgba(237, 194, 85, 0.12);
+}
+
+.day-off-tag {
+  padding: 7rpx 14rpx;
+  border-radius: 18rpx;
+  color: #edc255;
+  background: rgba(237, 194, 85, 0.12);
+  font-size: 22rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.day-off-message {
+  margin-top: 34rpx;
+  color: #f5d57a;
+  font-size: 76rpx;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 4rpx;
+  text-shadow: 0 0 24rpx rgba(237, 194, 85, 0.28);
+}
+
+.day-off-caption {
+  display: block;
+  margin-top: 24rpx;
+  color: #aaa6b7;
+  font-size: 27rpx;
+}
+
 .income-top {
   display: flex;
   align-items: center;

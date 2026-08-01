@@ -6,27 +6,37 @@
   <view class="content">
     <view class="slogan-row">
       <view class="green-dot"></view>
-      <text class="slogan">稳步守住此刻，日子会越来越宽裕</text>
+      <text class="slogan">{{isDayOff ? '今日放假，安心休息' : '稳步守住此刻，日子会越来越宽裕'}}</text>
       <text class="clock">{{clock}}</text>
     </view>
 
-    <view class="income-card">
-      <view class="income-top">
-        <text class="muted">今日</text>
-        <text class="bonus {{bonusPulse ? 'bonus--pulse' : ''}}">+¥{{twoSecondAmount}}</text>
-      </view>
-      <view class="money-row">
-        <text class="currency">¥</text>
-        <text class="money">{{todayIncome}}</text>
-      </view>
-      <view class="live-row {{isWorking ? '' : 'live-row--paused'}}">
-        <view class="live-dot {{isWorking ? '' : 'live-dot--paused'}}"></view>
-        <text>{{workStatus}}</text>
-      </view>
-      <view class="progress-track">
-        <view class="progress-fill" style="width: {{progressWidth}};"></view>
-      </view>
-      <text class="progress-text">今日进度 {{progressPercent}}%</text>
+    <view class="income-card {{isDayOff ? 'income-card--day-off' : ''}}">
+      <block wx:if="{{isDayOff}}">
+        <view class="income-top">
+          <text class="muted">{{dayOffType}}</text>
+          <text class="day-off-tag">休息日</text>
+        </view>
+        <view class="day-off-message">今日放假</view>
+        <text class="day-off-caption">不打卡，不卷，安心休息</text>
+      </block>
+      <block wx:else>
+        <view class="income-top">
+          <text class="muted">今日</text>
+          <text class="bonus {{bonusPulse ? 'bonus--pulse' : ''}}">+¥{{twoSecondAmount}}</text>
+        </view>
+        <view class="money-row">
+          <text class="currency">¥</text>
+          <text class="money">{{todayIncome}}</text>
+        </view>
+        <view class="live-row {{isWorking ? '' : 'live-row--paused'}}">
+          <view class="live-dot {{isWorking ? '' : 'live-dot--paused'}}"></view>
+          <text>{{workStatus}}</text>
+        </view>
+        <view class="progress-track">
+          <view class="progress-fill" style="width: {{progressWidth}};"></view>
+        </view>
+        <text class="progress-text">今日进度 {{progressPercent}}%</text>
+      </block>
     </view>
 
     <view class="config-card">
