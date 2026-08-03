@@ -39,7 +39,8 @@
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
     "useStaticServer": true,
-    "condition": false
+    "condition": false,
+    "disableSWC": true
   },
   "appid": "wx902cd58a7e7ea54b",
   "projectname": "picture-recognition",

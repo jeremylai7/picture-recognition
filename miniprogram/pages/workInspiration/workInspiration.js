@@ -17,12 +17,12 @@ Page({
     apiDayOff: false,
     apiDayOffType: '',
     workStatus: '未到上班时间',
-    monthlySalary: '6600',
+    monthlySalary: '10000',
     morningStart: '09:00',
     morningEnd: '12:00',
     afternoonStart: '13:30',
     afternoonEnd: '18:00',
-    draftMonthlySalary: '6600',
+    draftMonthlySalary: '10000',
     draftMorningStart: '09:00',
     draftMorningEnd: '12:00',
     draftAfternoonStart: '13:30',
@@ -54,6 +54,10 @@ Page({
       this.refreshIncomeRate();
       this.updateClock();
       this.updateIncome();
+    });
+
+    wx.showShareMenu({
+      menus: ['shareAppMessage', 'shareTimeline']
     });
   },
 
@@ -343,9 +347,15 @@ Page({
   },
   // 当前页面转发
   onShareAppMessage() {
-    
+    return {
+      title: '上班鼓励器助手',
+      path: '/pages/workInspiration/workInspiration'
+    };
   },
   onShareTimeline() {
-    
+    return {
+      title: '上班鼓励器助手',
+      query: ''
+    };
   }
 });
