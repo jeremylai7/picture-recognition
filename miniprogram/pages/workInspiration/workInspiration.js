@@ -340,5 +340,12 @@ Page({
         this.setData({ bonusPulse: false });
       }, 1000);
     });
+  },
+  // 当前页面转发
+  onShareAppMessage() {
+    
+  },
+  onShareTimeline() {
+    
   }
 });
