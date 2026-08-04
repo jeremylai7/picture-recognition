@@ -302,8 +302,36 @@ page {
 }
 
 .config-value--salary {
+  width: 130rpx;
   color: #edc255;
   font-size: 34rpx;
+  text-align: left;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.salary-value-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.salary-visibility-toggle {
+  width: 58rpx;
+  height: 52rpx;
+  margin: 0 20rpx 0 0;
+  border-radius: 26rpx;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.salary-eye-image {
+  width: 38rpx;
+  height: 28rpx;
 }
 
 .confirmed-times {

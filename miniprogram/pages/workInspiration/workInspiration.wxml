@@ -52,7 +52,22 @@
         <view class="config-summary">
           <view class="config-summary-row">
             <text class="config-label">月薪</text>
-            <text class="config-value config-value--salary">¥{{monthlySalary}}</text>
+            <view class="salary-value-wrap">
+              <view
+                class="salary-visibility-toggle"
+                aria-role="button"
+                aria-label="{{isSalaryHidden ? '显示月薪' : '隐藏月薪'}}"
+                catchtap="toggleSalaryVisibility"
+              >
+                <image
+                  class="salary-eye-image"
+                  src="{{isSalaryHidden ? '/images/salary-eye-closed.svg' : '/images/salary-eye-open.svg'}}"
+                  mode="aspectFit"
+                ></image>
+              </view>
+              <text wx:if="{{isSalaryHidden}}" class="config-value config-value--salary">****</text>
+              <text wx:else class="config-value config-value--salary">¥{{monthlySalary}}</text>
+            </view>
           </view>
           <view class="config-summary-row config-summary-row--time">
             <text class="config-label">上班时间</text>

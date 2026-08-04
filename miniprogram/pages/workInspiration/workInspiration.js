@@ -22,6 +22,7 @@ Page({
     morningEnd: '12:00',
     afternoonStart: '13:30',
     afternoonEnd: '18:00',
+    isSalaryHidden: false,
     draftMonthlySalary: '10000',
     draftMorningStart: '09:00',
     draftMorningEnd: '12:00',
@@ -34,6 +35,7 @@ Page({
   onLoad() {
     const windowInfo = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
     const storedConfig = wx.getStorageSync('workInspirationConfig') || {};
+    const isSalaryHidden = wx.getStorageSync('workInspirationSalaryHidden') === true;
     const config = {
       monthlySalary: storedConfig.monthlySalary || this.data.monthlySalary,
       morningStart: storedConfig.morningStart || this.data.morningStart,
@@ -45,6 +47,7 @@ Page({
     this.setData({
       statusBarHeight: windowInfo.statusBarHeight || 20,
       ...config,
+      isSalaryHidden,
       draftMonthlySalary: config.monthlySalary,
       draftMorningStart: config.morningStart,
       draftMorningEnd: config.morningEnd,
@@ -280,6 +283,12 @@ Page({
     this.setData({
       draftMonthlySalary: event.detail.value
     });
+  },
+
+  toggleSalaryVisibility() {
+    const isSalaryHidden = !this.data.isSalaryHidden;
+    this.setData({ isSalaryHidden });
+    wx.setStorageSync('workInspirationSalaryHidden', isSalaryHidden);
   },
 
   onConfigTimeChange(event) {
