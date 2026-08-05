@@ -127,5 +127,15 @@
         </view>
       </block>
     </view>
+
+    <view class="ad-container">
+      <ad
+        unit-id="adunit-53ceb16e96028fb1"
+        ad-theme="black"
+        bindload="onBannerAdLoad"
+        binderror="onBannerAdError"
+        bindclose="onBannerAdClose"
+      ></ad>
+    </view>
   </view>
 </view>

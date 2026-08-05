@@ -354,6 +354,19 @@ Page({
       }, 1000);
     });
   },
+
+  onBannerAdLoad() {
+    console.log('Banner 广告加载成功');
+  },
+
+  onBannerAdError(event) {
+    console.warn('Banner 广告加载失败', event.detail);
+  },
+
+  onBannerAdClose() {
+    console.log('Banner 广告已关闭');
+  },
+
   // 当前页面转发
   onShareAppMessage() {
     return {

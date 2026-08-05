@@ -437,3 +437,11 @@ page {
   color: #a5adbd;
   background: #181c2d;
 }
+
+.ad-container {
+  width: 100%;
+  margin-top: 20rpx;
+  overflow: hidden;
+  border-radius: 14rpx;
+  box-sizing: border-box;
+}
