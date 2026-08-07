@@ -1,0 +1,106 @@
+<view class="autumn-page">
+  <view class="grain"></view>
+  <view class="top-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="season-mark">
+      <text class="season-cn">立秋</text>
+      <text class="season-en">BEGINNING OF AUTUMN</text>
+    </view>
+    <button class="share-button" open-type="share" aria-label="分享这杯奶茶">
+      <view class="share-icon" aria-hidden="true">
+        <view class="share-icon-box"></view>
+        <view class="share-icon-arrow"></view>
+      </view>
+    </button>
+  </view>
+
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="false">
+    <view class="hero">
+      <view class="date-line"><view class="date-rule"></view><text>08 · 07</text><view class="date-rule"></view></view>
+      <text class="hero-kicker">AUTUMN'S FIRST TREAT</text>
+      <text class="hero-title">秋天的第一杯<text class="hero-title-em">奶茶</text></text>
+      <text class="hero-subtitle">风开始有了秋天的味道，日子也该加一点甜。</text>
+
+      <view class="cup-stage">
+        <view class="sun-disc"></view>
+        <view class="leaf leaf-one"><view class="leaf-stem"></view></view>
+        <view class="leaf leaf-two"><view class="leaf-stem"></view></view>
+        <view class="leaf leaf-three"><view class="leaf-stem"></view></view>
+        <view class="cup-shadow"></view>
+        <view class="cup-lid"><view class="lid-line"></view></view>
+        <view class="cup-body" style="--tea-color: {{teas[teaIndex].color}};">
+          <view class="tea-fill"></view>
+          <view class="pearl pearl-one"></view><view class="pearl pearl-two"></view><view class="pearl pearl-three"></view>
+          <view class="cup-label">
+            <text class="label-small">HELLO AUTUMN</text>
+            <view class="label-leaf">⌁</view>
+            <text class="label-name">{{teas[teaIndex].short}}</text>
+            <text class="label-detail">{{sweetness[sugarIndex]}} · {{temperatures[temperatureIndex]}}</text>
+          </view>
+        </view>
+        <view class="straw"></view>
+      </view>
+
+      <text class="tea-note">{{teas[teaIndex].note}}</text>
+    </view>
+
+    <view class="custom-panel">
+      <view class="section-head"><text class="section-no">01</text><text class="section-title">选一份秋日风味</text></view>
+      <scroll-view class="tea-scroll" scroll-x enhanced show-scrollbar="false">
+        <view class="tea-options">
+          <view class="tea-option {{teaIndex === index ? 'tea-option--active' : ''}}" wx:for="{{teas}}" wx:key="name" data-index="{{index}}" bindtap="chooseTea">
+            <view class="tea-dot" style="background: {{item.color}};"></view>
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="section-head section-head--spaced"><text class="section-no">02</text><text class="section-title">调成喜欢的样子</text></view>
+      <view class="choice-row">
+        <text class="choice-label">甜度</text>
+        <view class="choice-list">
+          <view class="choice {{sugarIndex === index ? 'choice--active' : ''}}" wx:for="{{sweetness}}" wx:key="*this" data-index="{{index}}" bindtap="chooseSugar">{{item}}</view>
+        </view>
+      </view>
+      <view class="choice-row">
+        <text class="choice-label">温度</text>
+        <view class="choice-list">
+          <view class="choice {{temperatureIndex === index ? 'choice--active' : ''}}" wx:for="{{temperatures}}" wx:key="*this" data-index="{{index}}" bindtap="chooseTemperature">{{item}}</view>
+        </view>
+      </view>
+
+      <button class="make-button {{making ? 'make-button--making' : ''}}" bindtap="makeTea" loading="{{making}}">
+        {{making ? '正在装满秋天…' : '收下这杯秋天'}}
+      </button>
+
+      <view wx:if="{{created}}" class="fortune-card">
+        <text class="fortune-mark">秋 日 签</text>
+        <text class="fortune-text">“{{blessing}}”</text>
+        <text class="fortune-sign">— 你的 {{teas[teaIndex].name}}</text>
+        <button class="poster-button" bindtap="openPoster" loading="{{posterLoading}}">
+          {{posterLoading ? '正在绘制海报…' : '生成秋日海报'}}
+        </button>
+      </view>
+    </view>
+
+    <view class="footer">
+      <text>一杯奶茶的时间，刚好用来拥抱秋天</text>
+      <view class="footer-leaves">⌁  ·  ⌁</view>
+    </view>
+  </scroll-view>
+
+  <canvas class="poster-canvas" canvas-id="autumnPoster"></canvas>
+
+  <view wx:if="{{posterVisible}}" class="poster-mask" bindtap="closePoster">
+    <view class="poster-dialog" catchtap="preventClose">
+      <view class="poster-dialog-head">
+        <view>
+          <text class="poster-dialog-title">收下这杯秋天</text>
+          <text class="poster-dialog-subtitle">你的立秋专属海报</text>
+        </view>
+        <view class="poster-close" bindtap="closePoster" aria-label="关闭">×</view>
+      </view>
+      <image class="poster-preview" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress></image>
+      <button class="save-poster-button" bindtap="savePoster">保存到相册</button>
+    </view>
+  </view>
+</view>
