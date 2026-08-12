@@ -445,3 +445,155 @@ page {
   border-radius: 14rpx;
   box-sizing: border-box;
 }
+
+/* 黑金生财皮肤：仅替换视觉，不改变原有布局 */
+page {
+  background: #110d0a;
+  color: #fff4d8;
+}
+
+.work-page {
+  color: #fff4d8;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(170, 91, 27, .18), transparent 34%),
+    linear-gradient(180deg, #100c09 0%, #1b0e0b 54%, #0e0a08 100%);
+}
+
+.nav {
+  background: rgba(15, 10, 7, .96);
+}
+
+.nav-title,
+.config-title,
+.config-value,
+.confirmed-times,
+.salary-input,
+.time-picker {
+  color: #fff4d8;
+}
+
+.content {
+  background: transparent;
+}
+
+.green-dot,
+.live-dot {
+  background: #f1c15b;
+  box-shadow: 0 0 18rpx rgba(241, 193, 91, .7);
+}
+
+.slogan,
+.live-row,
+.config-status {
+  color: #f1c15b;
+}
+
+.clock,
+.muted,
+.progress-text,
+.config-caption,
+.config-label,
+.time-separator {
+  color: #aa9376;
+}
+
+.income-card {
+  border-color: rgba(241, 193, 91, .3);
+  background:
+    linear-gradient(115deg, transparent 25%, rgba(255, 220, 143, .035) 48%, transparent 70%),
+    radial-gradient(circle at 74% 12%, rgba(201, 118, 36, .16), transparent 42%),
+    linear-gradient(145deg, #321b12, #17100c 72%);
+  box-shadow: inset 0 1rpx 0 rgba(255, 229, 169, .07), 0 0 34rpx rgba(218, 141, 47, .12);
+}
+
+.income-card--day-off {
+  border-color: rgba(241, 193, 91, .28);
+  background: linear-gradient(135deg, #321b14, #17100c);
+  box-shadow: 0 0 34rpx rgba(241, 193, 91, .1);
+}
+
+.day-off-tag {
+  color: #f1c15b;
+  background: rgba(241, 193, 91, .11);
+}
+
+.day-off-message,
+.bonus,
+.currency,
+.money,
+.config-value--salary,
+.salary-input-wrap {
+  color: #ffd36f;
+}
+
+.money {
+  text-shadow: 0 0 14rpx rgba(255, 211, 111, .46), 0 0 34rpx rgba(215, 126, 37, .28);
+}
+
+.bonus {
+  text-shadow: 0 0 12rpx rgba(255, 211, 111, .35);
+}
+
+.day-off-caption,
+.live-row--paused {
+  color: #9d8b74;
+}
+
+.live-dot--paused {
+  background: #77695a;
+  box-shadow: none;
+}
+
+.progress-track {
+  background: #3c2b20;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #d98529, #ffd875);
+  box-shadow: 0 0 12rpx rgba(241, 193, 91, .38);
+}
+
+.config-card {
+  border-color: rgba(241, 193, 91, .17);
+  background: linear-gradient(145deg, rgba(65, 29, 21, .97), rgba(28, 16, 12, .98));
+  box-shadow: inset 0 1rpx 0 rgba(255, 226, 163, .06), 0 14rpx 34rpx rgba(0, 0, 0, .18);
+}
+
+.config-status {
+  border-color: rgba(241, 193, 91, .35);
+  background: rgba(241, 193, 91, .08);
+}
+
+.config-status--editing {
+  border-color: rgba(255, 211, 111, .42);
+  color: #ffd36f;
+  background: rgba(241, 193, 91, .1);
+}
+
+.config-summary,
+.config-field {
+  border-color: rgba(241, 193, 91, .13);
+  background: rgba(18, 12, 9, .58);
+}
+
+.config-summary-row + .config-summary-row {
+  border-top-color: rgba(241, 193, 91, .1);
+}
+
+.time-picker {
+  border-color: rgba(241, 193, 91, .24);
+  background: rgba(241, 193, 91, .06);
+}
+
+.config-button--primary,
+.config-button--confirm {
+  color: #321708;
+  background: linear-gradient(90deg, #d88b2f, #ffd77b, #e8a53e);
+  box-shadow: 0 10rpx 24rpx rgba(208, 121, 32, .2);
+}
+
+.config-button--secondary {
+  border-color: rgba(241, 193, 91, .18);
+  color: #c0a98a;
+  background: rgba(26, 16, 12, .76);
+}
