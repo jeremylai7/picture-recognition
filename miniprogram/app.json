@@ -51,6 +51,7 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
+  "resizable": true,
   "style": "v2",
   "usingComponents": {
     "mp-col": "./miniprogram_npm/@miniprogram-component-plus/col",

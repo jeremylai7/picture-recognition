@@ -1,6 +1,16 @@
-<view class="work-page">
+<view class="work-page {{isCompactMode ? 'work-page--compact' : ''}}">
   <view class="nav" style="padding-top: {{statusBarHeight}}px;">
     <text class="nav-title">上班鼓励器</text>
+    <view
+      wx:if="{{isDesktop}}"
+      class="desktop-mode-button"
+      hover-class="desktop-mode-button--pressed"
+      aria-role="button"
+      aria-label="{{isCompactMode ? '展开完整页面' : '切换为桌面卡片'}}"
+      bindtap="toggleCompactMode"
+    >
+      <text class="desktop-mode-label">{{isCompactMode ? '展开页面' : '卡片模式'}}</text>
+    </view>
   </view>
 
   <view class="content">
@@ -10,7 +20,7 @@
       <text class="clock">{{clock}}</text>
     </view>
 
-    <view class="income-card {{isDayOff ? 'income-card--day-off' : ''}}">
+    <view class="income-card {{isDayOff ? 'income-card--day-off' : 'income-card--privacy'}}">
       <block wx:if="{{isDayOff}}">
         <view class="income-top">
           <text class="muted">{{dayOffType}}</text>
@@ -21,12 +31,42 @@
       </block>
       <block wx:else>
         <view class="income-top">
-          <text class="muted">今日</text>
+          <view class="income-label-wrap">
+            <text class="muted">今日收入</text>
+            <view
+              class="income-visibility-toggle"
+              hover-class="income-visibility-toggle--pressed"
+              aria-role="button"
+              aria-label="{{isIncomeHidden ? '持续显示今日收入' : '隐藏今日收入'}}"
+              catchtap="toggleIncomeVisibility"
+            >
+              <image
+                class="income-eye-image"
+                src="{{isIncomeHidden ? '/images/salary-eye-closed.svg' : '/images/salary-eye-open.svg'}}"
+                mode="aspectFit"
+              ></image>
+            </view>
+          </view>
           <text class="bonus {{bonusPulse ? 'bonus--pulse' : ''}}">+¥{{twoSecondAmount}}</text>
         </view>
-        <view class="money-row">
-          <text class="currency">¥</text>
-          <text class="money">{{todayIncome}}</text>
+        <view
+          class="money-private {{isIncomeHidden ? '' : 'money-private--visible'}}"
+          hover-class="{{isIncomeHidden ? 'money-private--pressing' : 'none'}}"
+          hover-start-time="0"
+          hover-stay-time="0"
+          aria-role="button"
+          aria-label="按住查看今日收入"
+        >
+          <view class="money-row">
+            <text class="currency">¥</text>
+            <text class="money money--masked">•••.••</text>
+            <text class="money money--real">{{todayIncome}}</text>
+          </view>
+          <view class="privacy-hint">
+            <image class="privacy-fingerprint" src="/images/privacy-fingerprint.svg" mode="aspectFit"></image>
+            <text class="privacy-hint-default">按住查看金额</text>
+            <text class="privacy-hint-pressing">松开隐藏金额</text>
+          </view>
         </view>
         <view class="live-row {{isWorking ? '' : 'live-row--paused'}}">
           <view class="live-dot {{isWorking ? '' : 'live-dot--paused'}}"></view>

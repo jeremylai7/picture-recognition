@@ -79,6 +79,11 @@ page {
   box-shadow: 0 0 34rpx rgba(237, 194, 85, 0.12);
 }
 
+.income-card--privacy {
+  height: 410rpx;
+  padding: 38rpx 38rpx 28rpx;
+}
+
 .day-off-tag {
   padding: 7rpx 14rpx;
   border-radius: 18rpx;
@@ -110,6 +115,30 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.income-label-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.income-visibility-toggle {
+  width: 50rpx;
+  height: 42rpx;
+  margin-left: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 21rpx;
+}
+
+.income-visibility-toggle--pressed {
+  background: rgba(241, 193, 91, .1);
+}
+
+.income-eye-image {
+  width: 32rpx;
+  height: 24rpx;
 }
 
 .muted {
@@ -156,6 +185,11 @@ page {
   align-items: baseline;
 }
 
+.money-private {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .currency {
   margin-right: 12rpx;
   color: #10dc83;
@@ -171,8 +205,56 @@ page {
   text-shadow: 0 0 24rpx rgba(18, 221, 134, 0.5);
 }
 
+.money--masked {
+  letter-spacing: 7rpx;
+}
+
+.money--real,
+.privacy-hint-pressing {
+  display: none;
+}
+
+.money-private--pressing .money--masked,
+.money-private--pressing .privacy-hint-default {
+  display: none;
+}
+
+.money-private--pressing .money--real,
+.money-private--pressing .privacy-hint-pressing {
+  display: inline;
+}
+
+.money-private--visible .money--masked,
+.money-private--visible .privacy-hint-default {
+  display: none;
+}
+
+.money-private--visible .money--real {
+  display: inline;
+}
+
+.money-private--visible .privacy-hint {
+  visibility: hidden;
+}
+
+.privacy-hint {
+  height: 42rpx;
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  color: #a58d70;
+  font-size: 24rpx;
+}
+
+.privacy-fingerprint {
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+  flex: none;
+}
+
 .live-row {
-  margin-top: 22rpx;
+  margin-top: 18rpx;
   color: #18c783;
   display: flex;
   align-items: center;
@@ -444,6 +526,51 @@ page {
   overflow: hidden;
   border-radius: 14rpx;
   box-sizing: border-box;
+}
+
+/* PC 桌面卡片模式：不影响手机端完整布局 */
+.desktop-mode-button {
+  position: absolute;
+  left: 20rpx;
+  bottom: 15rpx;
+  height: 64rpx;
+  min-width: 150rpx;
+  padding: 0 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid rgba(255, 221, 128, .86);
+  border-radius: 32rpx;
+  color: #2b1609;
+  background: linear-gradient(135deg, #ffd875 0%, #eba437 100%);
+  box-shadow: 0 6rpx 18rpx rgba(226, 144, 39, .34), inset 0 1rpx 0 rgba(255, 250, 220, .72);
+  font-size: 23rpx;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.nav {
+  position: relative;
+}
+
+.desktop-mode-button--pressed {
+  opacity: .72;
+  transform: scale(.96);
+}
+
+.desktop-mode-label {
+  line-height: 1;
+}
+
+.work-page--compact {
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.work-page--compact .config-card,
+.work-page--compact .ad-container {
+  display: none;
 }
 
 /* 黑金生财皮肤：仅替换视觉，不改变原有布局 */

@@ -23,19 +23,31 @@ Page({
     afternoonStart: '13:30',
     afternoonEnd: '18:00',
     isSalaryHidden: false,
+    isIncomeHidden: true,
     draftMonthlySalary: '10000',
     draftMorningStart: '09:00',
     draftMorningEnd: '12:00',
     draftAfternoonStart: '13:30',
     draftAfternoonEnd: '18:00',
     isEditingConfig: false,
-    configStatus: '已确认'
+    configStatus: '已确认',
+    isDesktop: false,
+    isCompactMode: false,
+    compactModePreference: 'auto'
   },
 
   onLoad() {
     const windowInfo = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    const deviceInfo = wx.getDeviceInfo ? wx.getDeviceInfo() : wx.getSystemInfoSync();
+    const platform = String(deviceInfo.platform || '').toLowerCase();
+    const isDesktop = platform === 'windows' || platform === 'mac' || platform === 'devtools';
+    const storedPreference = wx.getStorageSync('workInspirationCompactMode');
+    const compactModePreference = ['auto', 'compact', 'full'].includes(storedPreference)
+      ? storedPreference
+      : 'auto';
     const storedConfig = wx.getStorageSync('workInspirationConfig') || {};
     const isSalaryHidden = wx.getStorageSync('workInspirationSalaryHidden') === true;
+    const isIncomeHidden = wx.getStorageSync('workInspirationIncomeHidden') !== false;
     const config = {
       monthlySalary: storedConfig.monthlySalary || this.data.monthlySalary,
       morningStart: storedConfig.morningStart || this.data.morningStart,
@@ -46,8 +58,12 @@ Page({
 
     this.setData({
       statusBarHeight: windowInfo.statusBarHeight || 20,
+      isDesktop,
+      compactModePreference,
+      isCompactMode: this.resolveCompactMode(windowInfo, isDesktop, compactModePreference),
       ...config,
       isSalaryHidden,
+      isIncomeHidden,
       draftMonthlySalary: config.monthlySalary,
       draftMorningStart: config.morningStart,
       draftMorningEnd: config.morningEnd,
@@ -62,6 +78,14 @@ Page({
     wx.showShareMenu({
       menus: ['shareAppMessage', 'shareTimeline']
     });
+
+    this.windowResizeHandler = (result) => {
+      const nextWindowInfo = result && result.size ? result.size : result;
+      this.applyWindowMode(nextWindowInfo || {});
+    };
+    if (wx.onWindowResize) {
+      wx.onWindowResize(this.windowResizeHandler);
+    }
   },
 
   onShow() {
@@ -74,6 +98,37 @@ Page({
 
   onUnload() {
     this.clearTimers();
+    if (wx.offWindowResize && this.windowResizeHandler) {
+      wx.offWindowResize(this.windowResizeHandler);
+    }
+    this.windowResizeHandler = null;
+  },
+
+  resolveCompactMode(windowInfo, isDesktop = this.data.isDesktop, preference = this.data.compactModePreference) {
+    if (!isDesktop) return false;
+    if (preference === 'compact') return true;
+    if (preference === 'full') return false;
+
+    const width = Number(windowInfo.windowWidth || windowInfo.width || 0);
+    const height = Number(windowInfo.windowHeight || windowInfo.height || 0);
+    return width > 0 && height > 0 && width <= 430 && height <= 540;
+  },
+
+  applyWindowMode(windowInfo) {
+    const isCompactMode = this.resolveCompactMode(windowInfo);
+    if (isCompactMode !== this.data.isCompactMode) {
+      this.setData({ isCompactMode });
+    }
+  },
+
+  toggleCompactMode() {
+    const compactModePreference = this.data.isCompactMode ? 'full' : 'compact';
+    wx.setStorageSync('workInspirationCompactMode', compactModePreference);
+    this.setData({
+      compactModePreference,
+      isCompactMode: compactModePreference === 'compact',
+      isEditingConfig: compactModePreference === 'compact' ? false : this.data.isEditingConfig
+    });
   },
 
   startTimers() {
@@ -289,6 +344,12 @@ Page({
     const isSalaryHidden = !this.data.isSalaryHidden;
     this.setData({ isSalaryHidden });
     wx.setStorageSync('workInspirationSalaryHidden', isSalaryHidden);
+  },
+
+  toggleIncomeVisibility() {
+    const isIncomeHidden = !this.data.isIncomeHidden;
+    this.setData({ isIncomeHidden });
+    wx.setStorageSync('workInspirationIncomeHidden', isIncomeHidden);
   },
 
   onConfigTimeChange(event) {
