@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/weixinpay/weixinpay",
     "pages/workInspiration/workInspiration",
     "pages/autumnMilkTea/autumnMilkTea",
     "pages/coffeeHome/coffeeHome",

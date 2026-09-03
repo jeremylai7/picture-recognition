@@ -1,4 +1,5 @@
 // pages/weixinpay/weixinpay.js
+const app = getApp()
 Page({
 
   /**
@@ -6,6 +7,7 @@ Page({
    */
   data: {
      price:"0.01",
+     buyQuantity:"1"
   },
 
   changeprice: function (e){
@@ -13,6 +15,13 @@ Page({
       price: e.detail.value
     })
   },
+
+  changebuyQuantity: function (e) {
+    this.setData({
+      buyQuantity: e.detail.value
+    })
+  },
+
 
   checkprice: function(){},
 
@@ -35,7 +44,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: globalData.httptype + globalData.url + '/weixinpay/prepay',
+            url: app.globalData.httptype + app.globalData.url + '/weixinpay/prepay',
             data: {
               wxcode: res.code,
               money: price * 100,
@@ -73,7 +82,58 @@ Page({
     })
 
   },
-
+  wxVirtualPay:function(e) {
+    var buyQuantity = this.data.buyQuantity;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            url: app.globalData.httptype + app.globalData.url + '/weixin/virtual/pay/prepay',
+            method:'POST',
+            data: {
+              buyQuantity:buyQuantity,
+              env:1,
+              wxCode: res.code,
+            },
+            success: function (res) {
+              if (res.statusCode == 200){
+                var data = res.data;
+                wx.requestVirtualPayment({
+                  // short_series_goods	道具直购
+                  //short_series_coin	代币充值
+                  mode:"short_series_coin",
+                  signData: data.signData,
+                  // 支付签名
+                  paySig:data.paySig,
+                  // 用户态签名
+                  signature:data.signature,
+                  success(res) {
+                    console.log('虚拟支付调用成功', res)
+                    wx.showToast({
+                      title: '支付成功',
+                      icon: 'success'
+                    })
+                  },
+                  fail(error) {
+                    console.error(
+                      '虚拟支付失败',
+                      error.errCode,
+                      error.errMsg
+                    )
+                    wx.showToast({
+                      title: error.errMsg || '支付失败',
+                      icon: 'none'
+                    })
+                  },
+                })
+              }
+            }
+          });
+        }
+      },
+    })
+  },
+  
   payresult:function(code,res){
     if(code ==1){
         msg = "成功"
@@ -82,6 +142,11 @@ Page({
     }
   },
 
+
+
+
+
+  
   /**
    * 生命周期函数--监听页面加载
    */

@@ -87,10 +87,6 @@
         "type": "folder"
       },
       {
-        "value": "pages/weixinpay",
-        "type": "folder"
-      },
-      {
         "value": "components/chatroom",
         "type": "folder"
       },
