@@ -92,7 +92,7 @@ Page({
             method:'POST',
             data: {
               buyQuantity:buyQuantity,
-              env:1,
+              env:0,
               wxCode: res.code,
             },
             success: function (res) {
