@@ -64,6 +64,36 @@ page {
   box-sizing: border-box;
 }
 
+.quantity-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantity-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23%;
+  height: 72rpx;
+  color: #59665f;
+  font-size: 25rpx;
+  background: #f6f8f7;
+  border: 2rpx solid transparent;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
+.quantity-option--active {
+  color: #80530d;
+  font-weight: 700;
+  background: #fff1c7;
+  border-color: #efb84f;
+}
+
+.custom-input-box {
+  margin-top: 18rpx;
+}
+
 .input-prefix {
   margin-right: 14rpx;
   color: #08a66c;
@@ -96,7 +126,7 @@ page {
   justify-content: center;
   width: 58%;
   height: 88rpx;
-  margin: 18rpx auto 0;
+  margin: 25rpx auto 0;
   padding: 0;
   color: #ffffff;
   font-size: 28rpx;
@@ -112,8 +142,9 @@ page {
 }
 
 .pay-button--light {
-  color: #7d5315;
-  background: #fff0c9;
+  color: #ffffff;
+  background: #08a66c;
+  box-shadow: 0 10rpx 22rpx rgba(8, 166, 108, 0.2);
 }
 
 .safe-tip {
