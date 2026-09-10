@@ -1,4 +1,5 @@
 const HOLIDAY_API_URL = 'https://timor.tech/api/holiday/info/';
+const app = getApp();
 
 Page({
   data: {
@@ -73,6 +74,7 @@ Page({
       this.refreshIncomeRate();
       this.updateClock();
       this.updateIncome();
+      this.loadRemoteConfig();
     });
 
     wx.showShareMenu({
@@ -119,6 +121,126 @@ Page({
     if (isCompactMode !== this.data.isCompactMode) {
       this.setData({ isCompactMode });
     }
+  },
+
+  withOpenid(success, fail) {
+    if (app.globalData.openid) {
+      success(app.globalData.openid);
+      return;
+    }
+
+    wx.login({
+      success: (loginResult) => {
+        if (!loginResult.code) {
+          if (fail) fail();
+          return;
+        }
+        wx.request({
+          url: `${app.globalData.httptype}${app.globalData.url}/wechat/login`,
+          data: { code: loginResult.code },
+          success: (response) => {
+            const openid = String(response.data || '').trim();
+            if (!openid) {
+              if (fail) fail();
+              return;
+            }
+            app.globalData.openid = openid;
+            success(openid);
+          },
+          fail: () => {
+            if (fail) fail();
+          }
+        });
+      },
+      fail: () => {
+        if (fail) fail();
+      }
+    });
+  },
+
+  normalizeConfigTime(value, fallback) {
+    const time = String(value || '').slice(0, 5);
+    return /^([01]\d|2[0-3]):[0-5]\d$/.test(time) ? time : fallback;
+  },
+
+  loadRemoteConfig() {
+    this.withOpenid((openid) => {
+      wx.request({
+        url: `${app.globalData.httptype}${app.globalData.url}/work-inspiration/config`,
+        method: 'GET',
+        data: { openid },
+        success: (response) => {
+          const remoteConfig = response.data;
+          const monthlySalary = Number(remoteConfig && remoteConfig.monthlySalary);
+          if (response.statusCode !== 200 || !remoteConfig || !Number.isFinite(monthlySalary) || monthlySalary <= 0) {
+            return;
+          }
+
+          const config = {
+            monthlySalary: monthlySalary.toFixed(2).replace(/\.00$/, ''),
+            morningStart: this.normalizeConfigTime(remoteConfig.morningStartTime, this.data.morningStart),
+            morningEnd: this.normalizeConfigTime(remoteConfig.morningEndTime, this.data.morningEnd),
+            afternoonStart: this.normalizeConfigTime(remoteConfig.afternoonStartTime, this.data.afternoonStart),
+            afternoonEnd: this.normalizeConfigTime(remoteConfig.afternoonEndTime, this.data.afternoonEnd)
+          };
+
+          wx.setStorageSync('workInspirationConfig', config);
+          this.setData({
+            ...config,
+            draftMonthlySalary: config.monthlySalary,
+            draftMorningStart: config.morningStart,
+            draftMorningEnd: config.morningEnd,
+            draftAfternoonStart: config.afternoonStart,
+            draftAfternoonEnd: config.afternoonEnd
+          }, () => {
+            this.refreshIncomeRate();
+            this.updateIncome();
+          });
+        }
+      });
+    });
+  },
+
+  saveRemoteConfig(config) {
+    wx.showLoading({ title: '保存中...' });
+    this.withOpenid((openid) => {
+      wx.request({
+        url: `${app.globalData.httptype}${app.globalData.url}/work-inspiration/config`,
+        method: 'POST',
+        data: {
+          openid,
+          monthlySalary: Number(config.monthlySalary),
+          morningStartTime: config.morningStart,
+          morningEndTime: config.morningEnd,
+          afternoonStartTime: config.afternoonStart,
+          afternoonEndTime: config.afternoonEnd
+        },
+        success: (response) => {
+          if (response.statusCode < 200 || response.statusCode >= 300) {
+            wx.showToast({ title: '保存失败，请稍后重试', icon: 'none' });
+            return;
+          }
+
+          wx.setStorageSync('workInspirationConfig', config);
+          this.setData({
+            ...config,
+            isEditingConfig: false,
+            configStatus: '已确认'
+          }, () => {
+            this.refreshIncomeRate();
+            this.updateIncome();
+          });
+          wx.showToast({ title: '配置已保存', icon: 'success' });
+        },
+        fail: () => {
+          wx.showToast({ title: '保存失败，请检查网络', icon: 'none' });
+        },
+        complete: () => wx.hideLoading()
+      });
+    }, () => {
+      wx.hideLoading();
+      wx.showToast({ title: '登录失败，请稍后重试', icon: 'none' });
+    });
   },
 
   toggleCompactMode() {
@@ -384,16 +506,7 @@ Page({
       afternoonEnd: this.data.draftAfternoonEnd
     };
 
-    this.setData({
-      ...config,
-      isEditingConfig: false,
-      configStatus: '已确认'
-    }, () => {
-      wx.setStorageSync('workInspirationConfig', config);
-      this.refreshIncomeRate();
-      this.updateIncome();
-      wx.showToast({ title: '配置已更新', icon: 'success' });
-    });
+    this.saveRemoteConfig(config);
   },
 
   triggerTwoSecondBonus() {

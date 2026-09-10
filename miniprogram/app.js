@@ -20,7 +20,7 @@ App({
 
     this.globalData = {
       httptype: "https://",
-      url: "www.jeremy7.cn/",
+      url: "www.jeremy7.cn",
       wstype:"wss://",
       // httptype: "http://",
       // url: "10.24.102.31:8080",
