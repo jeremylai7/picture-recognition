@@ -88,8 +88,8 @@ Page({
       success: function (res) {
         if (res.code) {
           //发起网络请求
-          wx.request({
-            url: app.globalData.httptype + app.globalData.url + '/weixinpay/prepay',
+          app.request({
+            url: '/weixinpay/prepay',
             data: {
               wxcode: res.code,
               money: price * 100,
@@ -140,8 +140,8 @@ Page({
     wx.login({
       success: function (res) {
         if (res.code) {
-          wx.request({
-            url: app.globalData.httptype + app.globalData.url + '/weixin/virtual/pay/prepay',
+          app.request({
+            url: '/weixin/virtual/pay/prepay',
             method:'POST',
             data: {
               buyQuantity:buyQuantity,

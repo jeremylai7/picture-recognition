@@ -36,13 +36,29 @@ App({
     }
   
   },
+  request: function(options = {}) {
+    var that = this;
+    return wx.request({
+      url: that.globalData.httptype + that.globalData.url + options.url,
+      method: options.method || 'GET',
+      data: options.data || {},
+      // 统一请求头
+      header: {
+        'Content-Type': 'application/json',
+        'X-Custom-Header': 'jeremy63982945'
+      },
+      success: options.success,
+      fail: options.fail,
+      complete: options.complete
+    });
+  },
   login: function() {
     var that = this;
     wx.login({
       success: (res) => {
         if (res.code) {
-          wx.request({
-            url: that.globalData.httptype + that.globalData.url + "/wechat/login",
+          that.request({
+            url: "/wechat/login",
             data: {
               code:res.code
             },

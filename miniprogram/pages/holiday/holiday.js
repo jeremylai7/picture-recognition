@@ -58,8 +58,8 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/holiday/all",
+    app.request({
+      url:  "/holiday/all",
       success (res){
         that.buildHolidayItem(res.data);
         wx.hideLoading();

@@ -135,8 +135,8 @@ Page({
           if (fail) fail();
           return;
         }
-        wx.request({
-          url: `${app.globalData.httptype}${app.globalData.url}/wechat/login`,
+        app.request({
+          url: `/wechat/login`,
           data: { code: loginResult.code },
           success: (response) => {
             const openid = String(response.data || '').trim();
@@ -165,8 +165,8 @@ Page({
 
   loadRemoteConfig() {
     this.withOpenid((openid) => {
-      wx.request({
-        url: `${app.globalData.httptype}${app.globalData.url}/work-inspiration/config`,
+      app.request({
+        url: `/work-inspiration/config`,
         method: 'GET',
         data: { openid },
         success: (response) => {
@@ -204,8 +204,8 @@ Page({
   saveRemoteConfig(config) {
     wx.showLoading({ title: '保存中...' });
     this.withOpenid((openid) => {
-      wx.request({
-        url: `${app.globalData.httptype}${app.globalData.url}/work-inspiration/config`,
+      app.request({
+        url: '/work-inspiration/config',
         method: 'POST',
         data: {
           openid,

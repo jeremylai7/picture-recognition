@@ -65,8 +65,8 @@ Page({
       chatArray:chatArray,
       chatCount:chatArray.length
     })
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/holiday/chat-answer",
+    app.request({
+      url: "/holiday/chat-answer",
       data: {
          msg:searchText,
          openid:openid
@@ -108,8 +108,8 @@ Page({
   welcomeInit() {
     var that = this;
     var openid = getApp().globalData.openid;
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/holiday/getMessagesSize",
+    app.request({
+      url: "/holiday/getMessagesSize",
       data: {
          openid:openid
       },
@@ -139,8 +139,8 @@ Page({
     const message = event.currentTarget.dataset.message;
     const encodedMarkdownText = encodeURIComponent(message);
     var resultText;
-    wx.request({
-      url: app.globalData.httptype + app.globalData.url + "/holiday/markdownToStr?markdownStr="+encodedMarkdownText,
+    app.request({
+      url: "/holiday/markdownToStr?markdownStr="+encodedMarkdownText,
       method:'POST',
       success:function(res) {
         resultText = res.data;
