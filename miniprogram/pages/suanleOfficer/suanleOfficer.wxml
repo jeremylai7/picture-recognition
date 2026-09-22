@@ -1,0 +1,87 @@
+<view class="page-shell">
+  <image class="page-background" src="/images/suanle-officer/road-background.jpg" mode="aspectFill" />
+  <view class="sky-wash"></view>
+
+  <view class="page-content">
+    <view class="hero-heading">
+      <view class="title-row">
+        <text class="title">算了嘛警官</text>
+        <view class="title-rays">
+          <text></text><text></text><text></text>
+        </view>
+      </view>
+      <text class="subtitle">— 点击进入下一句 —</text>
+      <text class="side-note side-note-left">上车容易\n下车，还是这句\n(๑•̀ㅂ•́)و</text>
+      <text class="side-note side-note-right">一段永远\n不会结束的对话\n(｡･ω･｡) ♡</text>
+    </view>
+
+    <view class="cycle-zone">
+      <view class="cycle-ring">
+        <view class="ring-dashes"></view>
+      </view>
+
+      <text class="cycle-arrow arrow-top">➜</text>
+      <text class="cycle-arrow arrow-right">➜</text>
+      <text class="cycle-arrow arrow-bottom">➜</text>
+      <text class="cycle-arrow arrow-left">➜</text>
+
+      <view class="cycle-center">
+        <text class="cycle-icon">⟳</text>
+        <text class="cycle-title">循环中</text>
+        <text class="cycle-tip">点一下，切到下一句</text>
+      </view>
+
+      <view
+        wx:for="{{steps}}"
+        wx:key="text"
+        class="step-node {{item.position}} {{currentStep == index ? 'is-active' : ''}}"
+      >
+        <image class="step-character {{item.role}}" src="{{item.image}}" mode="aspectFit" />
+        <view class="step-bubble">
+          <text class="step-number">{{index + 1}}</text>
+          <text class="step-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="next-button" bindtap="advanceStep" bindlongpress="resetStats">
+      <text>下一个</text>
+    </button>
+
+    <view class="auto-control {{autoLoop ? 'is-on' : ''}}" bindtap="toggleAutoLoop">
+      <text class="auto-icon">⟳</text>
+      <text>自动循环</text>
+    </view>
+
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-icon">⟳</text>
+        <view>
+          <text class="stat-label">已循环</text>
+          <view><text class="stat-value">{{loopCount}}</text><text class="stat-unit"> 次</text></view>
+        </view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-icon chat-icon">◌</text>
+        <view>
+          <text class="stat-label">说了</text>
+          <view>
+            <text class="stat-value">{{saidCount}}</text><text class="stat-unit"> 次</text>
+            <text class="stat-quote"> 算了嘛警官</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="road-caption">
+      <view class="road-sign">
+        <text>前方</text>
+        <text>还是算了嘛警官</text>
+        <text class="road-sign-arrow">→</text>
+      </view>
+      <text class="ending">所有道路，最终都会回到“算了嘛警官”。</text>
+      <text class="ending-heart">♡</text>
+    </view>
+  </view>
+</view>
