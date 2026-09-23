@@ -26,7 +26,7 @@
       <text class="cycle-arrow arrow-left">➜</text>
 
       <view class="cycle-center">
-        <text class="cycle-icon">⟳</text>
+        <image class="cycle-icon" src="/images/suanle-officer/cycle-refresh.svg" mode="aspectFit" />
         <text class="cycle-title">循环中</text>
         <text class="cycle-tip">点一下，切到下一句</text>
       </view>
@@ -35,6 +35,10 @@
         wx:for="{{steps}}"
         wx:key="text"
         class="step-node {{item.position}} {{currentStep == index ? 'is-active' : ''}}"
+        data-index="{{index}}"
+        bindtap="onStepTap"
+        aria-role="button"
+        aria-label="{{item.text}}"
       >
         <image class="step-character {{item.role}}" src="{{item.image}}" mode="aspectFit" />
         <view class="step-bubble">
@@ -45,17 +49,17 @@
     </view>
 
     <button class="next-button" bindtap="advanceStep" bindlongpress="resetStats">
-      <text>下一个</text>
+      <text>点一下，下一个</text>
     </button>
 
-    <view class="auto-control {{autoLoop ? 'is-on' : ''}}" bindtap="toggleAutoLoop">
+    <!-- <view class="auto-control {{autoLoop ? 'is-on' : ''}}" bindtap="toggleAutoLoop">
       <text class="auto-icon">⟳</text>
       <text>自动循环</text>
-    </view>
+    </view> -->
 
     <view class="stats-card">
       <view class="stat-item">
-        <text class="stat-icon">⟳</text>
+        <image class="stat-icon" src="/images/suanle-officer/stat-loop.svg" mode="aspectFit" />
         <view>
           <text class="stat-label">已循环</text>
           <view><text class="stat-value">{{loopCount}}</text><text class="stat-unit"> 次</text></view>
@@ -63,7 +67,7 @@
       </view>
       <view class="stat-divider"></view>
       <view class="stat-item">
-        <text class="stat-icon chat-icon">◌</text>
+        <image class="stat-icon" src="/images/suanle-officer/stat-chat.svg" mode="aspectFit" />
         <view>
           <text class="stat-label">说了</text>
           <view>
@@ -75,12 +79,12 @@
     </view>
 
     <view class="road-caption">
-      <view class="road-sign">
+      <!-- <view class="road-sign">
         <text>前方</text>
         <text>还是算了嘛警官</text>
         <text class="road-sign-arrow">→</text>
-      </view>
-      <text class="ending">所有道路，最终都会回到“算了嘛警官”。</text>
+      </view> -->
+      <text class="ending">道路千万条，安全第一条。</text>
       <text class="ending-heart">♡</text>
     </view>
   </view>

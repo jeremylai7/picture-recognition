@@ -14,25 +14,29 @@ Page({
         text: '你有驾照吗？',
         position: 'step-top',
         role: 'officer',
+        audio: '/audio/suanle-officer/ni-you-jiazhao-ma.mp3',
         image: '/images/suanle-officer/officer.png'
       },
       {
         text: '有有有',
         position: 'step-right',
         role: 'driver',
-        image: '/images/suanle-officer/driver.png'
+        audio:'/audio/suanle-officer/you-you.mp3',
+        image: '/images/suanle-officer/driver-1.png'
       },
       {
         text: '请出示你的驾照',
         position: 'step-bottom',
         role: 'officer',
+        audio:'/audio/suanle-officer/qing-chu-shi-jiazhao.mp3',
         image: '/images/suanle-officer/officer.png'
       },
       {
         text: '算了嘛警官',
         position: 'step-left',
         role: 'driver',
-        image: '/images/suanle-officer/driver.png'
+        audio: '/audio/suanle-officer/suanle-ma-jingguan.mp3',
+        image: '/images/suanle-officer/driver-2.png'
       }
     ]
   },
@@ -69,15 +73,31 @@ Page({
 
   onHide() {
     this.stopAutoLoop();
+    this.stopStepAudio();
   },
 
   onUnload() {
     this.stopAutoLoop();
+    if (this.stepAudio) {
+      this.stepAudio.destroy();
+      this.stepAudio = null;
+    }
   },
 
   advanceStep() {
     const nextStep = (this.data.currentStep + 1) % this.data.steps.length;
-    const loopCount = this.data.loopCount + (nextStep === 0 ? 1 : 0);
+    this.activateStep(nextStep, nextStep === 0);
+  },
+
+  onStepTap(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    if (!Number.isInteger(index) || index < 0 || index >= this.data.steps.length) return;
+    this.activateStep(index);
+    if (this.data.autoLoop) this.startAutoLoop();
+  },
+
+  activateStep(nextStep, completedLoop = false) {
+    const loopCount = this.data.loopCount + (completedLoop ? 1 : 0);
     const saidCount = this.data.saidCount + (nextStep === 3 ? 1 : 0);
 
     this.setData({
@@ -85,8 +105,29 @@ Page({
       loopCount,
       saidCount
     });
+    this.playStepAudio(nextStep);
 
     wx.setStorageSync(STORAGE_KEY, { loopCount, saidCount });
+  },
+
+  playStepAudio(stepIndex) {
+    this.stopStepAudio();
+    const step = this.data.steps[stepIndex];
+    if (!step || !step.audio) return;
+
+    if (!this.stepAudio) {
+      this.stepAudio = wx.createInnerAudioContext();
+      this.stepAudio.onError((error) => {
+        console.warn('台词音频播放失败', error);
+        wx.showToast({ title: '音频播放失败，请重试', icon: 'none' });
+      });
+    }
+    this.stepAudio.src = step.audio;
+    this.stepAudio.play();
+  },
+
+  stopStepAudio() {
+    if (this.stepAudio) this.stepAudio.stop();
   },
 
   toggleAutoLoop() {
@@ -115,6 +156,7 @@ Page({
   },
 
   resetStats() {
+    this.stopStepAudio();
     this.setData({
       currentStep: 0,
       loopCount: 0,
