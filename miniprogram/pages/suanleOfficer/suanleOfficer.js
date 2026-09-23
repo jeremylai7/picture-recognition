@@ -6,6 +6,7 @@ Page({
     navigationHeight: 44,
     topSpacerHeight: 36,
     currentStep: 0,
+    hasStarted: false,
     loopCount: 0,
     saidCount: 0,
     autoLoop: false,
@@ -85,8 +86,11 @@ Page({
   },
 
   advanceStep() {
-    const nextStep = (this.data.currentStep + 1) % this.data.steps.length;
-    this.activateStep(nextStep, nextStep === 0);
+    const nextStep = this.data.hasStarted
+      ? (this.data.currentStep + 1) % this.data.steps.length
+      : 0;
+    const completedLoop = this.data.hasStarted && nextStep === 0;
+    this.activateStep(nextStep, completedLoop);
   },
 
   onStepTap(event) {
@@ -102,6 +106,7 @@ Page({
 
     this.setData({
       currentStep: nextStep,
+      hasStarted: true,
       loopCount,
       saidCount
     });
@@ -159,6 +164,7 @@ Page({
     this.stopStepAudio();
     this.setData({
       currentStep: 0,
+      hasStarted: false,
       loopCount: 0,
       saidCount: 0
     });
