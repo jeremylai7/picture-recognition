@@ -67,6 +67,14 @@ Page({
   },
 
   onShow() {
+    // 用户主动点击台词时，iPhone 静音模式下也允许播放。
+    wx.setInnerAudioOption({
+      obeyMuteSwitch: false,
+      fail(error) {
+        console.warn('设置音频播放选项失败', error);
+      }
+    });
+
     if (this.data.autoLoop) {
       this.startAutoLoop();
     }

@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/suanleOfficer/suanleOfficer",
     "pages/workInspiration/workInspiration",
-
+    "pages/suanleOfficer/suanleOfficer",
     "pages/weixinpay/weixinpay",
     "pages/autumnMilkTea/autumnMilkTea",
     "pages/coffeeHome/coffeeHome",
