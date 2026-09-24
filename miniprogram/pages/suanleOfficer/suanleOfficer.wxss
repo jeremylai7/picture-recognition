@@ -47,7 +47,7 @@ page {
 
 .hero-heading {
   position: absolute;
-  top: 110rpx;
+  top: 135rpx;
   left: 0;
   right: 0;
   height: 180rpx;
@@ -129,7 +129,7 @@ page {
 
 .cycle-zone {
   position: absolute;
-  top: 280rpx;
+  top: 321rpx;
   left: 0;
   width: 750rpx;
   height: 735rpx;
@@ -311,7 +311,7 @@ page {
 .next-button {
   position: absolute;
   left: 50%;
-  top: 1094rpx;
+  top: 1108rpx;
   display: flex;
   width: 590rpx;
   height: 100rpx;
@@ -397,7 +397,7 @@ page {
 .stats-card {
   position: absolute;
   left: 50%;
-  top: 1260rpx;
+  top: 1290rpx;
   display: flex;
   width: 590rpx;
   min-height: 108rpx;
