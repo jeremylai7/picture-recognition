@@ -19,6 +19,7 @@ Page({
     apiDayOffType: '',
     workStatus: '未到上班时间',
     monthlySalary: '10000',
+    workDaysPerMonth: 22,
     morningStart: '09:00',
     morningEnd: '12:00',
     afternoonStart: '13:30',
@@ -26,6 +27,7 @@ Page({
     isSalaryHidden: false,
     isIncomeHidden: true,
     draftMonthlySalary: '10000',
+    draftWorkDaysPerMonth: 22,
     draftMorningStart: '09:00',
     draftMorningEnd: '12:00',
     draftAfternoonStart: '13:30',
@@ -51,6 +53,7 @@ Page({
     const isIncomeHidden = wx.getStorageSync('workInspirationIncomeHidden') !== false;
     const config = {
       monthlySalary: storedConfig.monthlySalary || this.data.monthlySalary,
+      workDaysPerMonth: this.normalizeWorkDays(storedConfig.workDaysPerMonth, this.data.workDaysPerMonth),
       morningStart: storedConfig.morningStart || this.data.morningStart,
       morningEnd: storedConfig.morningEnd || this.data.morningEnd,
       afternoonStart: storedConfig.afternoonStart || this.data.afternoonStart,
@@ -66,6 +69,7 @@ Page({
       isSalaryHidden,
       isIncomeHidden,
       draftMonthlySalary: config.monthlySalary,
+      draftWorkDaysPerMonth: config.workDaysPerMonth,
       draftMorningStart: config.morningStart,
       draftMorningEnd: config.morningEnd,
       draftAfternoonStart: config.afternoonStart,
@@ -163,6 +167,11 @@ Page({
     return /^([01]\d|2[0-3]):[0-5]\d$/.test(time) ? time : fallback;
   },
 
+  normalizeWorkDays(value, fallback = 22) {
+    const workDays = Number(value);
+    return Number.isInteger(workDays) && workDays >= 1 && workDays <= 31 ? workDays : fallback;
+  },
+
   loadRemoteConfig() {
     this.withOpenid((openid) => {
       app.request({
@@ -178,6 +187,7 @@ Page({
 
           const config = {
             monthlySalary: monthlySalary.toFixed(2).replace(/\.00$/, ''),
+            workDaysPerMonth: this.normalizeWorkDays(remoteConfig.workDaysPerMonth, this.data.workDaysPerMonth),
             morningStart: this.normalizeConfigTime(remoteConfig.morningStartTime, this.data.morningStart),
             morningEnd: this.normalizeConfigTime(remoteConfig.morningEndTime, this.data.morningEnd),
             afternoonStart: this.normalizeConfigTime(remoteConfig.afternoonStartTime, this.data.afternoonStart),
@@ -188,6 +198,7 @@ Page({
           this.setData({
             ...config,
             draftMonthlySalary: config.monthlySalary,
+            draftWorkDaysPerMonth: config.workDaysPerMonth,
             draftMorningStart: config.morningStart,
             draftMorningEnd: config.morningEnd,
             draftAfternoonStart: config.afternoonStart,
@@ -210,6 +221,7 @@ Page({
         data: {
           openid,
           monthlySalary: Number(config.monthlySalary),
+          workDaysPerMonth: Number(config.workDaysPerMonth),
           morningStartTime: config.morningStart,
           morningEndTime: config.morningEnd,
           afternoonStartTime: config.afternoonStart,
@@ -292,7 +304,8 @@ Page({
   },
 
   getDailyIncome() {
-    return Number(this.data.monthlySalary || 0) / 22;
+    const workDays = this.normalizeWorkDays(this.data.workDaysPerMonth);
+    return Number(this.data.monthlySalary || 0) / workDays;
   },
 
   getDateKey(date) {
@@ -440,6 +453,7 @@ Page({
   beginConfigUpdate() {
     this.setData({
       draftMonthlySalary: this.data.monthlySalary,
+      draftWorkDaysPerMonth: this.data.workDaysPerMonth,
       draftMorningStart: this.data.morningStart,
       draftMorningEnd: this.data.morningEnd,
       draftAfternoonStart: this.data.afternoonStart,
@@ -459,6 +473,12 @@ Page({
   onMonthlySalaryInput(event) {
     this.setData({
       draftMonthlySalary: event.detail.value
+    });
+  },
+
+  onWorkDaysInput(event) {
+    this.setData({
+      draftWorkDaysPerMonth: event.detail.value
     });
   },
 
@@ -483,6 +503,7 @@ Page({
 
   confirmConfigUpdate() {
     const monthlySalary = Number(this.data.draftMonthlySalary);
+    const workDaysPerMonth = Number(this.data.draftWorkDaysPerMonth);
     const morningStart = this.timeToSeconds(this.data.draftMorningStart);
     const morningEnd = this.timeToSeconds(this.data.draftMorningEnd);
     const afternoonStart = this.timeToSeconds(this.data.draftAfternoonStart);
@@ -493,6 +514,11 @@ Page({
       return;
     }
 
+    if (!Number.isInteger(workDaysPerMonth) || workDaysPerMonth < 1 || workDaysPerMonth > 31) {
+      wx.showToast({ title: '请输入 1～31 天', icon: 'none' });
+      return;
+    }
+
     if (!(morningStart < morningEnd && morningEnd <= afternoonStart && afternoonStart < afternoonEnd)) {
       wx.showToast({ title: '请检查上班时间', icon: 'none' });
       return;
@@ -500,6 +526,7 @@ Page({
 
     const config = {
       monthlySalary: monthlySalary.toFixed(2).replace(/\.00$/, ''),
+      workDaysPerMonth,
       morningStart: this.data.draftMorningStart,
       morningEnd: this.data.draftMorningEnd,
       afternoonStart: this.data.draftAfternoonStart,

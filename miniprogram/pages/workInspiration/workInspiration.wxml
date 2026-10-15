@@ -83,7 +83,7 @@
       <view class="config-header">
         <view>
           <text class="config-title">工资配置</text>
-          <text class="config-caption">按每月 22 个工作日折算</text>
+          <text class="config-caption">按每月 {{workDaysPerMonth}} 个工作日折算</text>
         </view>
         <text class="config-status {{isEditingConfig ? 'config-status--editing' : ''}}">{{configStatus}}</text>
       </view>
@@ -109,6 +109,10 @@
               <text wx:else class="config-value config-value--salary">¥{{monthlySalary}}</text>
             </view>
           </view>
+          <view class="config-summary-row">
+            <text class="config-label">每月计薪天数</text>
+            <text class="config-value">{{workDaysPerMonth}} 天</text>
+          </view>
           <view class="config-summary-row config-summary-row--time">
             <text class="config-label">上班时间</text>
             <view class="confirmed-times">
@@ -132,6 +136,20 @@
               value="{{draftMonthlySalary}}"
               bindinput="onMonthlySalaryInput"
             />
+          </view>
+        </view>
+
+        <view class="config-field">
+          <text class="config-label">每月计薪天数</text>
+          <view class="work-days-input-wrap">
+            <input
+              class="work-days-input"
+              type="number"
+              maxlength="2"
+              value="{{draftWorkDaysPerMonth}}"
+              bindinput="onWorkDaysInput"
+            />
+            <text class="work-days-unit">天</text>
           </view>
         </view>
 

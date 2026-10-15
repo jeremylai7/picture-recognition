@@ -469,6 +469,29 @@ page {
   font-weight: 700;
 }
 
+.work-days-input-wrap {
+  display: flex;
+  align-items: center;
+  color: #fff4d8;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.work-days-input {
+  width: 88rpx;
+  height: 70rpx;
+  color: #fff4d8;
+  text-align: right;
+  font-size: 30rpx;
+}
+
+.work-days-unit {
+  margin-left: 12rpx;
+  color: #aa9376;
+  font-size: 25rpx;
+  font-weight: 400;
+}
+
 .salary-input {
   width: 200rpx;
   height: 70rpx;
